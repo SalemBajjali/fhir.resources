@@ -602,6 +602,7 @@ MODEL_CLASSES = {
     "MessageHeaderSource": (None, ".messageheader"),
     "Meta": (None, ".meta"),
     "MetadataResource": (None, ".metadataresource"),
+#NOTE: These are new types created to handle MolecularSequencePlus
     "MolecularSequencePlus": (None, ".molecularsequenceplus"),
     "MolecularSequenceLiteralPlus": (None, ".molecularsequenceplus"),
     "MolecularSequenceRelativePlus": (None, ".molecularsequenceplus"),
@@ -611,7 +612,11 @@ MODEL_CLASSES = {
     "MolecularSequenceConcatenated": (None, ".molecularsequenceplus"),
     "MolecularSequenceConcatenatedSequenceElement": (None, ".molecularsequenceplus"),
 
-    # "MolecularSequenceRelativeStartingSequence": (None, ".molecularsequenceplus"),
+#NOTE: Origingal types that handle MolecularSequence
+    "MolecularSequence": (None, ".molecularsequence"),
+    "MolecularSequenceRelative": (None, ".molecularsequence"),
+    "MolecularSequenceRelativeEdit": (None, ".molecularsequence"),
+    "MolecularSequenceRelativeStartingSequence": (None, ".molecularsequence"),
 
     "MonetaryComponent": (None, ".monetarycomponent"),
     "Money": (None, ".money"),
@@ -3793,6 +3798,7 @@ def meta_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
 def metadataresource_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
     return fhir_model_validator("MetadataResource", v)
 
+#NOTE: These are new functions created to handle MolecularSequencePlus
 def molecularsequenceplus_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
     return fhir_model_validator("MolecularSequencePlus", v)
 
@@ -3833,11 +3839,28 @@ def molecularsequenceconcatenatedsequenceelement_validator(
 ):
     return fhir_model_validator("MolecularSequenceConcatenatedSequenceElement", v)
 
+#NOTE: Origingal functions that handle MolecularSequence
 
-# def molecularsequencerelativestartingsequence_validator(
-#     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
-# ):
-#     return fhir_model_validator("MolecularSequenceRelativeStartingSequence", v)
+def molecularsequence_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
+    return fhir_model_validator("MolecularSequence", v)
+
+
+def molecularsequencerelative_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularSequenceRelative", v)
+
+
+def molecularsequencerelativeedit_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularSequenceRelativeEdit", v)
+
+
+def molecularsequencerelativestartingsequence_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularSequenceRelativeStartingSequence", v)
 
 
 def monetarycomponent_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
@@ -5910,10 +5933,22 @@ __all__ = [
     "messageheadersource_validator",
     "meta_validator",
     "metadataresource_validator",
+#NOTE: these are new types created to handle MolecularSequencePlus
     "molecularsequenceplus_validator",
+    "molecularsequenceliteralplus_validator",
     "molecularsequencerelativeplus_validator",
     "molecularsequencerelativeeditplus_validator",
-    # "molecularsequencerelativestartingsequence_validator",
+    "molecularsequenceextracted_validator",
+    "molecularsequencerepeated_validator",
+    "molecularsequenceconcatenated_validator",
+    "molecularsequenceconcatenatedsequenceelement_validator",
+
+#NOTE: These are original types created to handle MolecularSequence 
+    "molecularsequence_validator",
+    "molecularsequencerelative_validator",
+    "molecularsequencerelativeedit_validator",
+    "molecularsequencerelativestartingsequence_validator",
+
     "monetarycomponent_validator",
     "money_validator",
     "namingsystem_validator",

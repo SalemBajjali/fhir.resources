@@ -2881,7 +2881,7 @@ class MetaType(AbstractType):
 class MetadataResourceType(AbstractType):
     __resource_type__ = "MetadataResource"
 
-
+#NOTE: These are new classes created to handle MolecularSequencePlus
 class MolecularSequencePlusType(AbstractType):
     __resource_type__ = "MolecularSequencePlus"
 
@@ -2913,9 +2913,22 @@ class MolecularSequenceConcatenatedType(AbstractType):
 class MolecularSequenceConcatenatedSequenceElementType(AbstractType):
     __resource_type__ = "MolecularSequenceConcatenatedSequenceElement"
 
+#NOTE: Origingal Class that handle MolecularSequence
+class MolecularSequenceType(AbstractType):
+    __resource_type__ = "MolecularSequence"
 
-# class MolecularSequenceRelativeStartingSequenceType(AbstractType):
-#     __resource_type__ = "MolecularSequenceRelativeStartingSequence"
+
+class MolecularSequenceRelativeType(AbstractType):
+    __resource_type__ = "MolecularSequenceRelative"
+
+
+class MolecularSequenceRelativeEditType(AbstractType):
+    __resource_type__ = "MolecularSequenceRelativeEdit"
+
+
+class MolecularSequenceRelativeStartingSequenceType(AbstractType):
+    __resource_type__ = "MolecularSequenceRelativeStartingSequence"
+
 
 class MonetaryComponentType(AbstractType):
     __resource_type__ = "MonetaryComponent"
@@ -4684,6 +4697,7 @@ __all__ = [
     "MessageHeaderSourceType",
     "MetaType",
     "MetadataResourceType",
+#NOTE: These are new types created to handle MolecularSequencePlus
     "MolecularSequencePlusType",
     "MolecularSequenceLiteralPlusType",
     "MolecularSequenceRelativePlusType",
@@ -4692,7 +4706,11 @@ __all__ = [
     "MolecularSequenceRepeatedType",
     "MolecularSequenceConcatenatedType",
     "MolecularSequenceConcatenatedSequenceElementType",
-    # "MolecularSequenceRelativeStartingSequenceType",
+#NOTE: Origingal types that handle MolecularSequence
+    "MolecularSequenceType",
+    "MolecularSequenceRelativeType",
+    "MolecularSequenceRelativeEditType",
+    "MolecularSequenceRelativeStartingSequenceType",
     "MonetaryComponentType",
     "MoneyType",
     "NamingSystemType",
