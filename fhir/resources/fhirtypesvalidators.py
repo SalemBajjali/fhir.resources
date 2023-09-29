@@ -602,15 +602,17 @@ MODEL_CLASSES = {
     "MessageHeaderSource": (None, ".messageheader"),
     "Meta": (None, ".meta"),
     "MetadataResource": (None, ".metadataresource"),
-    "MolecularSequence": (None, ".molecularsequence"),
-    "MolecularSequenceLiteral": (None, ".molecularsequenceplus"),
-    "MolecularSequenceRelative": (None, ".molecularsequenceplus"),
-    "MolecularSequenceRelativeEdit": (None, ".molecularsequenceplus"),
-    # "MolecularSequenceRelativeStartingSequence": (None, ".molecularsequenceplus"),
+    "MolecularSequencePlus": (None, ".molecularsequenceplus"),
+    "MolecularSequenceLiteralPlus": (None, ".molecularsequenceplus"),
+    "MolecularSequenceRelativePlus": (None, ".molecularsequenceplus"),
+    "MolecularSequenceRelativeEditPlus": (None, ".molecularsequenceplus"),
     "MolecularSequenceExtracted": (None, ".molecularsequenceplus"),
     "MolecularSequenceRepeated": (None, ".molecularsequenceplus"),
     "MolecularSequenceConcatenated": (None, ".molecularsequenceplus"),
     "MolecularSequenceConcatenatedSequenceElement": (None, ".molecularsequenceplus"),
+
+    # "MolecularSequenceRelativeStartingSequence": (None, ".molecularsequenceplus"),
+
     "MonetaryComponent": (None, ".monetarycomponent"),
     "Money": (None, ".money"),
     "NamingSystem": (None, ".namingsystem"),
@@ -3791,32 +3793,25 @@ def meta_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
 def metadataresource_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
     return fhir_model_validator("MetadataResource", v)
 
+def molecularsequenceplus_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
+    return fhir_model_validator("MolecularSequencePlus", v)
 
-def molecularsequence_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
-    return fhir_model_validator("MolecularSequence", v)
 
-
-def molecularsequenceliteral_validator(
+def molecularsequenceliteralplus_validator(
     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
 ):
-    return fhir_model_validator("MolecularSequenceLiteral", v)
+    return fhir_model_validator("MolecularSequenceLiteralPlus", v)
 
-def molecularsequencerelative_validator(
+def molecularsequencerelativeplus_validator(
     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
 ):
-    return fhir_model_validator("MolecularSequenceRelative", v)
+    return fhir_model_validator("MolecularSequenceRelativePlus", v)
 
 
-def molecularsequencerelativeedit_validator(
+def molecularsequencerelativeeditplus_validator(
     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
 ):
-    return fhir_model_validator("MolecularSequenceRelativeEdit", v)
-
-
-# def molecularsequencerelativestartingsequence_validator(
-#     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
-# ):
-#     return fhir_model_validator("MolecularSequenceRelativeStartingSequence", v)
+    return fhir_model_validator("MolecularSequenceRelativeEditPlus", v)
 
 def molecularsequenceextracted_validator(
     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
@@ -3837,6 +3832,13 @@ def molecularsequenceconcatenatedsequenceelement_validator(
     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
 ):
     return fhir_model_validator("MolecularSequenceConcatenatedSequenceElement", v)
+
+
+# def molecularsequencerelativestartingsequence_validator(
+#     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+# ):
+#     return fhir_model_validator("MolecularSequenceRelativeStartingSequence", v)
+
 
 def monetarycomponent_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
     return fhir_model_validator("MonetaryComponent", v)
@@ -5908,9 +5910,9 @@ __all__ = [
     "messageheadersource_validator",
     "meta_validator",
     "metadataresource_validator",
-    "molecularsequence_validator",
-    "molecularsequencerelative_validator",
-    "molecularsequencerelativeedit_validator",
+    "molecularsequenceplus_validator",
+    "molecularsequencerelativeplus_validator",
+    "molecularsequencerelativeeditplus_validator",
     # "molecularsequencerelativestartingsequence_validator",
     "monetarycomponent_validator",
     "money_validator",

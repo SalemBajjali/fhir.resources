@@ -13,7 +13,7 @@ from pydantic import Field, root_validator
 from . import backboneelement, domainresource, fhirtypes
 
 
-class MolecularSequence(domainresource.DomainResource):
+class MolecularSequencePlus(domainresource.DomainResource):
     """Disclaimer: Any field name ends with ``__ext`` doesn't part of
     Resource StructureDefinition, instead used to enable Extensibility feature
     for FHIR Primitive Data Types.
@@ -21,7 +21,7 @@ class MolecularSequence(domainresource.DomainResource):
     Representation of a molecular sequence.
     """
 
-    resource_type = Field("MolecularSequence", const=True)
+    resource_type = Field("MolecularSequencePlus", const=True)
 
     formatted: typing.List[fhirtypes.AttachmentType] = Field(
         None,
@@ -46,7 +46,7 @@ class MolecularSequence(domainresource.DomainResource):
         # if property is element of this resource.
         element_property=True,
     )
-    literal: typing.List[fhirtypes.MolecularSequenceLiteralType] = Field(
+    literal: typing.List[fhirtypes.MolecularSequenceLiteralPlusType] = Field(
         None,
         alias="literal",
         title="A literal representation of a Molecular Sequence.",
@@ -59,7 +59,7 @@ class MolecularSequence(domainresource.DomainResource):
         None, alias="_literal", title="Extension field for ``literal``."
     )
 
-    relative: typing.List[fhirtypes.MolecularSequenceRelativeType] = Field(
+    relative: typing.List[fhirtypes.MolecularSequenceRelativePlusType] = Field(
         None,
         alias="relative",
         title="A sequence defined relative to another sequence",
@@ -111,7 +111,7 @@ class MolecularSequence(domainresource.DomainResource):
     @classmethod
     def elements_sequence(cls):
         """returning all elements names from
-        ``MolecularSequence`` according specification,
+        ``MolecularSequencePlus`` according specification,
         with preserving original sequence order.
         """
         return [
@@ -133,7 +133,7 @@ class MolecularSequence(domainresource.DomainResource):
             "concatenated",
         ]
 
-class MolecularSequenceLiteral(backboneelement.BackboneElement):
+class MolecularSequenceLiteralPlus(backboneelement.BackboneElement):
     """Disclaimer: Any field name ends with ``__ext`` doesn't part of
     Resource StructureDefinition, instead used to enable Extensibility feature
     for FHIR Primitive Data Types.
@@ -141,7 +141,7 @@ class MolecularSequenceLiteral(backboneelement.BackboneElement):
     A literal representation of a Molecular Sequence.
     """
 
-    resource_type = Field("MolecularSequenceLiteral", const=True)
+    resource_type = Field("MolecularSequenceLiteralPlus", const=True)
 
     sequenceValue: fhirtypes.String = Field(
         ...,
@@ -171,7 +171,7 @@ class MolecularSequenceLiteral(backboneelement.BackboneElement):
     @classmethod
     def elements_sequence(cls):
         """returning all elements names from
-        ``MolecularSequenceRelative`` according specification,
+        ``MolecularSequenceLiteralPlus`` according specification,
         with preserving original sequence order.
         """
         return [
@@ -183,7 +183,7 @@ class MolecularSequenceLiteral(backboneelement.BackboneElement):
             
         ]
 
-class MolecularSequenceRelative(backboneelement.BackboneElement):
+class MolecularSequenceRelativePlus(backboneelement.BackboneElement):
     """Disclaimer: Any field name ends with ``__ext`` doesn't part of
     Resource StructureDefinition, instead used to enable Extensibility feature
     for FHIR Primitive Data Types.
@@ -191,7 +191,7 @@ class MolecularSequenceRelative(backboneelement.BackboneElement):
     A sequence defined relative to another sequence.
     """
 
-    resource_type = Field("MolecularSequenceRelative", const=True)
+    resource_type = Field("MolecularSequenceRelativePlus", const=True)
 
     startingSequence: fhirtypes.ReferenceType = Field(
         ...,
@@ -201,10 +201,10 @@ class MolecularSequenceRelative(backboneelement.BackboneElement):
         # if property is element of this resource.
         element_property=True,
         # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MolecularSequence"],
+        enum_reference_types=["MolecularSequencePlus"],
     )
     
-    edit: typing.List[fhirtypes.MolecularSequenceRelativeEditType] = Field(
+    edit: typing.List[fhirtypes.MolecularSequenceRelativeEditPlusType] = Field(
         None,
         alias="edit",
         title="Changes in sequence from the starting sequence",
@@ -216,7 +216,7 @@ class MolecularSequenceRelative(backboneelement.BackboneElement):
     @classmethod
     def elements_sequence(cls):
         """returning all elements names from
-        ``MolecularSequenceRelative`` according specification,
+        ``MolecularSequenceRelativePlus`` according specification,
         with preserving original sequence order.
         """
         return [
@@ -227,7 +227,7 @@ class MolecularSequenceRelative(backboneelement.BackboneElement):
             "edit",
         ]
 
-class MolecularSequenceRelativeEdit(backboneelement.BackboneElement):
+class MolecularSequenceRelativeEditPlus(backboneelement.BackboneElement):
     """Disclaimer: Any field name ends with ``__ext`` doesn't part of
     Resource StructureDefinition, instead used to enable Extensibility feature
     for FHIR Primitive Data Types.
@@ -235,7 +235,7 @@ class MolecularSequenceRelativeEdit(backboneelement.BackboneElement):
     An edit (change) made to a sequence.
     """
 
-    resource_type = Field("MolecularSequenceRelativeEdit", const=True)
+    resource_type = Field("MolecularSequenceRelativeEditPlus", const=True)
 
     editOrder: fhirtypes.Integer = Field(
         None,
@@ -284,7 +284,7 @@ class MolecularSequenceRelativeEdit(backboneelement.BackboneElement):
         # if property is element of this resource.
         element_property=True,
         # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MolecularSequence"],
+        enum_reference_types=["MolecularSequencePlus"],
     )
     replacedSequence__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
         None,
@@ -300,7 +300,7 @@ class MolecularSequenceRelativeEdit(backboneelement.BackboneElement):
         # if property is element of this resource.
         element_property=True,
         # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MolecularSequence"],
+        enum_reference_types=["MolecularSequencePlus"],
     )
     replacementSequence__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
         None,
@@ -325,7 +325,7 @@ class MolecularSequenceRelativeEdit(backboneelement.BackboneElement):
     @classmethod
     def elements_sequence(cls):
         """returning all elements names from
-        ``MolecularSequenceRelativeEdit`` according specification,
+        ``MolecularSequenceRelativeEditPlus`` according specification,
         with preserving original sequence order.
         """
         return [
@@ -359,7 +359,7 @@ class MolecularSequenceExtracted(backboneelement.BackboneElement):
         # if property is element of this resource.
         element_property=True,
         # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MolecularSequence"],
+        enum_reference_types=["MolecularSequencePlus"],
     )
 
     start: fhirtypes.Integer = Field(
@@ -439,7 +439,7 @@ class MolecularSequenceRepeated(backboneelement.BackboneElement):
     A Molecular Sequence that is represented as a repeated sequence motif.
     """
 
-    resource_type = Field("MolecularSequenceExtracted", const=True)
+    resource_type = Field("MolecularSequenceRepeated", const=True)
 
     sequenceMotif: fhirtypes.ReferenceType = Field(
         ...,
@@ -449,7 +449,7 @@ class MolecularSequenceRepeated(backboneelement.BackboneElement):
         # if property is element of this resource.
         element_property=True,
         # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MolecularSequence"],
+        enum_reference_types=["MolecularSequencePlus"],
     )
 
     copyCount: fhirtypes.Integer = Field(
@@ -491,7 +491,7 @@ class MolecularSequenceConcatenated(backboneelement.BackboneElement):
 
     sequenceElement: typing.List[fhirtypes.MolecularSequenceConcatenatedSequenceElementType] = Field(
         ...,
-        alias="edit",
+        alias="sequenceElement",
         title="One element of a concatenated Molecular Sequence.",
         description="One element of a concatenated Molecular Sequence.",
         # if property is element of this resource.
@@ -529,7 +529,7 @@ class MolecularSequenceConcatenatedSequenceElement(backboneelement.BackboneEleme
         # if property is element of this resource.
         element_property=True,
         # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MolecularSequence"],
+        enum_reference_types=["MolecularSequencePlus"],
     )
 
     ordinalIndex: fhirtypes.Integer = Field(
@@ -548,7 +548,7 @@ class MolecularSequenceConcatenatedSequenceElement(backboneelement.BackboneEleme
     @classmethod
     def elements_sequence(cls):
         """returning all elements names from
-        ``MolecularSequenceRelativeEdit`` according specification,
+        ``MolecularSequenceConcatenatedSequenceElement`` according specification,
         with preserving original sequence order.
         """
         return [

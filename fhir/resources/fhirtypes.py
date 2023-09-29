@@ -2882,34 +2882,40 @@ class MetadataResourceType(AbstractType):
     __resource_type__ = "MetadataResource"
 
 
-class MolecularSequenceType(AbstractType):
-    __resource_type__ = "MolecularSequence"
-
-class MolecularSequenceLiteralType(AbstractType):
-    __resource_type__ = "MolecularSequenceLiteral"
-
-class MolecularSequenceRelativeType(AbstractType):
-    __resource_type__ = "MolecularSequenceRelative"
+class MolecularSequencePlusType(AbstractType):
+    __resource_type__ = "MolecularSequencePlus"
 
 
-class MolecularSequenceRelativeEditType(AbstractType):
-    __resource_type__ = "MolecularSequenceRelativeEdit"
+class MolecularSequenceLiteralPlusType(AbstractType):
+    __resource_type__ = "MolecularSequenceLiteralPlus"
 
 
-# class MolecularSequenceRelativeStartingSequenceType(AbstractType):
-#     __resource_type__ = "MolecularSequenceRelativeStartingSequence"
+class MolecularSequenceRelativePlusType(AbstractType):
+    __resource_type__ = "MolecularSequenceRelativePlus"
+
+
+class MolecularSequenceRelativeEditPlusType(AbstractType):
+    __resource_type__ = "MolecularSequenceRelativeEditPlus"
+
 
 class MolecularSequenceExtractedType(AbstractType):
     __resource_type__ = "MolecularSequenceExtracted"
 
+
 class MolecularSequenceRepeatedType(AbstractType):
     __resource_type__ = "MolecularSequenceRepeated"
+
 
 class MolecularSequenceConcatenatedType(AbstractType):
     __resource_type__ = "MolecularSequenceConcatenated"
 
+
 class MolecularSequenceConcatenatedSequenceElementType(AbstractType):
     __resource_type__ = "MolecularSequenceConcatenatedSequenceElement"
+
+
+# class MolecularSequenceRelativeStartingSequenceType(AbstractType):
+#     __resource_type__ = "MolecularSequenceRelativeStartingSequence"
 
 class MonetaryComponentType(AbstractType):
     __resource_type__ = "MonetaryComponent"
@@ -4678,15 +4684,15 @@ __all__ = [
     "MessageHeaderSourceType",
     "MetaType",
     "MetadataResourceType",
-    "MolecularSequenceType",
-    "MolecularSequenceLiteralType",
-    "MolecularSequenceRelativeType",
-    "MolecularSequenceRelativeEditType",
-    # "MolecularSequenceRelativeStartingSequenceType",
+    "MolecularSequencePlusType",
+    "MolecularSequenceLiteralPlusType",
+    "MolecularSequenceRelativePlusType",
+    "MolecularSequenceRelativeEditPlusType",
     "MolecularSequenceExtractedType",
     "MolecularSequenceRepeatedType",
     "MolecularSequenceConcatenatedType",
     "MolecularSequenceConcatenatedSequenceElementType",
+    # "MolecularSequenceRelativeStartingSequenceType",
     "MonetaryComponentType",
     "MoneyType",
     "NamingSystemType",
