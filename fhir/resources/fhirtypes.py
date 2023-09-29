@@ -2885,6 +2885,8 @@ class MetadataResourceType(AbstractType):
 class MolecularSequenceType(AbstractType):
     __resource_type__ = "MolecularSequence"
 
+class MolecularSequenceLiteralType(AbstractType):
+    __resource_type__ = "MolecularSequenceLiteral"
 
 class MolecularSequenceRelativeType(AbstractType):
     __resource_type__ = "MolecularSequenceRelative"
@@ -2894,9 +2896,20 @@ class MolecularSequenceRelativeEditType(AbstractType):
     __resource_type__ = "MolecularSequenceRelativeEdit"
 
 
-class MolecularSequenceRelativeStartingSequenceType(AbstractType):
-    __resource_type__ = "MolecularSequenceRelativeStartingSequence"
+# class MolecularSequenceRelativeStartingSequenceType(AbstractType):
+#     __resource_type__ = "MolecularSequenceRelativeStartingSequence"
 
+class MolecularSequenceExtractedType(AbstractType):
+    __resource_type__ = "MolecularSequenceExtracted"
+
+class MolecularSequenceRepeatedType(AbstractType):
+    __resource_type__ = "MolecularSequenceRepeated"
+
+class MolecularSequenceConcatenatedType(AbstractType):
+    __resource_type__ = "MolecularSequenceConcatenated"
+
+class MolecularSequenceConcatenatedSequenceElementType(AbstractType):
+    __resource_type__ = "MolecularSequenceConcatenatedSequenceElement"
 
 class MonetaryComponentType(AbstractType):
     __resource_type__ = "MonetaryComponent"
@@ -4666,9 +4679,14 @@ __all__ = [
     "MetaType",
     "MetadataResourceType",
     "MolecularSequenceType",
+    "MolecularSequenceLiteralType",
     "MolecularSequenceRelativeType",
     "MolecularSequenceRelativeEditType",
-    "MolecularSequenceRelativeStartingSequenceType",
+    # "MolecularSequenceRelativeStartingSequenceType",
+    "MolecularSequenceExtractedType",
+    "MolecularSequenceRepeatedType",
+    "MolecularSequenceConcatenatedType",
+    "MolecularSequenceConcatenatedSequenceElementType",
     "MonetaryComponentType",
     "MoneyType",
     "NamingSystemType",

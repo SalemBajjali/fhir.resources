@@ -603,9 +603,14 @@ MODEL_CLASSES = {
     "Meta": (None, ".meta"),
     "MetadataResource": (None, ".metadataresource"),
     "MolecularSequence": (None, ".molecularsequence"),
-    "MolecularSequenceRelative": (None, ".molecularsequence"),
-    "MolecularSequenceRelativeEdit": (None, ".molecularsequence"),
-    "MolecularSequenceRelativeStartingSequence": (None, ".molecularsequence"),
+    "MolecularSequenceLiteral": (None, ".molecularsequenceplus"),
+    "MolecularSequenceRelative": (None, ".molecularsequenceplus"),
+    "MolecularSequenceRelativeEdit": (None, ".molecularsequenceplus"),
+    # "MolecularSequenceRelativeStartingSequence": (None, ".molecularsequenceplus"),
+    "MolecularSequenceExtracted": (None, ".molecularsequenceplus"),
+    "MolecularSequenceRepeated": (None, ".molecularsequenceplus"),
+    "MolecularSequenceConcatenated": (None, ".molecularsequenceplus"),
+    "MolecularSequenceConcatenatedSequenceElement": (None, ".molecularsequenceplus"),
     "MonetaryComponent": (None, ".monetarycomponent"),
     "Money": (None, ".money"),
     "NamingSystem": (None, ".namingsystem"),
@@ -3791,6 +3796,11 @@ def molecularsequence_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel
     return fhir_model_validator("MolecularSequence", v)
 
 
+def molecularsequenceliteral_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularSequenceLiteral", v)
+
 def molecularsequencerelative_validator(
     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
 ):
@@ -3803,11 +3813,30 @@ def molecularsequencerelativeedit_validator(
     return fhir_model_validator("MolecularSequenceRelativeEdit", v)
 
 
-def molecularsequencerelativestartingsequence_validator(
+# def molecularsequencerelativestartingsequence_validator(
+#     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+# ):
+#     return fhir_model_validator("MolecularSequenceRelativeStartingSequence", v)
+
+def molecularsequenceextracted_validator(
     v: Union[StrBytes, dict, Path, FHIRAbstractModel]
 ):
-    return fhir_model_validator("MolecularSequenceRelativeStartingSequence", v)
+    return fhir_model_validator("MolecularSequenceExtracted", v)
 
+def molecularsequencerepeated_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularSequenceRepeated", v)
+
+def molecularsequenceconcatenated_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularSequenceConcatenated", v)
+
+def molecularsequenceconcatenatedsequenceelement_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularSequenceConcatenatedSequenceElement", v)
 
 def monetarycomponent_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
     return fhir_model_validator("MonetaryComponent", v)
@@ -5882,7 +5911,7 @@ __all__ = [
     "molecularsequence_validator",
     "molecularsequencerelative_validator",
     "molecularsequencerelativeedit_validator",
-    "molecularsequencerelativestartingsequence_validator",
+    # "molecularsequencerelativestartingsequence_validator",
     "monetarycomponent_validator",
     "money_validator",
     "namingsystem_validator",
