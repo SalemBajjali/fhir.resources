@@ -1,0 +1,89 @@
+{
+    "resourceType" : "MolecularSequence",
+    "id" : "example",
+    "text" : {
+      "status" : "generated",
+      "div" : "<div xmlns=\"http://www.w3.org/1999/xhtml\"><p><b>Generated Narrative: MolecularSequence</b><a name=\"example\"> </a></p><div style=\"display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%\"><p style=\"margin-bottom: 0px\">Resource MolecularSequence &quot;example&quot; </p></div><p><b>type</b>: dna</p><h3>Literals</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>SequenceValue</b></td></tr><tr><td style=\"display: none\">*</td><td>ATGAACAGACAAGTAAAAGACATGACAGYGATACTTTCCCAGAGCTGAAGTTAACAAATGCACCTGGTTC TTTTACTAAGTGTTCAAATACCAGTGAACTTAAAGAATTTGTCAATCCTAGCCTTCCAAGAGAAGAAAAA GAAGAGAAACTAGAAACAGTTAAAGTGTCTAATAATGCTGAAGACCCCAAAGATCTCATGTTAAGTGGAG AAAGGGTTTTGCAAACTGAAAGATCTGTAGAGAGTAGCAGTATTTCAYTGGTACCTGGTACTGATTATGG CACTCAGGAAAGTATCTCGTTACTGGAAGTTAGCACTCTAGGGAAGGCAAAAACAGAACCAAATAAATGT GTGAGTCAGTGTGCAGCATTTGAAAACCCCAAGGGACTAATTCATGGTTGTTCCAAAGATAATAGAAATG ACACAGAAGGCTTTAAGTATCCATTGGGACATGAAGTTAACCACAGTCGGGAAACAAGCATAGAAATGGA AGAAAGTGAACTTGATGCTCAGTATTTGCAGAATACATTCAAGGTTTCAAAGCGCCAGTCATTTGCTCYG TTTTCAAATCCAGGAAATGCAGAAGAGGAATGTGCAACATTCTCTGCCCACTCTGGGTCCTTAAAGAAAC AAAGTCCAAAAGTCACTTTTGAATGTGAACAAAAGGAAGAAAATCAAGGAAAGAATGAGTCTAATATCAA GCCTGTACAGACAGTTAATATCACTGCAGGCTTTCCTGTGGTTGGTCAGAAAGA</td></tr></table><h3>Formatteds</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>ContentType</b></td><td><b>Url</b></td></tr><tr><td style=\"display: none\">*</td><td>text/html</td><td><a href=\"https://www.ncbi.nlm.nih.gov/nuccore/MW716256.1?report=fasta\">https://www.ncbi.nlm.nih.gov/nuccore/MW716256.1?report=fasta</a></td></tr></table><blockquote><p><b>relative</b></p><p><b>startingSequence</b>: <a href=\"broken-link.html\">MolecularSequence/StartingSequenceExample: Starting Sequence Resource</a></p><h3>Edits</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>CoordinateSystem</b></td><td><b>Start</b></td><td><b>End</b></td><td><b>ReplacementSequence</b></td><td><b>ReplacedSequence</b></td></tr><tr><td style=\"display: none\">*</td><td>0-based interval counting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA30100-4)</span></td><td>0</td><td>725</td><td><a href=\"broken-link.html\">MolecularSequence/ReplacementSequenceExample: Replacement Sequence Resource</a></td><td><a href=\"broken-link.html\">MolecularSequence/ReplacedSequenceExample: Replaced Sequence Resource</a></td></tr></table></blockquote><h3>Extracteds</h3><table class=\"grid\"><tr><td style=\"display: none\">-</td><td><b>StartingSequence</b></td><td><b>Start</b></td><td><b>End</b></td><td><b>CoordinateSystem</b></td><td><b>ReverseComplement</b></td></tr><tr><td style=\"display: none\">*</td><td><a href=\"broken-link.html\">MolecularSequence/StartingSequenceExample: Starting Sequence Resource</a></td><td>0</td><td>745</td><td>0-based interval counting <span style=\"background: LightGoldenRodYellow; margin: 4px; border: 1px solid khaki\"> (<a href=\"https://loinc.org/\">LOINC</a>#LA30100-4)</span></td><td>false</td></tr></table><blockquote><p><b>concatenated</b></p><blockquote><p><b>sequenceElement</b></p><p><b>sequence</b>: <a href=\"broken-link.html\">MolecularSequence/Sequence0ConcatenatedExample: Sequence-of index 0-Resource for concatenated sequence example</a></p><p><b>ordinalIndex</b>: 0</p></blockquote><blockquote><p><b>sequenceElement</b></p><p><b>sequence</b>: <a href=\"broken-link.html\">MolecularSequence/Sequence1ConcatenatedExample: Sequence-of index 1-Resource for concatenated sequence example</a></p><p><b>ordinalIndex</b>: 1</p></blockquote><blockquote><p><b>sequenceElement</b></p><p><b>sequence</b>: <a href=\"broken-link.html\">MolecularSequence/Sequence2ConcatenatedExample: Sequence-of index 2-Resource for concatenated sequence example</a></p><p><b>ordinalIndex</b>: 2</p></blockquote></blockquote></div>"
+    },
+    "type" : "dna",
+    "literal" : [{
+      "sequenceValue" : "ATGAACAGACAAGTAAAAGACATGACAGYGATACTTTCCCAGAGCTGAAGTTAACAAATGCACCTGGTTC TTTTACTAAGTGTTCAAATACCAGTGAACTTAAAGAATTTGTCAATCCTAGCCTTCCAAGAGAAGAAAAA GAAGAGAAACTAGAAACAGTTAAAGTGTCTAATAATGCTGAAGACCCCAAAGATCTCATGTTAAGTGGAG AAAGGGTTTTGCAAACTGAAAGATCTGTAGAGAGTAGCAGTATTTCAYTGGTACCTGGTACTGATTATGG CACTCAGGAAAGTATCTCGTTACTGGAAGTTAGCACTCTAGGGAAGGCAAAAACAGAACCAAATAAATGT GTGAGTCAGTGTGCAGCATTTGAAAACCCCAAGGGACTAATTCATGGTTGTTCCAAAGATAATAGAAATG ACACAGAAGGCTTTAAGTATCCATTGGGACATGAAGTTAACCACAGTCGGGAAACAAGCATAGAAATGGA AGAAAGTGAACTTGATGCTCAGTATTTGCAGAATACATTCAAGGTTTCAAAGCGCCAGTCATTTGCTCYG TTTTCAAATCCAGGAAATGCAGAAGAGGAATGTGCAACATTCTCTGCCCACTCTGGGTCCTTAAAGAAAC AAAGTCCAAAAGTCACTTTTGAATGTGAACAAAAGGAAGAAAATCAAGGAAAGAATGAGTCTAATATCAA GCCTGTACAGACAGTTAATATCACTGCAGGCTTTCCTGTGGTTGGTCAGAAAGA"
+    }],
+    "formatted" : [{
+      "contentType" : "text/html",
+      "url" : "https://www.ncbi.nlm.nih.gov/nuccore/MW716256.1?report=fasta"
+    }],
+    "relative" : [{
+      "startingSequence" : {
+        "reference" : "MolecularSequence/StartingSequenceExample",
+        "type" : "MolecularSequence",
+        "display" : "Starting Sequence Resource"
+      },
+      "edit" : [{
+        "coordinateSystem" : {
+          "coding" : [{
+            "system" : "http://loinc.org",
+            "code" : "LA30100-4",
+            "display" : "0-based interval counting"
+          }],
+          "text" : "0-based interval counting"
+        },
+        "start" : 0,
+        "end" : 725,
+        "replacementSequence" : {
+          "reference" : "MolecularSequence/ReplacementSequenceExample",
+          "type" : "MolecularSequence",
+          "display" : "Replacement Sequence Resource"
+        },
+        "replacedSequence" : {
+          "reference" : "MolecularSequence/ReplacedSequenceExample",
+          "type" : "MolecularSequence",
+          "display" : "Replaced Sequence Resource"
+        }
+      }]
+    }],
+    "extracted" : [{
+      "startingSequence" : {
+        "reference" : "MolecularSequence/StartingSequenceExample",
+        "type" : "MolecularSequence",
+        "display" : "Starting Sequence Resource"
+      },
+      "start" : 0,
+      "end" : 745,
+      "coordinateSystem" : {
+        "coding" : [{
+          "system" : "http://loinc.org",
+          "code" : "LA30100-4",
+          "display" : "0-based interval counting"
+        }],
+        "text" : "0-based interval counting"
+      },
+      "reverseComplement" : false
+    }],
+    "concatenated" : {
+      "sequenceElement" : [{
+        "sequence" : {
+          "reference" : "MolecularSequence/Sequence0ConcatenatedExample",
+          "type" : "MolecularSequence",
+          "display" : "Sequence-of index 0-Resource for concatenated sequence example"
+        },
+        "ordinalIndex" : 0
+      },
+      {
+        "sequence" : {
+          "reference" : "MolecularSequence/Sequence1ConcatenatedExample",
+          "type" : "MolecularSequence",
+          "display" : "Sequence-of index 1-Resource for concatenated sequence example"
+        },
+        "ordinalIndex" : 1
+      },
+      {
+        "sequence" : {
+          "reference" : "MolecularSequence/Sequence2ConcatenatedExample",
+          "type" : "MolecularSequence",
+          "display" : "Sequence-of index 2-Resource for concatenated sequence example"
+        },
+        "ordinalIndex" : 2
+      }]
+    }
+  }
