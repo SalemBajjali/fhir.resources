@@ -70,7 +70,7 @@ def test_molecularsequence_1(base_settings):
     """No. 1 tests collection for MolecularSequencePlus.
     Test File: simple_sequence_example.json
     """
-    filename = '/Users/M278428/Documents/rf_lab_projects/fhir.resources/simple_sequence_example.json'
+    filename = '../simple_sequence_example.json'
     inst = molecularsequenceplus.MolecularSequencePlus.parse_file(
         filename, content_type="application/json", encoding="utf-8"
     )
