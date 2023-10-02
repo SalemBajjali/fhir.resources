@@ -23,6 +23,43 @@ class MolecularSequencePlus(domainresource.DomainResource):
 
     resource_type = Field("MolecularSequencePlus", const=True)
 
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+        None,
+        alias="identifier",
+        title="Unique ID for this particular sequence",
+        description="A unique identifier for this particular sequence instance.",
+        # if property is element of this resource.
+        element_property=True,
+    )
+
+    type: fhirtypes.Code = Field(
+        None,
+        alias="type",
+        title="aa | dna | rna",
+        description="Amino Acid Sequence/ DNA Sequence / RNA Sequence.",
+        # if property is element of this resource.
+        element_property=True,
+        # note: Enum values can be used in validation,
+        # but use in your own responsibilities, read official FHIR documentation.
+        enum_values=["aa", "dna", "rna"],
+    )
+    type__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+        None, alias="_type", title="Extension field for ``type``."
+    )
+
+    literal: typing.List[fhirtypes.MolecularSequenceLiteralPlusType] = Field(
+        None,
+        alias="literal",
+        title="A literal representation of a Molecular Sequence.",
+        description='A literal representation of a Molecular Sequence.',
+        # if property is element of this resource.
+        element_property=True,
+    )
+    #TODO:not sure yet what this does need to double check and look into more
+    literal__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+        None, alias="_literal", title="Extension field for ``literal``."
+    )
+
     formatted: typing.List[fhirtypes.AttachmentType] = Field(
         None,
         alias="formatted",
@@ -38,27 +75,6 @@ class MolecularSequencePlus(domainresource.DomainResource):
         element_property=True,
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
-        None,
-        alias="identifier",
-        title="Unique ID for this particular sequence",
-        description="A unique identifier for this particular sequence instance.",
-        # if property is element of this resource.
-        element_property=True,
-    )
-    literal: typing.List[fhirtypes.MolecularSequenceLiteralPlusType] = Field(
-        None,
-        alias="literal",
-        title="A literal representation of a Molecular Sequence.",
-        description='A literal representation of a Molecular Sequence.',
-        # if property is element of this resource.
-        element_property=True,
-    )
-    #TODO:not sure yet what this does need to double check and look into more
-    literal__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
-        None, alias="_literal", title="Extension field for ``literal``."
-    )
-
     relative: typing.List[fhirtypes.MolecularSequenceRelativePlusType] = Field(
         None,
         alias="relative",
@@ -66,20 +82,6 @@ class MolecularSequencePlus(domainresource.DomainResource):
         description=None,
         # if property is element of this resource.
         element_property=True,
-    )
-    type: fhirtypes.Code = Field(
-        None,
-        alias="type",
-        title="aa | dna | rna",
-        description="Amino Acid Sequence/ DNA Sequence / RNA Sequence.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["aa", "dna", "rna"],
-    )
-    type__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
-        None, alias="_type", title="Extension field for ``type``."
     )
 
     extracted: typing.List[fhirtypes.MolecularSequenceExtractedType] = Field(
@@ -99,6 +101,7 @@ class MolecularSequencePlus(domainresource.DomainResource):
         # if property is element of this resource.
         element_property=True,
     )
+
     concatenated: typing.List[fhirtypes.MolecularSequenceConcatenatedType] = Field(
         None,
         alias="concatenated",
@@ -260,6 +263,20 @@ class MolecularSequenceRelativeEditPlus(backboneelement.BackboneElement):
         element_property=True,
     )
 
+    start: fhirtypes.Integer = Field(
+        ...,
+        alias="start",
+        title="The start coordinate of the interval that will be edited.",
+        description=(
+            "The start coordinate of the interval that will be edited."
+        ),
+        # if property is element of this resource.
+        element_property=True,
+    )
+    start__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+        None, alias="_start", title="Extension field for ``start``."
+    )
+
     end: fhirtypes.Integer = Field(
         ...,
         alias="end",
@@ -273,6 +290,24 @@ class MolecularSequenceRelativeEditPlus(backboneelement.BackboneElement):
     end__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
         None, alias="_end", title="Extension field for ``end``."
     )    
+
+    replacementSequence: fhirtypes.ReferenceType = Field(
+        ...,
+        alias="replacementSequence",
+        title="The sequence that defines the replacement sequence used in the edit operation",
+        description="The sequence that defines the replacement sequence used in the edit operation.",
+        # if property is element of this resource.
+        element_property=True,
+        # note: Listed Resource Type(s) should be allowed as Reference.
+        enum_reference_types=["MolecularSequencePlus"],
+    )
+    #TODO:not sure yet what this does need to double check and look into more
+    replacementSequence__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+        None,
+        alias="_replacementSequence",
+        title="Extension field for ``replacementSequence``.",
+    )
+
     replacedSequence: fhirtypes.ReferenceType = Field(
         None,
         alias="replacedSequence",
@@ -286,40 +321,11 @@ class MolecularSequenceRelativeEditPlus(backboneelement.BackboneElement):
         # note: Listed Resource Type(s) should be allowed as Reference.
         enum_reference_types=["MolecularSequencePlus"],
     )
+    #TODO:not sure yet what this does need to double check and look into more
     replacedSequence__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
         None,
         alias="_replacedSequence",
         title="Extension field for ``replacedSequence``.",
-    )
-
-    replacementSequence: fhirtypes.ReferenceType = Field(
-        ...,
-        alias="replacementSequence",
-        title="The sequence that defines the replacement sequence used in the edit operation",
-        description="The sequence that defines the replacement sequence used in the edit operation.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MolecularSequencePlus"],
-    )
-    replacementSequence__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
-        None,
-        alias="_replacementSequence",
-        title="Extension field for ``replacementSequence``.",
-    )
-
-    start: fhirtypes.Integer = Field(
-        ...,
-        alias="start",
-        title="The start coordinate of the interval that will be edited.",
-        description=(
-            "The start coordinate of the interval that will be edited."
-        ),
-        # if property is element of this resource.
-        element_property=True,
-    )
-    start__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
-        None, alias="_start", title="Extension field for ``start``."
     )
 
     @classmethod
@@ -540,7 +546,7 @@ class MolecularSequenceConcatenatedSequenceElement(backboneelement.BackboneEleme
         # if property is element of this resource.
         element_property=True,
     )
-    #TODO:
+    #TODO: check if we need to put this in for ordinalIndex still dont know what this does
     # start__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
     #     None, alias="_start", title="Extension field for ``start``."
     # )
