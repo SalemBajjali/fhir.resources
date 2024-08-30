@@ -2378,7 +2378,71 @@ MolecularSequenceRelativeStartingSequenceType = create_fhir_type(
     "MolecularSequenceRelativeStartingSequenceType",
     "fhir.resources.molecularsequence.MolecularSequenceRelativeStartingSequence",
 )
+#MolecularDefinition New Values
+MolecularDefinitionType = create_fhir_type(
+    "MolecularDefinitionType", "fhir.resources.moleculardefinition.MolecularDefinition"
+)
 
+MolecularDefinitionLocationType = create_fhir_type(
+    "MolecularDefinitionLocationType","fhir.resources.moleculardefinition.MolecularDefinitionLocation"
+)
+
+MolecularDefinitionLocationSequenceLocationType = create_fhir_type(
+    "MolecularDefinitionLocationSequenceLocationType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionLocationSequenceLocation"
+)
+
+MolecularDefinitionLocationSequenceLocationCoordinateIntervalType = create_fhir_type(
+    "MolecularDefinitionLocationSequenceLocationCoordinateIntervalType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionLocationSequenceLocationCoordinateInterval"
+)
+
+MolecularDefinitionLocationFeatureLocationType = create_fhir_type(
+    "MolecularDefinitionLocationFeatureLocationType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionLocationFeatureLocation"
+)
+
+MolecularDefinitionRepresentationType = create_fhir_type(
+    "MolecularDefinitionRepresentationType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentation"
+)
+
+MolecularDefinitionRepresentationLiteralType = create_fhir_type(
+    "MolecularDefinitionRepresentationLiteralType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentationLiteral"
+)
+
+MolecularDefinitionRepresentationExtractedType = create_fhir_type(
+    "MolecularDefinitionRepresentationExtractedType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentationExtracted"
+)
+
+MolecularDefinitionRepresentationRepeatedType = create_fhir_type(
+    "MolecularDefinitionRepresentationRepeatedType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentationRepeated"
+)
+
+MolecularDefinitionRepresentationConcatenatedType = create_fhir_type(
+    "MolecularDefinitionRepresentationConcatenatedType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentationConcatenated"
+)
+
+MolecularDefinitionRepresentationConcatenatedSequenceElementType = create_fhir_type(
+    "MolecularDefinitionRepresentationConcatenatedSequenceElementType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentationConcatenatedSequenceElement"
+)
+
+MolecularDefinitionRepresentationRelativeType = create_fhir_type(
+    "MolecularDefinitionRepresentationRelativeType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentationRelative"
+)
+
+MolecularDefinitionRepresentationRelativeEditType = create_fhir_type(
+    "MolecularDefinitionRepresentationRelativeEditType",
+    "fhir.resources.moleculardefinition.MolecularDefinitionRepresentationRelativeEdit"
+)
+
+########################################
 MonetaryComponentType = create_fhir_type(
     "MonetaryComponentType", "fhir.resources.monetarycomponent.MonetaryComponent"
 )
@@ -4262,6 +4326,20 @@ __all__ = [
     "MolecularSequenceRelativeType",
     "MolecularSequenceRelativeEditType",
     "MolecularSequenceRelativeStartingSequenceType",
+    #New MolecularDefinition Values
+    "MolecularDefinitionType",
+    "MolecularDefinitionLocationType",
+    "MolecularDefinitionLocationSequenceLocationType",
+    "MolecularDefinitionLocationSequenceLocationCoordinateIntervalType",
+    "MolecularDefinitionLocationFeatureLocationType",
+    "MolecularDefinitionRepresentationType",
+    "MolecularDefinitionRepresentationLiteralType",
+    "MolecularDefinitionRepresentationExtractedType",
+    "MolecularDefinitionRepresentationRepeatedType",
+    "MolecularDefinitionRepresentationConcatenatedType",
+    "MolecularDefinitionRepresentationConcatenatedSequenceElementType",
+    "MolecularDefinitionRepresentationRelativeType",
+    "MolecularDefinitionRepresentationRelativeEditType",
     "MonetaryComponentType",
     "MoneyType",
     "NamingSystemType",
