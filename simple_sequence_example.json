@@ -1,5 +1,5 @@
 {
-    "resourceType" : "MolecularSequence",
+    "resourceType" : "MolecularSequencePlus",
     "id" : "example",
     "text" : {
       "status" : "generated",

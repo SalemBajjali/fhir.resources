@@ -617,7 +617,21 @@ MODEL_CLASSES = {
     "MolecularSequenceRelative": (None, ".molecularsequence"),
     "MolecularSequenceRelativeEdit": (None, ".molecularsequence"),
     "MolecularSequenceRelativeStartingSequence": (None, ".molecularsequence"),
-
+#NOTE: New types that handle MolecularDefinition
+    "MolecularDefinition": (None, ".moleculardefinition"),
+    "MolecularDefinitionLocation": (None, ".moleculardefinition"),
+    "MolecularDefinitionLocationSequenceLocation": (None, ".moleculardefinition"),
+    "MolecularDefinitionLocationSequenceLocationCoordinateInterval": (None, ".moleculardefinition"),
+    "MolecularDefinitionLocationFeatureLocation": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentation": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentationLiteral": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentationExtracted": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentationRepeated": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentationConcatenated": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentationConcatenatedSequenceElement": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentationRelative": (None, ".moleculardefinition"),
+    "MolecularDefinitionRepresentationRelativeEdit": (None, ".moleculardefinition"),
+################################################
     "MonetaryComponent": (None, ".monetarycomponent"),
     "Money": (None, ".money"),
     "NamingSystem": (None, ".namingsystem"),
@@ -3862,6 +3876,84 @@ def molecularsequencerelativestartingsequence_validator(
 ):
     return fhir_model_validator("MolecularSequenceRelativeStartingSequence", v)
 
+#################################################################################
+def moleculardefinition_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinition", v)
+
+
+def moleculardefinitionlocation_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionLocation", v)
+
+
+def moleculardefinitionlocationsequencelocation_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionLocationSequenceLocation", v)
+
+
+def moleculardefinitionlocationsequencelocationcoordinateinterval_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionLocationSequenceLocationCoordinateInterval", v)
+
+
+def moleculardefinitionlocationfeaturelocation_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionLocationFeatureLocation", v)
+
+
+def moleculardefinitionrepresentation_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentation", v)
+
+
+def moleculardefinitionrepresentationliteral_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentationLiteral", v)
+
+
+def moleculardefinitionrepresentationextracted_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentationExtracted", v)
+
+
+def moleculardefinitionrepresentationrepeated_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentationRepeated", v)
+
+
+def moleculardefinitionrepresentationconcatenated_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentationConcatenated", v)
+
+
+def moleculardefinitionrepresentationconcatenatedsequenceelement_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentationConcatenatedSequenceElement", v)
+
+def moleculardefinitionrepresentationrelative_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentationRelative", v)
+
+
+def moleculardefinitionrepresentationrelativeedit_validator(
+    v: Union[StrBytes, dict, Path, FHIRAbstractModel]
+):
+    return fhir_model_validator("MolecularDefinitionRepresentationRelativeEdit", v)
+
+#################################################################################
 
 def monetarycomponent_validator(v: Union[StrBytes, dict, Path, FHIRAbstractModel]):
     return fhir_model_validator("MonetaryComponent", v)
@@ -5948,7 +6040,21 @@ __all__ = [
     "molecularsequencerelative_validator",
     "molecularsequencerelativeedit_validator",
     "molecularsequencerelativestartingsequence_validator",
-
+#NOTE: these are new types created to handle Molecular Definition
+    "moleculardefinition_validator",
+    "moleculardefinitionlocation_validator",
+    "moleculardefinitionlocationsequencelocation_validator",
+    "moleculardefinitionlocationsequencelocationcoordinateinterval_validator",
+    "moleculardefinitionlocationfeaturelocation_validator",
+    "moleculardefinitionrepresentation_validator",
+    "moleculardefinitionrepresentationliteral_validator",
+    "moleculardefinitionrepresentationextracted_validator",
+    "moleculardefinitionrepresentationrepeated_validator",
+    "moleculardefinitionrepresentationconcatenated_validator",
+    "moleculardefinitionrepresentationconcatenatedsequenceelement_validator",
+    "moleculardefinitionrepresentationrelative_validator",
+    "moleculardefinitionrepresentationrelativeedit_validator",
+##################################################################################    
     "monetarycomponent_validator",
     "money_validator",
     "namingsystem_validator",

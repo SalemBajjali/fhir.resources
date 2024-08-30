@@ -2929,7 +2929,48 @@ class MolecularSequenceRelativeEditType(AbstractType):
 class MolecularSequenceRelativeStartingSequenceType(AbstractType):
     __resource_type__ = "MolecularSequenceRelativeStartingSequence"
 
+#NOTE: New Class that Handles new Molecular Definition Demo
+############################################################
+class MolecularDefinitionType(AbstractType):
+    __resource_type__ = "MolecularDefinition"
 
+class MolecularDefinitionLocationType(AbstractType):
+    __resource_type__ = "MolecularDefinitionLocation"
+
+class MolecularDefinitionLocationSequenceLocationType(AbstractType):
+    __resource_type__ = "MolecularDefinitionLocationSequenceLocation"
+
+class MolecularDefinitionLocationSequenceLocationCoordinateIntervalType(AbstractType):
+    __resource_type__ = "MolecularDefinitionLocationSequenceLocationCoordinateInterval"
+
+class MolecularDefinitionLocationFeatureLocationType(AbstractType):
+    __resource_type__ = "MolecularDefinitionLocationFeatureLocation"
+
+class MolecularDefinitionRepresentationType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentation"
+
+class MolecularDefinitionRepresentationLiteralType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentationLiteral"
+
+class MolecularDefinitionRepresentationExtractedType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentationExtracted"
+
+class MolecularDefinitionRepresentationRepeatedType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentationRepeated"
+
+class MolecularDefinitionRepresentationConcatenatedType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentationConcatenated"
+
+class MolecularDefinitionRepresentationConcatenatedSequenceElementType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentationConcatenatedSequenceElement"
+
+class MolecularDefinitionRepresentationRelativeType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentationRelative"
+
+class MolecularDefinitionRepresentationRelativeEditType(AbstractType):
+    __resource_type__ = "MolecularDefinitionRepresentationRelativeEdit"
+
+############################################################
 class MonetaryComponentType(AbstractType):
     __resource_type__ = "MonetaryComponent"
 
@@ -4711,6 +4752,21 @@ __all__ = [
     "MolecularSequenceRelativeType",
     "MolecularSequenceRelativeEditType",
     "MolecularSequenceRelativeStartingSequenceType",
+#NOTE: New for MolecularDefinition demo
+    "MolecularDefinitionType",
+    "MolecularDefinitionLocationType",
+    "MolecularDefinitionLocationSequenceLocationType",
+    "MolecularDefinitionLocationSequenceLocationCoordinateIntervalType",
+    "MolecularDefinitionLocationFeatureLocationType",
+    "MolecularDefinitionRepresentationType",
+    "MolecularDefinitionRepresentationLiteralType",
+    "MolecularDefinitionRepresentationExtractedType",
+    "MolecularDefinitionRepresentationRepeatedType",
+    "MolecularDefinitionRepresentationConcatenatedType",
+    "MolecularDefinitionRepresentationConcatenatedSequenceElementType",
+    "MolecularDefinitionRepresentationRelativeType"
+    "MolecularDefinitionRepresentationRelativeEditType",
+    #######################
     "MonetaryComponentType",
     "MoneyType",
     "NamingSystemType",

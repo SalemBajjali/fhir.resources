@@ -10,6 +10,7 @@ import typing
 
 from pydantic import Field, root_validator
 
+from typing import List, Any, Union
 from . import backboneelement, domainresource, fhirtypes
 
 
@@ -102,12 +103,32 @@ class MolecularSequencePlus(domainresource.DomainResource):
         element_property=True,
     )
 
-    concatenated: typing.List[fhirtypes.MolecularSequenceConcatenatedType] = Field(
+
+
+    # Union[
+    #     List[fhirtypes.MolecularSequenceConcatenatedType],
+    #     fhirtypes.MolecularSequenceConcatenatedType,
+    # ] = Field(
+        
+    # List[fhirtypes.MolecularSequenceConcatenatedType] = Field(
+    # Union[
+    #     typing.List[fhirtypes.MolecularSequenceConcatenatedType],
+    #     fhirtypes.MolecularSequenceConcatenatedType,
+    # ] = Field(
+        
+    # concatenated: typing.List[fhirtypes.MolecularSequenceConcatenatedType] = Field(
+    #     None,
+    #     alias="concatenated",
+    #     title="A Molecular Sequence that is represented as an ordered concatenation of two or more Molecular Sequences.",
+    #     description="A Molecular Sequence that is represented as an ordered concatenation of two or more Molecular Sequences.",
+    #     # if property is element of this resource.
+    #     element_property=True,
+    # )
+    concatenated: Any = Field(
         None,
         alias="concatenated",
         title="A Molecular Sequence that is represented as an ordered concatenation of two or more Molecular Sequences.",
         description="A Molecular Sequence that is represented as an ordered concatenation of two or more Molecular Sequences.",
-        # if property is element of this resource.
         element_property=True,
     )
 
