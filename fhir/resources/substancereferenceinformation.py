@@ -8,7 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -21,47 +21,49 @@ class SubstanceReferenceInformation(domainresource.DomainResource):
     Todo.
     """
 
-    resource_type = Field("SubstanceReferenceInformation", const=True)
+    __resource_type__ = "SubstanceReferenceInformation"
 
-    comment: fhirtypes.String = Field(
+    comment: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="comment",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    comment__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    comment__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_comment", title="Extension field for ``comment``."
     )
 
-    gene: typing.List[fhirtypes.SubstanceReferenceInformationGeneType] = Field(
+    gene: typing.List[fhirtypes.SubstanceReferenceInformationGeneType] = Field(  # type: ignore
         None,
         alias="gene",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    geneElement: typing.List[
-        fhirtypes.SubstanceReferenceInformationGeneElementType
-    ] = Field(
+    geneElement: typing.List[fhirtypes.SubstanceReferenceInformationGeneElementType] = Field(  # type: ignore
         None,
         alias="geneElement",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    target: typing.List[fhirtypes.SubstanceReferenceInformationTargetType] = Field(
+    target: typing.List[fhirtypes.SubstanceReferenceInformationTargetType] = Field(  # type: ignore
         None,
         alias="target",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -94,35 +96,38 @@ class SubstanceReferenceInformationGene(backboneelement.BackboneElement):
     Todo.
     """
 
-    resource_type = Field("SubstanceReferenceInformationGene", const=True)
+    __resource_type__ = "SubstanceReferenceInformationGene"
 
-    gene: fhirtypes.CodeableConceptType = Field(
+    gene: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="gene",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    geneSequenceOrigin: fhirtypes.CodeableConceptType = Field(
+    geneSequenceOrigin: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="geneSequenceOrigin",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    source: typing.List[fhirtypes.ReferenceType] = Field(
+    source: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="source",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference"],
+        },
     )
 
     @classmethod
@@ -149,35 +154,38 @@ class SubstanceReferenceInformationGeneElement(backboneelement.BackboneElement):
     Todo.
     """
 
-    resource_type = Field("SubstanceReferenceInformationGeneElement", const=True)
+    __resource_type__ = "SubstanceReferenceInformationGeneElement"
 
-    element: fhirtypes.IdentifierType = Field(
+    element: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="element",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    source: typing.List[fhirtypes.ReferenceType] = Field(
+    source: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="source",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference"],
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -197,110 +205,120 @@ class SubstanceReferenceInformationTarget(backboneelement.BackboneElement):
     Todo.
     """
 
-    resource_type = Field("SubstanceReferenceInformationTarget", const=True)
+    __resource_type__ = "SubstanceReferenceInformationTarget"
 
-    amountQuantity: fhirtypes.QuantityType = Field(
+    amountQuantity: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="amountQuantity",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e amount[x]
-        one_of_many="amount",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e amount[x]
+            "one_of_many": "amount",
+            "one_of_many_required": False,
+        },
     )
 
-    amountRange: fhirtypes.RangeType = Field(
+    amountRange: fhirtypes.RangeType = Field(  # type: ignore
         None,
         alias="amountRange",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e amount[x]
-        one_of_many="amount",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e amount[x]
+            "one_of_many": "amount",
+            "one_of_many_required": False,
+        },
     )
 
-    amountString: fhirtypes.String = Field(
+    amountString: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="amountString",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e amount[x]
-        one_of_many="amount",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e amount[x]
+            "one_of_many": "amount",
+            "one_of_many_required": False,
+        },
     )
-    amountString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    amountString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_amountString", title="Extension field for ``amountString``."
     )
 
-    amountType: fhirtypes.CodeableConceptType = Field(
+    amountType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="amountType",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    interaction: fhirtypes.CodeableConceptType = Field(
+    interaction: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="interaction",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    organism: fhirtypes.CodeableConceptType = Field(
+    organism: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="organism",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    organismType: fhirtypes.CodeableConceptType = Field(
+    organismType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="organismType",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    source: typing.List[fhirtypes.ReferenceType] = Field(
+    source: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="source",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference"],
+        },
     )
 
-    target: fhirtypes.IdentifierType = Field(
+    target: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="target",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -325,10 +343,7 @@ class SubstanceReferenceInformationTarget(backboneelement.BackboneElement):
             "source",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_3819(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -344,23 +359,4 @@ class SubstanceReferenceInformationTarget(backboneelement.BackboneElement):
         one_of_many_fields = {
             "amount": ["amountQuantity", "amountRange", "amountString"]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields

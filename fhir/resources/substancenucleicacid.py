@@ -24,9 +24,9 @@ class SubstanceNucleicAcid(domainresource.DomainResource):
     direction.
     """
 
-    resource_type = Field("SubstanceNucleicAcid", const=True)
+    __resource_type__ = "SubstanceNucleicAcid"
 
-    areaOfHybridisation: fhirtypes.String = Field(
+    areaOfHybridisation: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="areaOfHybridisation",
         title=(
@@ -37,16 +37,17 @@ class SubstanceNucleicAcid(domainresource.DomainResource):
             "follows: \u201cSubunitnumber Residue\u201d"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    areaOfHybridisation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    areaOfHybridisation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_areaOfHybridisation",
         title="Extension field for ``areaOfHybridisation``.",
     )
 
-    numberOfSubunits: fhirtypes.Integer = Field(
+    numberOfSubunits: fhirtypes.IntegerType = Field(  # type: ignore
         None,
         alias="numberOfSubunits",
         title=(
@@ -57,25 +58,27 @@ class SubstanceNucleicAcid(domainresource.DomainResource):
             "the assumption is that there is 1 subunit"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    numberOfSubunits__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    numberOfSubunits__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_numberOfSubunits",
         title="Extension field for ``numberOfSubunits``.",
     )
 
-    oligoNucleotideType: fhirtypes.CodeableConceptType = Field(
+    oligoNucleotideType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="oligoNucleotideType",
         title="(TBC)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    sequenceType: fhirtypes.CodeableConceptType = Field(
+    sequenceType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="sequenceType",
         title=(
@@ -83,11 +86,12 @@ class SubstanceNucleicAcid(domainresource.DomainResource):
             "vocabulary"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    subunit: typing.List[fhirtypes.SubstanceNucleicAcidSubunitType] = Field(
+    subunit: typing.List[fhirtypes.SubstanceNucleicAcidSubunitType] = Field(  # type: ignore
         None,
         alias="subunit",
         title=(
@@ -96,8 +100,9 @@ class SubstanceNucleicAcid(domainresource.DomainResource):
             "identical sequences will be repeated multiple times"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -133,9 +138,9 @@ class SubstanceNucleicAcidSubunit(backboneelement.BackboneElement):
     sequences will be repeated multiple times.
     """
 
-    resource_type = Field("SubstanceNucleicAcidSubunit", const=True)
+    __resource_type__ = "SubstanceNucleicAcidSubunit"
 
-    fivePrime: fhirtypes.CodeableConceptType = Field(
+    fivePrime: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="fivePrime",
         title=(
@@ -145,32 +150,35 @@ class SubstanceNucleicAcidSubunit(backboneelement.BackboneElement):
             "position in the sequence. A separate representation would be redundant"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    length: fhirtypes.Integer = Field(
+    length: fhirtypes.IntegerType = Field(  # type: ignore
         None,
         alias="length",
         title="The length of the sequence shall be captured",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    length__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    length__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_length", title="Extension field for ``length``."
     )
 
-    linkage: typing.List[fhirtypes.SubstanceNucleicAcidSubunitLinkageType] = Field(
+    linkage: typing.List[fhirtypes.SubstanceNucleicAcidSubunitLinkageType] = Field(  # type: ignore
         None,
         alias="linkage",
         title="The linkages between sugar residues will also be captured",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    sequence: fhirtypes.String = Field(
+    sequence: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="sequence",
         title=(
@@ -179,23 +187,25 @@ class SubstanceNucleicAcidSubunit(backboneelement.BackboneElement):
             "of phosphate or non-phosphate linkage should also be captured"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    sequence__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    sequence__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_sequence", title="Extension field for ``sequence``."
     )
 
-    sequenceAttachment: fhirtypes.AttachmentType = Field(
+    sequenceAttachment: fhirtypes.AttachmentType = Field(  # type: ignore
         None,
         alias="sequenceAttachment",
         title="(TBC)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    subunit: fhirtypes.Integer = Field(
+    subunit: fhirtypes.IntegerType = Field(  # type: ignore
         None,
         alias="subunit",
         title=(
@@ -205,23 +215,25 @@ class SubstanceNucleicAcidSubunit(backboneelement.BackboneElement):
             "have sequential subscripts"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    subunit__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    subunit__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_subunit", title="Extension field for ``subunit``."
     )
 
-    sugar: typing.List[fhirtypes.SubstanceNucleicAcidSubunitSugarType] = Field(
+    sugar: typing.List[fhirtypes.SubstanceNucleicAcidSubunitSugarType] = Field(  # type: ignore
         None,
         alias="sugar",
         title="5.3.6.8.1 Sugar ID (Mandatory)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    threePrime: fhirtypes.CodeableConceptType = Field(
+    threePrime: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="threePrime",
         title=(
@@ -231,8 +243,9 @@ class SubstanceNucleicAcidSubunit(backboneelement.BackboneElement):
             "position in the sequence. A separate representation would be redundant"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -264,9 +277,9 @@ class SubstanceNucleicAcidSubunitLinkage(backboneelement.BackboneElement):
     The linkages between sugar residues will also be captured.
     """
 
-    resource_type = Field("SubstanceNucleicAcidSubunitLinkage", const=True)
+    __resource_type__ = "SubstanceNucleicAcidSubunitLinkage"
 
-    connectivity: fhirtypes.String = Field(
+    connectivity: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="connectivity",
         title=(
@@ -274,28 +287,29 @@ class SubstanceNucleicAcidSubunitLinkage(backboneelement.BackboneElement):
             "captured for nearly all naturally occurring nucleic acid the linkage "
             "is a phosphate group. For many synthetic oligonucleotides "
             "phosphorothioate linkages are often seen. Linkage connectivity is "
-            "assumed to be 3\u2019-5\u2019. If the linkage is either "
-            "3\u2019-3\u2019 or 5\u2019-5\u2019 this "
+            "assumed to be 3\u2019-5\u2019. If the linkage is either 3\u2019-3\u2019 or 5\u2019-5\u2019 this "
             "should be specified"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    connectivity__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    connectivity__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_connectivity", title="Extension field for ``connectivity``."
     )
 
-    identifier: fhirtypes.IdentifierType = Field(
+    identifier: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="identifier",
         title="Each linkage will be registered as a fragment and have an ID",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    name: fhirtypes.String = Field(
+    name: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="name",
         title=(
@@ -303,22 +317,24 @@ class SubstanceNucleicAcidSubunitLinkage(backboneelement.BackboneElement):
             "name. A single name shall be assigned to each linkage"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_name", title="Extension field for ``name``."
     )
 
-    residueSite: fhirtypes.String = Field(
+    residueSite: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="residueSite",
         title="Residues shall be captured as described in 5.3.6.8.3",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    residueSite__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    residueSite__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_residueSite", title="Extension field for ``residueSite``."
     )
 
@@ -347,9 +363,9 @@ class SubstanceNucleicAcidSubunitSugar(backboneelement.BackboneElement):
     5.3.6.8.1 Sugar ID (Mandatory).
     """
 
-    resource_type = Field("SubstanceNucleicAcidSubunitSugar", const=True)
+    __resource_type__ = "SubstanceNucleicAcidSubunitSugar"
 
-    identifier: fhirtypes.IdentifierType = Field(
+    identifier: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="identifier",
         title=(
@@ -357,11 +373,12 @@ class SubstanceNucleicAcidSubunitSugar(backboneelement.BackboneElement):
             " nucleotide"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    name: fhirtypes.String = Field(
+    name: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="name",
         title=(
@@ -369,14 +386,15 @@ class SubstanceNucleicAcidSubunitSugar(backboneelement.BackboneElement):
             "nucleotide"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_name", title="Extension field for ``name``."
     )
 
-    residueSite: fhirtypes.String = Field(
+    residueSite: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="residueSite",
         title=(
@@ -385,10 +403,11 @@ class SubstanceNucleicAcidSubunitSugar(backboneelement.BackboneElement):
             " the base sequences listed above"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    residueSite__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    residueSite__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_residueSite", title="Extension field for ``residueSite``."
     )
 

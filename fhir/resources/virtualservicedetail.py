@@ -8,7 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
+from pydantic import Field
 
 from . import datatype, fhirtypes
 
@@ -21,23 +21,22 @@ class VirtualServiceDetail(datatype.DataType):
     Virtual Service Contact Details.
     """
 
-    resource_type = Field("VirtualServiceDetail", const=True)
+    __resource_type__ = "VirtualServiceDetail"
 
-    additionalInfo: typing.List[typing.Optional[fhirtypes.Url]] = Field(
+    additionalInfo: typing.List[typing.Optional[fhirtypes.UrlType]] = Field(  # type: ignore
         None,
         alias="additionalInfo",
         title="Address to see alternative connection details",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    additionalInfo__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(
+    additionalInfo__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
         None, alias="_additionalInfo", title="Extension field for ``additionalInfo``."
     )
 
-    addressContactPoint: fhirtypes.ContactPointType = Field(
+    addressContactPoint: fhirtypes.ContactPointType = Field(  # type: ignore
         None,
         alias="addressContactPoint",
         title="Contact address/number",
@@ -46,14 +45,15 @@ class VirtualServiceDetail(datatype.DataType):
             "virtual service to join. The channelType informs as to which datatype "
             "is appropriate to use (requires knowledge of the specific type)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e address[x]
-        one_of_many="address",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e address[x]
+            "one_of_many": "address",
+            "one_of_many_required": False,
+        },
     )
 
-    addressExtendedContactDetail: fhirtypes.ExtendedContactDetailType = Field(
+    addressExtendedContactDetail: fhirtypes.ExtendedContactDetailType = Field(  # type: ignore
         None,
         alias="addressExtendedContactDetail",
         title="Contact address/number",
@@ -62,14 +62,15 @@ class VirtualServiceDetail(datatype.DataType):
             "virtual service to join. The channelType informs as to which datatype "
             "is appropriate to use (requires knowledge of the specific type)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e address[x]
-        one_of_many="address",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e address[x]
+            "one_of_many": "address",
+            "one_of_many_required": False,
+        },
     )
 
-    addressString: fhirtypes.String = Field(
+    addressString: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="addressString",
         title="Contact address/number",
@@ -78,17 +79,18 @@ class VirtualServiceDetail(datatype.DataType):
             "virtual service to join. The channelType informs as to which datatype "
             "is appropriate to use (requires knowledge of the specific type)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e address[x]
-        one_of_many="address",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e address[x]
+            "one_of_many": "address",
+            "one_of_many_required": False,
+        },
     )
-    addressString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    addressString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_addressString", title="Extension field for ``addressString``."
     )
 
-    addressUrl: fhirtypes.Url = Field(
+    addressUrl: fhirtypes.UrlType = Field(  # type: ignore
         None,
         alias="addressUrl",
         title="Contact address/number",
@@ -97,17 +99,18 @@ class VirtualServiceDetail(datatype.DataType):
             "virtual service to join. The channelType informs as to which datatype "
             "is appropriate to use (requires knowledge of the specific type)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e address[x]
-        one_of_many="address",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e address[x]
+            "one_of_many": "address",
+            "one_of_many_required": False,
+        },
     )
-    addressUrl__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    addressUrl__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_addressUrl", title="Extension field for ``addressUrl``."
     )
 
-    channelType: fhirtypes.CodingType = Field(
+    channelType: fhirtypes.CodingType = Field(  # type: ignore
         None,
         alias="channelType",
         title="Channel Type",
@@ -115,31 +118,34 @@ class VirtualServiceDetail(datatype.DataType):
             "The type of virtual service to connect to (i.e. Teams, Zoom, Specific "
             "VMR technology, WhatsApp)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    maxParticipants: fhirtypes.PositiveInt = Field(
+    maxParticipants: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="maxParticipants",
         title="Maximum number of participants supported by the virtual service",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    maxParticipants__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    maxParticipants__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_maxParticipants", title="Extension field for ``maxParticipants``."
     )
 
-    sessionKey: fhirtypes.String = Field(
+    sessionKey: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="sessionKey",
         title="Session Key required by the virtual service",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    sessionKey__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    sessionKey__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_sessionKey", title="Extension field for ``sessionKey``."
     )
 
@@ -162,10 +168,7 @@ class VirtualServiceDetail(datatype.DataType):
             "sessionKey",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_2253(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -186,23 +189,4 @@ class VirtualServiceDetail(datatype.DataType):
                 "addressUrl",
             ]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields

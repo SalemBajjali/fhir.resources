@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -28,29 +26,31 @@ class Encounter(domainresource.DomainResource):
     planned activities.
     """
 
-    resource_type = Field("Encounter", const=True)
+    __resource_type__ = "Encounter"
 
-    account: typing.List[fhirtypes.ReferenceType] = Field(
+    account: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="account",
         title="The set of accounts that may be used for billing for this Encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Account"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Account"],
+        },
     )
 
-    actualPeriod: fhirtypes.PeriodType = Field(
+    actualPeriod: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="actualPeriod",
         title="The actual start and end time of the encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    admission: fhirtypes.EncounterAdmissionType = Field(
+    admission: fhirtypes.EncounterAdmissionType = Field(  # type: ignore
         None,
         alias="admission",
         title="Details about the admission to a healthcare service",
@@ -60,22 +60,24 @@ class Encounter(domainresource.DomainResource):
             "rather any information that is relevant from the time of admittance "
             "until the time of discharge."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    appointment: typing.List[fhirtypes.ReferenceType] = Field(
+    appointment: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="appointment",
         title="The appointment that scheduled this encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Appointment"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Appointment"],
+        },
     )
 
-    basedOn: typing.List[fhirtypes.ReferenceType] = Field(
+    basedOn: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="basedOn",
         title="The request that initiated this encounter",
@@ -83,18 +85,19 @@ class Encounter(domainresource.DomainResource):
             "The request this encounter satisfies (e.g. incoming referral or "
             "procedure request)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "CarePlan",
-            "DeviceRequest",
-            "MedicationRequest",
-            "ServiceRequest",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "CarePlan",
+                "DeviceRequest",
+                "MedicationRequest",
+                "ServiceRequest",
+            ],
+        },
     )
 
-    careTeam: typing.List[fhirtypes.ReferenceType] = Field(
+    careTeam: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="careTeam",
         title="The group(s) that are allocated to participate in this encounter",
@@ -104,13 +107,14 @@ class Encounter(domainresource.DomainResource):
             "the actuals of when these individuals participated during the "
             "encounter."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["CareTeam"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["CareTeam"],
+        },
     )
 
-    class_fhir: typing.List[fhirtypes.CodeableConceptType] = Field(
+    class_fhir: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="class",
         title=(
@@ -122,29 +126,32 @@ class Encounter(domainresource.DomainResource):
             "ambulatory (outpatient), inpatient, emergency, home health or others "
             "due to local variations."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    diagnosis: typing.List[fhirtypes.EncounterDiagnosisType] = Field(
+    diagnosis: typing.List[fhirtypes.EncounterDiagnosisType] = Field(  # type: ignore
         None,
         alias="diagnosis",
         title="The list of diagnosis relevant to this encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    dietPreference: typing.List[fhirtypes.CodeableConceptType] = Field(
+    dietPreference: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="dietPreference",
         title="Diet preferences reported by the patient",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    episodeOfCare: typing.List[fhirtypes.ReferenceType] = Field(
+    episodeOfCare: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="episodeOfCare",
         title="Episode(s) of care that this encounter should be recorded against",
@@ -158,22 +165,24 @@ class Encounter(domainresource.DomainResource):
             " grouped on entry rather than editing the episode of care to append "
             "another encounter to it (the episode of care could span years)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["EpisodeOfCare"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["EpisodeOfCare"],
+        },
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Identifier(s) by which this encounter is known",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    length: fhirtypes.DurationType = Field(
+    length: fhirtypes.DurationType = Field(  # type: ignore
         None,
         alias="length",
         title="Actual quantity of time the encounter lasted (less time absent)",
@@ -182,20 +191,22 @@ class Encounter(domainresource.DomainResource):
             "during leaves of absence.  When missing it is the time in between the "
             "start and end values."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    location: typing.List[fhirtypes.EncounterLocationType] = Field(
+    location: typing.List[fhirtypes.EncounterLocationType] = Field(  # type: ignore
         None,
         alias="location",
         title="List of locations where the patient has been",
         description="List of locations where  the patient has been during this encounter.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    partOf: fhirtypes.ReferenceType = Field(
+    partOf: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="partOf",
         title="Another Encounter this encounter is part of",
@@ -203,57 +214,62 @@ class Encounter(domainresource.DomainResource):
             "Another Encounter of which this encounter is a part of "
             "(administratively or in time)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Encounter"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Encounter"],
+        },
     )
 
-    participant: typing.List[fhirtypes.EncounterParticipantType] = Field(
+    participant: typing.List[fhirtypes.EncounterParticipantType] = Field(  # type: ignore
         None,
         alias="participant",
         title="List of participants involved in the encounter",
         description="The list of people responsible for providing the service.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    plannedEndDate: fhirtypes.DateTime = Field(
+    plannedEndDate: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="plannedEndDate",
         title="The planned end date/time (or discharge date) of the encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    plannedEndDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    plannedEndDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_plannedEndDate", title="Extension field for ``plannedEndDate``."
     )
 
-    plannedStartDate: fhirtypes.DateTime = Field(
+    plannedStartDate: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="plannedStartDate",
         title="The planned start date/time (or admission date) of the encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    plannedStartDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    plannedStartDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_plannedStartDate",
         title="Extension field for ``plannedStartDate``.",
     )
 
-    priority: fhirtypes.CodeableConceptType = Field(
+    priority: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="priority",
         title="Indicates the urgency of the encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    reason: typing.List[fhirtypes.EncounterReasonType] = Field(
+    reason: typing.List[fhirtypes.EncounterReasonType] = Field(  # type: ignore
         None,
         alias="reason",
         title=(
@@ -261,11 +277,12 @@ class Encounter(domainresource.DomainResource):
             "the episode of care"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    serviceProvider: fhirtypes.ReferenceType = Field(
+    serviceProvider: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="serviceProvider",
         title="The organization (facility) responsible for this encounter",
@@ -277,13 +294,14 @@ class Encounter(domainresource.DomainResource):
             "seperately) for an external consultation.  Refer to the colonoscopy "
             "example on the Encounter examples tab."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Organization"],
+        },
     )
 
-    serviceType: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    serviceType: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="serviceType",
         title="Specific type of service",
@@ -291,13 +309,14 @@ class Encounter(domainresource.DomainResource):
             "Broad categorization of the service that is to be provided (e.g. "
             "cardiology)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["HealthcareService"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["HealthcareService"],
+        },
     )
 
-    specialArrangement: typing.List[fhirtypes.CodeableConceptType] = Field(
+    specialArrangement: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="specialArrangement",
         title="Wheelchair, translator, stretcher, etc",
@@ -305,11 +324,12 @@ class Encounter(domainresource.DomainResource):
             "Any special requests that have been made for this encounter, such as "
             "the provision of specific equipment or other things."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    specialCourtesy: typing.List[fhirtypes.CodeableConceptType] = Field(
+    specialCourtesy: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="specialCourtesy",
         title="Special courtesies (VIP, board member)",
@@ -317,11 +337,12 @@ class Encounter(domainresource.DomainResource):
             "Special courtesies that may be provided to the patient during the "
             "encounter (VIP, board member, professional courtesy)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title=(
@@ -332,28 +353,29 @@ class Encounter(domainresource.DomainResource):
             "The current state of the encounter (not the state of the patient "
             "within the encounter - that is subjectState)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=[
-            "planned",
-            "in-progress",
-            "on-hold",
-            "discharged",
-            "completed",
-            "cancelled",
-            "discontinued",
-            "entered-in-error",
-            "unknown",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": [
+                "planned",
+                "in-progress",
+                "on-hold",
+                "discharged",
+                "completed",
+                "cancelled",
+                "discontinued",
+                "entered-in-error",
+                "unknown",
+            ],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    subject: fhirtypes.ReferenceType = Field(
+    subject: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="subject",
         title="The patient or group related to this encounter",
@@ -362,13 +384,14 @@ class Encounter(domainresource.DomainResource):
             "patient MAY not be present, such as a case meeting about a patient "
             "between several practitioners or a careteam."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Patient", "Group"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Patient", "Group"],
+        },
     )
 
-    subjectStatus: fhirtypes.CodeableConceptType = Field(
+    subjectStatus: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="subjectStatus",
         title="The current status of the subject in relation to the Encounter",
@@ -377,11 +400,12 @@ class Encounter(domainresource.DomainResource):
             "within the encounter. It details whether the patient has arrived or "
             "departed, has been triaged or is currently in a waiting status."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: typing.List[fhirtypes.CodeableConceptType] = Field(
+    type: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="type",
         title=(
@@ -392,17 +416,19 @@ class Encounter(domainresource.DomainResource):
             "Specific type of encounter (e.g. e-mail consultation, surgical day-"
             "care, skilled nursing, rehabilitation)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    virtualService: typing.List[fhirtypes.VirtualServiceDetailType] = Field(
+    virtualService: typing.List[fhirtypes.VirtualServiceDetailType] = Field(  # type: ignore
         None,
         alias="virtualService",
         title="Connection details of a virtual service (e.g. conference call)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -450,10 +476,7 @@ class Encounter(domainresource.DomainResource):
             "location",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1130(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -462,52 +485,7 @@ class Encounter(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class EncounterAdmission(backboneelement.BackboneElement):
@@ -523,58 +501,63 @@ class EncounterAdmission(backboneelement.BackboneElement):
     discharge.
     """
 
-    resource_type = Field("EncounterAdmission", const=True)
+    __resource_type__ = "EncounterAdmission"
 
-    admitSource: fhirtypes.CodeableConceptType = Field(
+    admitSource: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="admitSource",
         title="From where patient was admitted (physician referral, transfer)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    destination: fhirtypes.ReferenceType = Field(
+    destination: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="destination",
         title="Location/organization to which the patient is discharged",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Location", "Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Location", "Organization"],
+        },
     )
 
-    dischargeDisposition: fhirtypes.CodeableConceptType = Field(
+    dischargeDisposition: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="dischargeDisposition",
         title="Category or kind of location after discharge",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    origin: fhirtypes.ReferenceType = Field(
+    origin: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="origin",
         title="The location/organization from which the patient came before admission",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Location", "Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Location", "Organization"],
+        },
     )
 
-    preAdmissionIdentifier: fhirtypes.IdentifierType = Field(
+    preAdmissionIdentifier: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="preAdmissionIdentifier",
         title="Pre-admission identifier",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    reAdmission: fhirtypes.CodeableConceptType = Field(
+    reAdmission: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="reAdmission",
         title="Indicates that the patient is being re-admitted",
@@ -583,8 +566,9 @@ class EncounterAdmission(backboneelement.BackboneElement):
             "admission, often because the conditions addressed in the prior "
             "admission were not fully addressed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -614,9 +598,9 @@ class EncounterDiagnosis(backboneelement.BackboneElement):
     The list of diagnosis relevant to this encounter.
     """
 
-    resource_type = Field("EncounterDiagnosis", const=True)
+    __resource_type__ = "EncounterDiagnosis"
 
-    condition: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    condition: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="condition",
         title="The diagnosis relevant to the encounter",
@@ -625,13 +609,14 @@ class EncounterDiagnosis(backboneelement.BackboneElement):
             "resources referenced in the evidence.detail), the use property will "
             "indicate the purpose of this specific diagnosis."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Condition"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Condition"],
+        },
     )
 
-    use: typing.List[fhirtypes.CodeableConceptType] = Field(
+    use: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="use",
         title=(
@@ -639,8 +624,9 @@ class EncounterDiagnosis(backboneelement.BackboneElement):
             "billing, discharge \u2026)"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -661,9 +647,9 @@ class EncounterLocation(backboneelement.BackboneElement):
     List of locations where  the patient has been during this encounter.
     """
 
-    resource_type = Field("EncounterLocation", const=True)
+    __resource_type__ = "EncounterLocation"
 
-    form: fhirtypes.CodeableConceptType = Field(
+    form: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="form",
         title=(
@@ -674,31 +660,34 @@ class EncounterLocation(backboneelement.BackboneElement):
             "This will be used to specify the required levels (bed/ward/room/etc.) "
             "desired to be recorded to simplify either messaging or query."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    location: fhirtypes.ReferenceType = Field(
+    location: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="location",
         title="Location the encounter takes place",
         description="The location where the encounter takes place.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Location"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Location"],
+        },
     )
 
-    period: fhirtypes.PeriodType = Field(
+    period: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="period",
         title="Time period during which the patient was present at the location",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title="planned | active | reserved | completed",
@@ -707,13 +696,14 @@ class EncounterLocation(backboneelement.BackboneElement):
             "during the period specified. If the participant is no longer at the "
             "location, then the period will have an end date/time."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["planned", "active", "reserved", "completed"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["planned", "active", "reserved", "completed"],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
@@ -743,9 +733,9 @@ class EncounterParticipant(backboneelement.BackboneElement):
     The list of people responsible for providing the service.
     """
 
-    resource_type = Field("EncounterParticipant", const=True)
+    __resource_type__ = "EncounterParticipant"
 
-    actor: fhirtypes.ReferenceType = Field(
+    actor: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="actor",
         title="The individual, device, or service participating in the encounter",
@@ -756,21 +746,22 @@ class EncounterParticipant(backboneelement.BackboneElement):
             "case meeting between practitioners about a patient - non contact "
             "times."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Patient",
-            "Group",
-            "RelatedPerson",
-            "Practitioner",
-            "PractitionerRole",
-            "Device",
-            "HealthcareService",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Patient",
+                "Group",
+                "RelatedPerson",
+                "Practitioner",
+                "PractitionerRole",
+                "Device",
+                "HealthcareService",
+            ],
+        },
     )
 
-    period: fhirtypes.PeriodType = Field(
+    period: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="period",
         title="Period of time during the encounter that the participant participated",
@@ -779,17 +770,19 @@ class EncounterParticipant(backboneelement.BackboneElement):
             "encounter. These can overlap or be sub-sets of the overall encounter's"
             " period."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: typing.List[fhirtypes.CodeableConceptType] = Field(
+    type: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="type",
         title="Role of participant in encounter",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -810,9 +803,9 @@ class EncounterReason(backboneelement.BackboneElement):
     episode of care.
     """
 
-    resource_type = Field("EncounterReason", const=True)
+    __resource_type__ = "EncounterReason"
 
-    use: typing.List[fhirtypes.CodeableConceptType] = Field(
+    use: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="use",
         title="What the reason value should be used for/as",
@@ -820,11 +813,12 @@ class EncounterReason(backboneelement.BackboneElement):
             "What the reason value should be used as e.g. Chief Complaint, Health "
             "Concern, Health Maintenance (including screening)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    value: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    value: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="value",
         title="Reason the encounter takes place (core or reference)",
@@ -833,16 +827,17 @@ class EncounterReason(backboneelement.BackboneElement):
             "to another resource. For admissions, this can be used for a coded "
             "admission diagnosis."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Condition",
-            "DiagnosticReport",
-            "Observation",
-            "ImmunizationRecommendation",
-            "Procedure",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Condition",
+                "DiagnosticReport",
+                "Observation",
+                "ImmunizationRecommendation",
+                "Procedure",
+            ],
+        },
     )
 
     @classmethod

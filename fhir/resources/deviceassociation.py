@@ -21,49 +21,53 @@ class DeviceAssociation(domainresource.DomainResource):
     A record of association or dissociation of a device with a patient.
     """
 
-    resource_type = Field("DeviceAssociation", const=True)
+    __resource_type__ = "DeviceAssociation"
 
-    bodyStructure: fhirtypes.ReferenceType = Field(
+    bodyStructure: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="bodyStructure",
         title="Current anatomical location of the device in/on subject",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["BodyStructure"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["BodyStructure"],
+        },
     )
 
-    category: typing.List[fhirtypes.CodeableConceptType] = Field(
+    category: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="category",
         title="Describes the relationship between the device and subject",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    device: fhirtypes.ReferenceType = Field(
+    device: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="device",
         title="Reference to the devices associated with the patient or group",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Device"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Device"],
+        },
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Instance identifier",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    operation: typing.List[fhirtypes.DeviceAssociationOperationType] = Field(
+    operation: typing.List[fhirtypes.DeviceAssociationOperationType] = Field(  # type: ignore
         None,
         alias="operation",
         title=(
@@ -71,38 +75,42 @@ class DeviceAssociation(domainresource.DomainResource):
             "operation"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    period: fhirtypes.PeriodType = Field(
+    period: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="period",
         title="Begin and end dates and times for the device association",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.CodeableConceptType = Field(
+    status: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="status",
         title="implanted | explanted | attached | entered-in-error | unknown",
         description="Indicates the state of the Device association.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    statusReason: typing.List[fhirtypes.CodeableConceptType] = Field(
+    statusReason: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="statusReason",
         title="The reasons given for the current association status",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    subject: fhirtypes.ReferenceType = Field(
+    subject: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="subject",
         title=(
@@ -110,16 +118,17 @@ class DeviceAssociation(domainresource.DomainResource):
             "or associated with"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Patient",
-            "Group",
-            "Practitioner",
-            "RelatedPerson",
-            "Device",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Patient",
+                "Group",
+                "Practitioner",
+                "RelatedPerson",
+                "Device",
+            ],
+        },
     )
 
     @classmethod
@@ -157,35 +166,38 @@ class DeviceAssociationOperation(backboneelement.BackboneElement):
     The details about the device when it is in use to describe its operation.
     """
 
-    resource_type = Field("DeviceAssociationOperation", const=True)
+    __resource_type__ = "DeviceAssociationOperation"
 
-    operator: typing.List[fhirtypes.ReferenceType] = Field(
+    operator: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="operator",
         title="The individual performing the action enabled by the device",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Patient", "Practitioner", "RelatedPerson"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Patient", "Practitioner", "RelatedPerson"],
+        },
     )
 
-    period: fhirtypes.PeriodType = Field(
+    period: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="period",
         title="Begin and end dates and times for the device's operation",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.CodeableConceptType = Field(
+    status: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="status",
         title="Device operational condition",
         description="Device operational condition corresponding to the association.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

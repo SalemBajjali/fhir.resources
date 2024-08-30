@@ -6,10 +6,8 @@ Version: 5.0.0
 Build ID: 2aecd53
 Last updated: 2023-03-26T15:21:02.749+11:00
 """
-from pydantic.validators import bytes_validator  # noqa: F401
-
-from .. import fhirtypes  # noqa: F401
 from .. import evidencevariable
+from .fixtures import ExternalValidatorModel  # noqa: F401
 
 
 def impl_evidencevariable_1(inst):
@@ -23,7 +21,9 @@ def impl_evidencevariable_1(inst):
     )
     assert (
         inst.characteristic[0].definitionCodeableConcept.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[0].description == "placebo"
     assert inst.description == "placebo"
@@ -31,7 +31,10 @@ def impl_evidencevariable_1(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "Placebo"
     assert inst.status == "draft"
@@ -46,15 +49,13 @@ def test_evidencevariable_1(base_settings):
     filename = (
         base_settings["unittest_data_dir"] / "evidencevariable-example-placebo.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_1(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -80,12 +81,16 @@ def impl_evidencevariable_2(inst):
     )
     assert (
         inst.characteristic[0].timeFromEvent[0].eventCodeableConcept.coding[0].system
-        == "http://hl7.org/fhir/evidence-variable-event"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/evidence-variable-event"}
+        ).valueUri
     )
     assert inst.characteristic[0].timeFromEvent[0].quantity.code == "d"
     assert (
         inst.characteristic[0].timeFromEvent[0].quantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[0].timeFromEvent[0].quantity.unit == "day"
     assert float(inst.characteristic[0].timeFromEvent[0].quantity.value) == float(90)
@@ -97,7 +102,10 @@ def impl_evidencevariable_2(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "ModifiedRankinScaleScore02At90DaysAfterTreatment"
     assert inst.status == "draft"
@@ -113,15 +121,13 @@ def test_evidencevariable_2(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-mRS0-2-at-90days.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_2(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -142,7 +148,10 @@ def impl_evidencevariable_3(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "AlteplaseForStroke"
     assert inst.status == "draft"
@@ -158,15 +167,13 @@ def test_evidencevariable_3(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-alteplase-for-stroke.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_3(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -182,7 +189,9 @@ def impl_evidencevariable_4(inst):
     )
     assert (
         inst.characteristic[0].definitionCodeableConcept.coding[0].system
-        == "http://www.nlm.nih.gov/research/umls/rxnorm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.nlm.nih.gov/research/umls/rxnorm"}
+        ).valueUri
     )
     assert inst.characteristic[0].description == "no alteplase"
     assert inst.characteristic[0].exclude is True
@@ -191,7 +200,10 @@ def impl_evidencevariable_4(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "NoAlteplase"
     assert inst.status == "draft"
@@ -207,15 +219,13 @@ def test_evidencevariable_4(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-no-alteplase.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_4(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -243,7 +253,9 @@ def impl_evidencevariable_5(inst):
         .definitionByCombination.characteristic[0]
         .definitionCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[0].definitionByCombination.characteristic[0].description
@@ -271,7 +283,9 @@ def impl_evidencevariable_5(inst):
         .timeFromEvent[0]
         .eventCodeableConcept.coding[0]
         .system
-        == "http://hl7.org/fhir/evidence-variable-event"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/evidence-variable-event"}
+        ).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -285,7 +299,9 @@ def impl_evidencevariable_5(inst):
         .definitionByCombination.characteristic[0]
         .timeFromEvent[0]
         .quantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -319,7 +335,9 @@ def impl_evidencevariable_5(inst):
         .definitionByCombination.characteristic[1]
         .definitionCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[0].definitionByCombination.characteristic[1].description
@@ -337,7 +355,9 @@ def impl_evidencevariable_5(inst):
         .definitionByCombination.characteristic[1]
         .timeFromEvent[0]
         .quantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -363,7 +383,10 @@ def impl_evidencevariable_5(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "DeadOrFunctionallyDependentAt90Days"
     assert inst.status == "draft"
@@ -379,15 +402,13 @@ def test_evidencevariable_5(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-dead-or-dependent-90day.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_5(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -407,7 +428,9 @@ def impl_evidencevariable_6(inst):
     )
     assert (
         inst.characteristic[0].definitionByTypeAndValue.type.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[0].definitionByTypeAndValue.valueQuantity.code == "a"
     assert (
@@ -415,7 +438,9 @@ def impl_evidencevariable_6(inst):
     )
     assert (
         inst.characteristic[0].definitionByTypeAndValue.valueQuantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[0].definitionByTypeAndValue.valueQuantity.unit == "year"
     assert float(
@@ -432,7 +457,9 @@ def impl_evidencevariable_6(inst):
     )
     assert (
         inst.characteristic[1].definitionByTypeAndValue.type.coding[0].system
-        == "http://loinc.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
     )
     assert inst.characteristic[1].definitionByTypeAndValue.valueQuantity.code == "kg/m2"
     assert (
@@ -440,7 +467,9 @@ def impl_evidencevariable_6(inst):
     )
     assert (
         inst.characteristic[1].definitionByTypeAndValue.valueQuantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[1].definitionByTypeAndValue.valueQuantity.unit == "kg/m2"
     assert float(
@@ -451,22 +480,40 @@ def impl_evidencevariable_6(inst):
     assert inst.contact[0].telecom[0].system == "email"
     assert inst.contact[0].telecom[0].value == "support@computablepublishing.com"
     assert inst.copyright == "https://creativecommons.org/licenses/by-nc-sa/4.0/"
-    assert inst.date == fhirtypes.DateTime.validate("2022-07-24T21:00:00.088Z")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2022-07-24T21:00:00.088Z"}
+        ).valueDateTime
+    )
     assert inst.description == "obese, adult (age ≥18 years old) patients"
     assert inst.id == "example-eligibility-criteria-adults-with-obesity"
     assert inst.identifier[0].assigner.display == "Computable Publishing LLC"
-    assert inst.identifier[0].system == "https://fevir.net"
+    assert (
+        inst.identifier[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "https://fevir.net"}
+        ).valueUri
+    )
     assert inst.identifier[0].type.text == "FEvIR Object Identifier"
     assert inst.identifier[0].value == "49218"
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "StudyEligibilityCriteriaObesePatients18YearsOld"
     assert inst.publisher == "Computable Publishing LLC"
-    assert inst.relatedArtifact[0].document.url == (
-        "https://academic.oup.com/eurheartj/article/43/20/1955/654213" "7"
+    assert (
+        inst.relatedArtifact[0].document.url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUrl": "https://academic.oup.com/eurheartj/article/43/20/1955/6542137"
+            }
+        ).valueUrl
     )
     assert inst.relatedArtifact[0].label == "data source"
     assert inst.relatedArtifact[0].type == "derived-from"
@@ -483,7 +530,10 @@ def impl_evidencevariable_6(inst):
         "mortality effect 35243488"
     )
     assert inst.relatedArtifact[1].resourceReference.reference == "Citation/33400"
-    assert inst.relatedArtifact[1].resourceReference.type == "Citation"
+    assert (
+        inst.relatedArtifact[1].resourceReference.type
+        == ExternalValidatorModel.model_validate({"valueUri": "Citation"}).valueUri
+    )
     assert inst.relatedArtifact[1].type == "supported-with"
     assert inst.status == "active"
     assert inst.text.status == "generated"
@@ -498,15 +548,13 @@ def test_evidencevariable_6(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-eligibility-criteria-adults-with-obesity.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_6(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -531,7 +579,7 @@ def impl_evidencevariable_7(inst):
         inst.characteristic[0]
         .definitionByCombination.characteristic[0]
         .definitionReference.type
-        == "Group"
+        == ExternalValidatorModel.model_validate({"valueUri": "Group"}).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -549,7 +597,7 @@ def impl_evidencevariable_7(inst):
         inst.characteristic[0]
         .definitionByCombination.characteristic[1]
         .definitionReference.type
-        == "Group"
+        == ExternalValidatorModel.model_validate({"valueUri": "Group"}).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -567,7 +615,7 @@ def impl_evidencevariable_7(inst):
         inst.characteristic[0]
         .definitionByCombination.characteristic[2]
         .definitionReference.type
-        == "Group"
+        == ExternalValidatorModel.model_validate({"valueUri": "Group"}).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -585,7 +633,7 @@ def impl_evidencevariable_7(inst):
         inst.characteristic[0]
         .definitionByCombination.characteristic[3]
         .definitionReference.type
-        == "Group"
+        == ExternalValidatorModel.model_validate({"valueUri": "Group"}).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -603,7 +651,7 @@ def impl_evidencevariable_7(inst):
         inst.characteristic[0]
         .definitionByCombination.characteristic[4]
         .definitionReference.type
-        == "Group"
+        == ExternalValidatorModel.model_validate({"valueUri": "Group"}).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -621,7 +669,7 @@ def impl_evidencevariable_7(inst):
         inst.characteristic[0]
         .definitionByCombination.characteristic[5]
         .definitionReference.type
-        == "Group"
+        == ExternalValidatorModel.model_validate({"valueUri": "Group"}).valueUri
     )
     assert (
         inst.characteristic[0]
@@ -639,7 +687,7 @@ def impl_evidencevariable_7(inst):
         inst.characteristic[0]
         .definitionByCombination.characteristic[6]
         .definitionReference.type
-        == "Group"
+        == ExternalValidatorModel.model_validate({"valueUri": "Group"}).valueUri
     )
     assert inst.characteristic[0].definitionByCombination.code == "any-of"
     assert inst.characteristic[0].description == (
@@ -656,19 +704,26 @@ def impl_evidencevariable_7(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "StrokeThrombolysisTrialists20142016IPDMACohort"
     assert (
         inst.relatedArtifact[0].document.url
-        == "https://doi.org/10.1016/S0140-6736(14)60584-5"
+        == ExternalValidatorModel.model_validate(
+            {"valueUrl": "https://doi.org/10.1016/S0140-6736(14)60584-5"}
+        ).valueUrl
     )
     assert inst.relatedArtifact[0].label == "Emberson 2014"
     assert inst.relatedArtifact[0].type == "citation"
     assert inst.relatedArtifact[1].display == "Figure 2 Lees 2016"
     assert (
         inst.relatedArtifact[1].document.url
-        == "https://doi.org/10.1161/STROKEAHA.116.013644"
+        == ExternalValidatorModel.model_validate(
+            {"valueUrl": "https://doi.org/10.1161/STROKEAHA.116.013644"}
+        ).valueUrl
     )
     assert inst.relatedArtifact[1].label == "Lees 2016"
     assert inst.relatedArtifact[1].type == "citation"
@@ -682,22 +737,19 @@ def impl_evidencevariable_7(inst):
 
 def test_evidencevariable_7(base_settings):
     """No. 7 tests collection for EvidenceVariable.
-    Test File: evidencevariable-example-Stroke-
-    Thrombolysis-Trialists-2014-2016-IPD-MA-Cohort.json
+    Test File: evidencevariable-example-Stroke-Thrombolysis-Trialists-2014-2016-IPD-MA-Cohort.json
     """
     filename = (
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-Stroke-Thrombolysis-Trialists-2014-2016-IPD-MA-Cohort.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_7(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -713,7 +765,9 @@ def impl_evidencevariable_8(inst):
     )
     assert (
         inst.characteristic[0].definitionCodeableConcept.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[0].description == "intracranial hemorrhage within 7 days"
     assert inst.characteristic[0].timeFromEvent[0].description == "within 7 days"
@@ -727,19 +781,25 @@ def impl_evidencevariable_8(inst):
     )
     assert (
         inst.characteristic[0].timeFromEvent[0].eventCodeableConcept.coding[0].system
-        == "http://hl7.org/fhir/evidence-variable-event"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/evidence-variable-event"}
+        ).valueUri
     )
     assert inst.characteristic[0].timeFromEvent[0].range.high.code == "d"
     assert (
         inst.characteristic[0].timeFromEvent[0].range.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[0].timeFromEvent[0].range.high.unit == "day"
     assert float(inst.characteristic[0].timeFromEvent[0].range.high.value) == float(7)
     assert inst.characteristic[0].timeFromEvent[0].range.low.code == "d"
     assert (
         inst.characteristic[0].timeFromEvent[0].range.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[0].timeFromEvent[0].range.low.unit == "day"
     assert float(inst.characteristic[0].timeFromEvent[0].range.low.value) == float(0)
@@ -752,21 +812,27 @@ def impl_evidencevariable_8(inst):
     )
     assert (
         inst.characteristic[1].definitionCodeableConcept.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[1].description == "death within 7 days"
     assert inst.characteristic[1].timeFromEvent[0].description == "within 7 days"
     assert inst.characteristic[1].timeFromEvent[0].range.high.code == "d"
     assert (
         inst.characteristic[1].timeFromEvent[0].range.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[1].timeFromEvent[0].range.high.unit == "day"
     assert float(inst.characteristic[1].timeFromEvent[0].range.high.value) == float(7)
     assert inst.characteristic[1].timeFromEvent[0].range.low.code == "d"
     assert (
         inst.characteristic[1].timeFromEvent[0].range.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[1].timeFromEvent[0].range.low.unit == "day"
     assert float(inst.characteristic[1].timeFromEvent[0].range.low.value) == float(0)
@@ -776,7 +842,10 @@ def impl_evidencevariable_8(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "FatalIntracranialHemorrhageWithinSevenDays"
     assert inst.note[0].text == "Death must be due to intracranial hemorrhage"
@@ -793,15 +862,13 @@ def test_evidencevariable_8(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-fatal-ICH-in-7-days.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_8(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -820,7 +887,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[0].definitionByTypeAndValue.type.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[0].definitionByTypeAndValue.valueQuantity.code == "a"
     assert (
@@ -828,7 +897,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[0].definitionByTypeAndValue.valueQuantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[0].definitionByTypeAndValue.valueQuantity.unit == "years"
     assert float(
@@ -846,7 +917,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[1].definitionByTypeAndValue.type.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[1].definitionByTypeAndValue.type.coding[1].code
@@ -858,7 +931,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[1].definitionByTypeAndValue.type.coding[1].system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[1]
@@ -876,7 +951,9 @@ def impl_evidencevariable_9(inst):
         inst.characteristic[1]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[1].description == "Diagnosed with type 2 diabetes."
     assert inst.characteristic[1].exclude is False
@@ -899,7 +976,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://loinc.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -917,7 +996,9 @@ def impl_evidencevariable_9(inst):
         inst.characteristic[2]
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueQuantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -960,7 +1041,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://loinc.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -981,7 +1064,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueQuantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1032,7 +1117,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1056,7 +1143,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "urn:oid:2.16.840.1.113883.6.238"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "urn:oid:2.16.840.1.113883.6.238"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1111,7 +1200,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://loinc.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1125,7 +1216,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueRange.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1152,7 +1245,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueRange.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1230,7 +1325,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://loinc.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1244,7 +1341,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[3]
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueRange.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1271,7 +1370,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[3]
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueRange.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[2]
@@ -1362,7 +1463,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3]
@@ -1383,7 +1486,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[1]
         .system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3]
@@ -1401,7 +1506,7 @@ def impl_evidencevariable_9(inst):
         inst.characteristic[3]
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueReference.type
-        == "ValueSet"
+        == ExternalValidatorModel.model_validate({"valueUri": "ValueSet"}).valueUri
     )
     assert inst.characteristic[3].definitionByCombination.characteristic[
         0
@@ -1427,7 +1532,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3]
@@ -1448,7 +1555,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.type.coding[1]
         .system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3]
@@ -1469,7 +1578,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3].definitionByCombination.characteristic[1].description
@@ -1494,7 +1605,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3]
@@ -1515,7 +1628,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByTypeAndValue.type.coding[1]
         .system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3]
@@ -1536,7 +1651,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[3].definitionByCombination.characteristic[2].description
@@ -1561,14 +1678,18 @@ def impl_evidencevariable_9(inst):
     assert inst.characteristic[3].timeFromEvent[0].range.high.code == "mo"
     assert (
         inst.characteristic[3].timeFromEvent[0].range.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[3].timeFromEvent[0].range.high.unit == "months"
     assert float(inst.characteristic[3].timeFromEvent[0].range.high.value) == float(0)
     assert inst.characteristic[3].timeFromEvent[0].range.low.code == "mo"
     assert (
         inst.characteristic[3].timeFromEvent[0].range.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[3].timeFromEvent[0].range.low.unit == "months"
     assert float(inst.characteristic[3].timeFromEvent[0].range.low.value) == float(-6)
@@ -1608,7 +1729,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[6].definitionByTypeAndValue.type.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[6].definitionByTypeAndValue.type.coding[1].code
@@ -1620,7 +1743,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[6].definitionByTypeAndValue.type.coding[1].system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[6]
@@ -1638,7 +1763,9 @@ def impl_evidencevariable_9(inst):
         inst.characteristic[6]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[6].description
@@ -1657,14 +1784,18 @@ def impl_evidencevariable_9(inst):
     assert inst.characteristic[6].timeFromEvent[0].range.high.code == "mo"
     assert (
         inst.characteristic[6].timeFromEvent[0].range.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[6].timeFromEvent[0].range.high.unit == "months"
     assert float(inst.characteristic[6].timeFromEvent[0].range.high.value) == float(0)
     assert inst.characteristic[6].timeFromEvent[0].range.low.code == "mo"
     assert (
         inst.characteristic[6].timeFromEvent[0].range.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[6].timeFromEvent[0].range.low.unit == "months"
     assert float(inst.characteristic[6].timeFromEvent[0].range.low.value) == float(-6)
@@ -1678,7 +1809,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[7].definitionByTypeAndValue.type.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[7].definitionByTypeAndValue.type.coding[1].code
@@ -1690,7 +1823,9 @@ def impl_evidencevariable_9(inst):
     )
     assert (
         inst.characteristic[7].definitionByTypeAndValue.type.coding[1].system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[7]
@@ -1708,7 +1843,9 @@ def impl_evidencevariable_9(inst):
         inst.characteristic[7]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[7].description == "Thrombophlebitis in the past six months."
@@ -1726,14 +1863,18 @@ def impl_evidencevariable_9(inst):
     assert inst.characteristic[7].timeFromEvent[0].range.high.code == "mo"
     assert (
         inst.characteristic[7].timeFromEvent[0].range.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[7].timeFromEvent[0].range.high.unit == "months"
     assert float(inst.characteristic[7].timeFromEvent[0].range.high.value) == float(0)
     assert inst.characteristic[7].timeFromEvent[0].range.low.code == "mo"
     assert (
         inst.characteristic[7].timeFromEvent[0].range.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[7].timeFromEvent[0].range.low.unit == "months"
     assert float(inst.characteristic[7].timeFromEvent[0].range.low.value) == float(-6)
@@ -1756,7 +1897,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -1777,7 +1920,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.type.coding[1]
         .system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -1798,7 +1943,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[0]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8].definitionByCombination.characteristic[0].description
@@ -1827,7 +1974,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -1848,7 +1997,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.type.coding[1]
         .system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -1869,7 +2020,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[1]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8].definitionByCombination.characteristic[1].description
@@ -1897,7 +2050,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByTypeAndValue.type.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -1918,7 +2073,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByTypeAndValue.type.coding[1]
         .system
-        == "http://hl7.org/fhir/resource-types"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/resource-types"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -1939,7 +2096,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[2]
         .definitionByTypeAndValue.valueCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8].definitionByCombination.characteristic[2].description
@@ -1967,7 +2126,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[3]
         .definitionCodeableConcept.coding[0]
         .system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8].definitionByCombination.characteristic[3].description
@@ -2000,7 +2161,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[3]
         .timeFromEvent[0]
         .range.high.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -2027,7 +2190,9 @@ def impl_evidencevariable_9(inst):
         .definitionByCombination.characteristic[3]
         .timeFromEvent[0]
         .range.low.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert (
         inst.characteristic[8]
@@ -2069,16 +2234,29 @@ def impl_evidencevariable_9(inst):
     assert inst.contact[0].telecom[0].system == "email"
     assert inst.contact[0].telecom[0].value == "support@computablepublishing.com"
     assert inst.copyright == "https://creativecommons.org/licenses/by-nc-sa/4.0/"
-    assert inst.effectivePeriod.start == fhirtypes.DateTime.validate("2021-01")
+    assert (
+        inst.effectivePeriod.start
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2021-01"}
+        ).valueDateTime
+    )
     assert inst.id == "example-eligibility-criteria-ada-rec-bariatric"
     assert inst.identifier[0].assigner.display == "Computable Publishing LLC"
-    assert inst.identifier[0].system == "https://fevir.net"
+    assert (
+        inst.identifier[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "https://fevir.net"}
+        ).valueUri
+    )
     assert inst.identifier[0].type.text == "FEvIR Object Identifier"
     assert inst.identifier[0].value == "32140"
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == (
         "RecommendationEligibilityCriteriaEligibilityCriteriaForBaria"
@@ -2102,15 +2280,13 @@ def test_evidencevariable_9(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-eligibility-criteria-ada-rec-bariatric.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_9(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)
@@ -2128,7 +2304,9 @@ def impl_evidencevariable_10(inst):
     )
     assert (
         inst.characteristic[0].definitionCodeableConcept.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[0].description == "not functionally dependent at 90 days"
     assert inst.characteristic[0].exclude is True
@@ -2142,12 +2320,16 @@ def impl_evidencevariable_10(inst):
     )
     assert (
         inst.characteristic[0].timeFromEvent[0].eventCodeableConcept.coding[0].system
-        == "http://hl7.org/fhir/evidence-variable-event"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/evidence-variable-event"}
+        ).valueUri
     )
     assert inst.characteristic[0].timeFromEvent[0].quantity.code == "d"
     assert (
         inst.characteristic[0].timeFromEvent[0].quantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[0].timeFromEvent[0].quantity.unit == "day"
     assert float(inst.characteristic[0].timeFromEvent[0].quantity.value) == float(90)
@@ -2160,7 +2342,9 @@ def impl_evidencevariable_10(inst):
     )
     assert (
         inst.characteristic[1].definitionCodeableConcept.coding[0].system
-        == "http://snomed.info/sct"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://snomed.info/sct"}
+        ).valueUri
     )
     assert inst.characteristic[1].description == "alive at 90 days"
     assert inst.characteristic[1].exclude is True
@@ -2174,12 +2358,16 @@ def impl_evidencevariable_10(inst):
     )
     assert (
         inst.characteristic[1].timeFromEvent[0].eventCodeableConcept.coding[0].system
-        == "http://hl7.org/fhir/evidence-variable-event"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/evidence-variable-event"}
+        ).valueUri
     )
     assert inst.characteristic[1].timeFromEvent[0].quantity.code == "d"
     assert (
         inst.characteristic[1].timeFromEvent[0].quantity.system
-        == "http://unitsofmeasure.org"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unitsofmeasure.org"}
+        ).valueUri
     )
     assert inst.characteristic[1].timeFromEvent[0].quantity.unit == "day"
     assert float(inst.characteristic[1].timeFromEvent[0].quantity.value) == float(90)
@@ -2189,7 +2377,10 @@ def impl_evidencevariable_10(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.name == "AliveAndNotFunctionallyDependentAt90Days"
     assert inst.status == "draft"
@@ -2205,15 +2396,13 @@ def test_evidencevariable_10(base_settings):
         base_settings["unittest_data_dir"]
         / "evidencevariable-example-alive-independent-90day.json"
     )
-    inst = evidencevariable.EvidenceVariable.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
-    )
-    assert "EvidenceVariable" == inst.resource_type
+    inst = evidencevariable.EvidenceVariable.model_validate_json(filename.read_bytes())
+    assert "EvidenceVariable" == inst.get_resource_type()
 
     impl_evidencevariable_10(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "EvidenceVariable" == data["resourceType"]
 
     inst2 = evidencevariable.EvidenceVariable(**data)

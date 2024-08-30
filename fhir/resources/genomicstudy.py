@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -25,9 +23,9 @@ class GenomicStudy(domainresource.DomainResource):
     genomic data.
     """
 
-    resource_type = Field("GenomicStudy", const=True)
+    __resource_type__ = "GenomicStudy"
 
-    analysis: typing.List[fhirtypes.GenomicStudyAnalysisType] = Field(
+    analysis: typing.List[fhirtypes.GenomicStudyAnalysisType] = Field(  # type: ignore
         None,
         alias="analysis",
         title="Genomic Analysis Event",
@@ -35,70 +33,76 @@ class GenomicStudy(domainresource.DomainResource):
             "The details about a specific analysis that was performed in this "
             "GenomicStudy."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    basedOn: typing.List[fhirtypes.ReferenceType] = Field(
+    basedOn: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="basedOn",
         title="Event resources that the genomic study is based on",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["ServiceRequest", "Task"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["ServiceRequest", "Task"],
+        },
     )
 
-    description: fhirtypes.Markdown = Field(
+    description: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="description",
         title="Description of the genomic study",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_description", title="Extension field for ``description``."
     )
 
-    encounter: fhirtypes.ReferenceType = Field(
+    encounter: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="encounter",
         title="The healthcare event with which this genomics study is associated",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Encounter"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Encounter"],
+        },
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Identifiers for this genomic study",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    instantiatesCanonical: fhirtypes.Canonical = Field(
+    instantiatesCanonical: fhirtypes.CanonicalType = Field(  # type: ignore
         None,
         alias="instantiatesCanonical",
         title="The defined protocol that describes the study",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["PlanDefinition"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["PlanDefinition"],
+        },
     )
-    instantiatesCanonical__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    instantiatesCanonical__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_instantiatesCanonical",
         title="Extension field for ``instantiatesCanonical``.",
     )
 
-    instantiatesUri: fhirtypes.Uri = Field(
+    instantiatesUri: fhirtypes.UriType = Field(  # type: ignore
         None,
         alias="instantiatesUri",
         title=(
@@ -106,107 +110,115 @@ class GenomicStudy(domainresource.DomainResource):
             "the study"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    instantiatesUri__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    instantiatesUri__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_instantiatesUri", title="Extension field for ``instantiatesUri``."
     )
 
-    interpreter: typing.List[fhirtypes.ReferenceType] = Field(
+    interpreter: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="interpreter",
         title="Healthcare professionals who interpreted the genomic study",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Practitioner", "PractitionerRole"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Practitioner", "PractitionerRole"],
+        },
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Comments related to the genomic study",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    reason: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    reason: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="reason",
         title="Why the genomic study was performed",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Condition", "Observation"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Condition", "Observation"],
+        },
     )
 
-    referrer: fhirtypes.ReferenceType = Field(
+    referrer: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="referrer",
         title="Healthcare professional who requested or referred the genomic study",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Practitioner", "PractitionerRole"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Practitioner", "PractitionerRole"],
+        },
     )
 
-    startDate: fhirtypes.DateTime = Field(
+    startDate: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="startDate",
         title="When the genomic study was started",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    startDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    startDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_startDate", title="Extension field for ``startDate``."
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title="registered | available | cancelled | entered-in-error | unknown",
         description="The status of the genomic study.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=[
-            "registered",
-            "available",
-            "cancelled",
-            "entered-in-error",
-            "unknown",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": [
+                "registered",
+                "available",
+                "cancelled",
+                "entered-in-error",
+                "unknown",
+            ],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    subject: fhirtypes.ReferenceType = Field(
+    subject: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="subject",
         title="The primary subject of the genomic study",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Patient",
-            "Group",
-            "Substance",
-            "BiologicallyDerivedProduct",
-            "NutritionProduct",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Patient",
+                "Group",
+                "Substance",
+                "BiologicallyDerivedProduct",
+                "NutritionProduct",
+            ],
+        },
     )
 
-    type: typing.List[fhirtypes.CodeableConceptType] = Field(
+    type: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="type",
         title=(
@@ -217,8 +229,9 @@ class GenomicStudy(domainresource.DomainResource):
             "The type of the study, e.g., Familial variant segregation, Functional "
             "variation detection, or Gene expression profiling."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -253,10 +266,7 @@ class GenomicStudy(domainresource.DomainResource):
             "analysis",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1435(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -265,52 +275,7 @@ class GenomicStudy(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class GenomicStudyAnalysis(backboneelement.BackboneElement):
@@ -323,9 +288,9 @@ class GenomicStudyAnalysis(backboneelement.BackboneElement):
     GenomicStudy.
     """
 
-    resource_type = Field("GenomicStudyAnalysis", const=True)
+    __resource_type__ = "GenomicStudyAnalysis"
 
-    changeType: typing.List[fhirtypes.CodeableConceptType] = Field(
+    changeType: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="changeType",
         title=(
@@ -336,23 +301,25 @@ class GenomicStudyAnalysis(backboneelement.BackboneElement):
             "Type of the genomic changes studied in the analysis, e.g., DNA, RNA, "
             "or amino acid change."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    date: fhirtypes.DateTime = Field(
+    date: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="date",
         title="The date of the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    date__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    date__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_date", title="Extension field for ``date``."
     )
 
-    device: typing.List[fhirtypes.GenomicStudyAnalysisDeviceType] = Field(
+    device: typing.List[fhirtypes.GenomicStudyAnalysisDeviceType] = Field(  # type: ignore
         None,
         alias="device",
         title=(
@@ -360,11 +327,12 @@ class GenomicStudyAnalysis(backboneelement.BackboneElement):
             "settings and parameters"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    focus: typing.List[fhirtypes.ReferenceType] = Field(
+    focus: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="focus",
         title=(
@@ -379,56 +347,61 @@ class GenomicStudyAnalysis(backboneelement.BackboneElement):
             "GenomicStudy.analysis.focus of a specific analysis would be the "
             "parent."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Resource"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Resource"],
+        },
     )
 
-    genomeBuild: fhirtypes.CodeableConceptType = Field(
+    genomeBuild: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="genomeBuild",
         title="Genome build that is used in this analysis",
         description="The reference genome build that is used in this analysis.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Identifiers for the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    input: typing.List[fhirtypes.GenomicStudyAnalysisInputType] = Field(
+    input: typing.List[fhirtypes.GenomicStudyAnalysisInputType] = Field(  # type: ignore
         None,
         alias="input",
         title="Inputs for the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    instantiatesCanonical: fhirtypes.Canonical = Field(
+    instantiatesCanonical: fhirtypes.CanonicalType = Field(  # type: ignore
         None,
         alias="instantiatesCanonical",
         title="The defined protocol that describes the analysis",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["PlanDefinition", "ActivityDefinition"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["PlanDefinition", "ActivityDefinition"],
+        },
     )
-    instantiatesCanonical__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    instantiatesCanonical__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_instantiatesCanonical",
         title="Extension field for ``instantiatesCanonical``.",
     )
 
-    instantiatesUri: fhirtypes.Uri = Field(
+    instantiatesUri: fhirtypes.UriType = Field(  # type: ignore
         None,
         alias="instantiatesUri",
         title=(
@@ -436,14 +409,15 @@ class GenomicStudyAnalysis(backboneelement.BackboneElement):
             "the analysis"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    instantiatesUri__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    instantiatesUri__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_instantiatesUri", title="Extension field for ``instantiatesUri``."
     )
 
-    methodType: typing.List[fhirtypes.CodeableConceptType] = Field(
+    methodType: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="methodType",
         title=(
@@ -454,90 +428,99 @@ class GenomicStudyAnalysis(backboneelement.BackboneElement):
             "hybridization (FISH), Karyotyping, or Microsatellite instability "
             "testing (MSI)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Any notes capture with the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    output: typing.List[fhirtypes.GenomicStudyAnalysisOutputType] = Field(
+    output: typing.List[fhirtypes.GenomicStudyAnalysisOutputType] = Field(  # type: ignore
         None,
         alias="output",
         title="Outputs for the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    performer: typing.List[fhirtypes.GenomicStudyAnalysisPerformerType] = Field(
+    performer: typing.List[fhirtypes.GenomicStudyAnalysisPerformerType] = Field(  # type: ignore
         None,
         alias="performer",
         title="Performer for the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    protocolPerformed: fhirtypes.ReferenceType = Field(
+    protocolPerformed: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="protocolPerformed",
         title="The protocol that was performed for the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Procedure", "Task"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Procedure", "Task"],
+        },
     )
 
-    regionsCalled: typing.List[fhirtypes.ReferenceType] = Field(
+    regionsCalled: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="regionsCalled",
         title="Genomic regions actually called in the analysis event (BED file)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference", "Observation"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference", "Observation"],
+        },
     )
 
-    regionsStudied: typing.List[fhirtypes.ReferenceType] = Field(
+    regionsStudied: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="regionsStudied",
         title="The genomic regions to be studied in the analysis (BED file)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference", "Observation"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference", "Observation"],
+        },
     )
 
-    specimen: typing.List[fhirtypes.ReferenceType] = Field(
+    specimen: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="specimen",
         title="The specimen used in the analysis event",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Specimen"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Specimen"],
+        },
     )
 
-    title: fhirtypes.String = Field(
+    title: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="title",
         title="Name of the analysis event (human friendly)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    title__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    title__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_title", title="Extension field for ``title``."
     )
 
@@ -581,26 +564,28 @@ class GenomicStudyAnalysisDevice(backboneelement.BackboneElement):
     and parameters.
     """
 
-    resource_type = Field("GenomicStudyAnalysisDevice", const=True)
+    __resource_type__ = "GenomicStudyAnalysisDevice"
 
-    device: fhirtypes.ReferenceType = Field(
+    device: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="device",
         title="Device used for the analysis",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Device"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Device"],
+        },
     )
 
-    function: fhirtypes.CodeableConceptType = Field(
+    function: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="function",
         title="Specific function for the device used for the analysis",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -620,56 +605,60 @@ class GenomicStudyAnalysisInput(backboneelement.BackboneElement):
     Inputs for the analysis event.
     """
 
-    resource_type = Field("GenomicStudyAnalysisInput", const=True)
+    __resource_type__ = "GenomicStudyAnalysisInput"
 
-    file: fhirtypes.ReferenceType = Field(
+    file: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="file",
         title="File containing input data",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference"],
+        },
     )
 
-    generatedByIdentifier: fhirtypes.IdentifierType = Field(
+    generatedByIdentifier: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="generatedByIdentifier",
         title=(
             "The analysis event or other GenomicStudy that generated this input " "file"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e generatedBy[x]
-        one_of_many="generatedBy",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e generatedBy[x]
+            "one_of_many": "generatedBy",
+            "one_of_many_required": False,
+        },
     )
 
-    generatedByReference: fhirtypes.ReferenceType = Field(
+    generatedByReference: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="generatedByReference",
         title=(
             "The analysis event or other GenomicStudy that generated this input " "file"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e generatedBy[x]
-        one_of_many="generatedBy",
-        one_of_many_required=False,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["GenomicStudy"],
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e generatedBy[x]
+            "one_of_many": "generatedBy",
+            "one_of_many_required": False,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["GenomicStudy"],
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="Type of input data (e.g., BAM, CRAM, or FASTA)",
         description="Type of input data, e.g., BAM, CRAM, or FASTA.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -688,10 +677,7 @@ class GenomicStudyAnalysisInput(backboneelement.BackboneElement):
             "generatedByReference",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_2794(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -707,26 +693,7 @@ class GenomicStudyAnalysisInput(backboneelement.BackboneElement):
         one_of_many_fields = {
             "generatedBy": ["generatedByIdentifier", "generatedByReference"]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields
 
 
 class GenomicStudyAnalysisOutput(backboneelement.BackboneElement):
@@ -737,26 +704,28 @@ class GenomicStudyAnalysisOutput(backboneelement.BackboneElement):
     Outputs for the analysis event.
     """
 
-    resource_type = Field("GenomicStudyAnalysisOutput", const=True)
+    __resource_type__ = "GenomicStudyAnalysisOutput"
 
-    file: fhirtypes.ReferenceType = Field(
+    file: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="file",
         title="File containing output data",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference"],
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="Type of output data (e.g., VCF, MAF, or BAM)",
         description="Type of output data, e.g., VCF, MAF, or BAM.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -776,9 +745,9 @@ class GenomicStudyAnalysisPerformer(backboneelement.BackboneElement):
     Performer for the analysis event.
     """
 
-    resource_type = Field("GenomicStudyAnalysisPerformer", const=True)
+    __resource_type__ = "GenomicStudyAnalysisPerformer"
 
-    actor: fhirtypes.ReferenceType = Field(
+    actor: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="actor",
         title=(
@@ -786,24 +755,26 @@ class GenomicStudyAnalysisPerformer(backboneelement.BackboneElement):
             "in performing this analysis"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Practitioner",
-            "PractitionerRole",
-            "Organization",
-            "Device",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Practitioner",
+                "PractitionerRole",
+                "Organization",
+                "Device",
+            ],
+        },
     )
 
-    role: fhirtypes.CodeableConceptType = Field(
+    role: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="role",
         title="Role of the actor for this analysis",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

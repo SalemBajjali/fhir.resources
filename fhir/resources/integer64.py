@@ -20,17 +20,18 @@ class Integer64(primitivetype.PrimitiveType):
     A very large whole number
     """
 
-    resource_type = Field("integer64", const=True)
+    __resource_type__ = "integer64"
 
-    value: fhirtypes.Integer64 = Field(
+    value: fhirtypes.Integer64Type = Field(  # type: ignore
         None,
         alias="value",
         title="Primitive value for integer64",
         description="Primitive value for integer64",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_value", title="Extension field for ``value``."
     )
 

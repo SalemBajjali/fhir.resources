@@ -6,10 +6,8 @@ Version: 5.0.0
 Build ID: 2aecd53
 Last updated: 2023-03-26T15:21:02.749+11:00
 """
-from pydantic.validators import bytes_validator  # noqa: F401
-
-from .. import fhirtypes  # noqa: F401
 from .. import molecularsequence
+from .fixtures import ExternalValidatorModel  # noqa: F401
 
 
 def impl_molecularsequence_1(inst):
@@ -17,14 +15,22 @@ def impl_molecularsequence_1(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30100-4"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "0-based interval counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 32316187
     assert inst.relative[0].edit[0].replacedSequence == "C"
     assert inst.relative[0].edit[0].replacementSequence == "A"
@@ -39,7 +45,9 @@ def impl_molecularsequence_1(inst):
     )
     assert (
         inst.relative[0].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore/"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore/"}
+        ).valueUri
     )
     assert inst.relative[0].startingSequence.windowEnd == 101499444
     assert inst.relative[0].startingSequence.windowStart == 101488058
@@ -56,15 +64,15 @@ def test_molecularsequence_1(base_settings):
         base_settings["unittest_data_dir"]
         / "sequence-genetics-example-breastcancer.json"
     )
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_1(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -78,7 +86,10 @@ def impl_molecularsequence_2(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.performer.display == "HL7"
     assert inst.performer.reference == "Organization/hl7"
@@ -87,7 +98,12 @@ def impl_molecularsequence_2(inst):
         inst.relative[0].coordinateSystem.coding[0].display
         == "0-based interval counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 128273736
     assert inst.relative[0].edit[0].replacedSequence == "CTCCATTGCATGCGTT"
     assert inst.relative[0].edit[0].replacementSequence == "CTCATTGT"
@@ -98,7 +114,9 @@ def impl_molecularsequence_2(inst):
     )
     assert (
         inst.relative[0].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore"}
+        ).valueUri
     )
     assert inst.relative[0].startingSequence.strand == "watson"
     assert inst.relative[0].startingSequence.windowEnd == 128273754
@@ -114,15 +132,15 @@ def test_molecularsequence_2(base_settings):
     Test File: sequence-complex-variant.json
     """
     filename = base_settings["unittest_data_dir"] / "sequence-complex-variant.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_2(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -134,14 +152,22 @@ def impl_molecularsequence_3(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30102-0"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "1-based character counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 18139214
     assert inst.relative[0].edit[0].replacedSequence == "G"
     assert inst.relative[0].edit[0].replacementSequence == "A"
@@ -152,7 +178,9 @@ def impl_molecularsequence_3(inst):
     )
     assert (
         inst.relative[0].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore"}
+        ).valueUri
     )
     assert inst.relative[0].startingSequence.strand == "watson"
     assert inst.relative[0].startingSequence.windowEnd == 18143955
@@ -167,15 +195,15 @@ def test_molecularsequence_3(base_settings):
     Test File: sequence-example-TPMT-one.json
     """
     filename = base_settings["unittest_data_dir"] / "sequence-example-TPMT-one.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_3(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -187,14 +215,22 @@ def impl_molecularsequence_4(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30100-4"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "0-based interval counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 55227979
     assert inst.relative[0].edit[0].replacedSequence == "T"
     assert inst.relative[0].edit[0].replacementSequence == "G"
@@ -206,7 +242,9 @@ def impl_molecularsequence_4(inst):
     )
     assert (
         inst.relative[0].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore"}
+        ).valueUri
     )
     assert inst.relative[0].startingSequence.strand == "watson"
     assert inst.relative[0].startingSequence.windowEnd == 55227980
@@ -221,15 +259,15 @@ def test_molecularsequence_4(base_settings):
     Test File: sequence-example-pgx-2.json
     """
     filename = base_settings["unittest_data_dir"] / "sequence-example-pgx-2.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_4(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -239,15 +277,22 @@ def test_molecularsequence_4(base_settings):
 def impl_molecularsequence_5(inst):
     assert inst.formatted[0].contentType == "application/json"
     assert inst.formatted[0].title == "GA4GH API"
-    assert inst.formatted[0].url == (
-        "http://grch37.rest.ensembl.org/ga4gh/variants/3:rs1333049?co"
-        "ntent-type=application/json"
+    assert (
+        inst.formatted[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUrl": "http://grch37.rest.ensembl.org/ga4gh/variants/3:rs1333049?content-type=application/json"
+            }
+        ).valueUrl
     )
     assert inst.id == "example"
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.subject.reference == "Patient/example"
     assert inst.text.status == "generated"
@@ -259,15 +304,15 @@ def test_molecularsequence_5(base_settings):
     Test File: molecularsequence-example.json
     """
     filename = base_settings["unittest_data_dir"] / "molecularsequence-example.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_5(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -279,14 +324,22 @@ def impl_molecularsequence_6(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30102-0"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "1-based character counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 3
     assert inst.relative[0].edit[0].replacedSequence == "-"
     assert inst.relative[0].edit[0].replacementSequence == "ATG"
@@ -312,15 +365,15 @@ def test_molecularsequence_6(base_settings):
     Test File: coord-1base-example.json
     """
     filename = base_settings["unittest_data_dir"] / "coord-1base-example.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_6(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -332,14 +385,22 @@ def impl_molecularsequence_7(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30102-0"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "1-based character counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 18131012
     assert inst.relative[0].edit[0].replacedSequence == "C"
     assert inst.relative[0].edit[0].replacementSequence == "T"
@@ -350,7 +411,9 @@ def impl_molecularsequence_7(inst):
     )
     assert (
         inst.relative[0].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore"}
+        ).valueUri
     )
     assert inst.relative[0].startingSequence.strand == "watson"
     assert inst.relative[0].startingSequence.windowEnd == 18143955
@@ -365,15 +428,15 @@ def test_molecularsequence_7(base_settings):
     Test File: sequence-example-TPMT-two.json
     """
     filename = base_settings["unittest_data_dir"] / "sequence-example-TPMT-two.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_7(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -385,14 +448,22 @@ def impl_molecularsequence_8(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30100-4"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "0-based interval counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 55227977
     assert inst.relative[0].edit[0].replacedSequence == "T"
     assert inst.relative[0].edit[0].replacementSequence == "G"
@@ -404,7 +475,9 @@ def impl_molecularsequence_8(inst):
     )
     assert (
         inst.relative[0].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore"}
+        ).valueUri
     )
     assert inst.relative[0].startingSequence.strand == "watson"
     assert inst.relative[0].startingSequence.windowEnd == 55227980
@@ -419,15 +492,15 @@ def test_molecularsequence_8(base_settings):
     Test File: sequence-example-pgx-1.json
     """
     filename = base_settings["unittest_data_dir"] / "sequence-example-pgx-1.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_8(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -439,14 +512,22 @@ def impl_molecularsequence_9(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30101-2"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "0-based character counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].edit[0].end == 2
     assert inst.relative[0].edit[0].replacedSequence == "-"
     assert inst.relative[0].edit[0].replacementSequence == "ATG"
@@ -472,15 +553,15 @@ def test_molecularsequence_9(base_settings):
     Test File: coord-0base-example.json
     """
     filename = base_settings["unittest_data_dir"] / "coord-0base-example.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_9(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)
@@ -492,14 +573,22 @@ def impl_molecularsequence_10(inst):
     assert inst.meta.tag[0].code == "HTEST"
     assert inst.meta.tag[0].display == "test health data"
     assert (
-        inst.meta.tag[0].system == "http://terminology.hl7.org/CodeSystem/v3-ActReason"
+        inst.meta.tag[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://terminology.hl7.org/CodeSystem/v3-ActReason"}
+        ).valueUri
     )
     assert inst.relative[0].coordinateSystem.coding[0].code == "LA30102-0"
     assert (
         inst.relative[0].coordinateSystem.coding[0].display
         == "1-based character counting"
     )
-    assert inst.relative[0].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[0].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[0].ordinalPosition == 1
     assert float(inst.relative[0].sequenceRange.high.value) == float(2194)
     assert float(inst.relative[0].sequenceRange.low.value) == float(1)
@@ -509,7 +598,9 @@ def impl_molecularsequence_10(inst):
     )
     assert (
         inst.relative[0].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore/"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore/"}
+        ).valueUri
     )
     assert inst.relative[0].startingSequence.windowEnd == 2194
     assert inst.relative[0].startingSequence.windowStart == 1
@@ -518,7 +609,12 @@ def impl_molecularsequence_10(inst):
         inst.relative[1].coordinateSystem.coding[0].display
         == "1-based character counting"
     )
-    assert inst.relative[1].coordinateSystem.coding[0].system == "http://loinc.org"
+    assert (
+        inst.relative[1].coordinateSystem.coding[0].system
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://loinc.org"}
+        ).valueUri
+    )
     assert inst.relative[1].ordinalPosition == 2
     assert float(inst.relative[1].sequenceRange.high.value) == float(4899)
     assert float(inst.relative[1].sequenceRange.low.value) == float(2194)
@@ -528,7 +624,9 @@ def impl_molecularsequence_10(inst):
     )
     assert (
         inst.relative[1].startingSequence.sequenceCodeableConcept.coding[0].system
-        == "http://www.ncbi.nlm.nih.gov/nuccore/"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://www.ncbi.nlm.nih.gov/nuccore/"}
+        ).valueUri
     )
     assert inst.relative[1].startingSequence.windowEnd == 6822
     assert inst.relative[1].startingSequence.windowStart == 1923
@@ -541,15 +639,15 @@ def test_molecularsequence_10(base_settings):
     Test File: sequence-example-ordinal.json
     """
     filename = base_settings["unittest_data_dir"] / "sequence-example-ordinal.json"
-    inst = molecularsequence.MolecularSequence.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = molecularsequence.MolecularSequence.model_validate_json(
+        filename.read_bytes()
     )
-    assert "MolecularSequence" == inst.resource_type
+    assert "MolecularSequence" == inst.get_resource_type()
 
     impl_molecularsequence_10(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "MolecularSequence" == data["resourceType"]
 
     inst2 = molecularsequence.MolecularSequence(**data)

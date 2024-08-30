@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -29,9 +27,9 @@ class Citation(domainresource.DomainResource):
     computable resources.
     """
 
-    resource_type = Field("Citation", const=True)
+    __resource_type__ = "Citation"
 
-    approvalDate: fhirtypes.Date = Field(
+    approvalDate: fhirtypes.DateType = Field(  # type: ignore
         None,
         alias="approvalDate",
         title="When the citation record was approved by publisher",
@@ -40,41 +38,45 @@ class Citation(domainresource.DomainResource):
             "Approval happens once when the content is officially approved for "
             "usage."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    approvalDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    approvalDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_approvalDate", title="Extension field for ``approvalDate``."
     )
 
-    author: typing.List[fhirtypes.ContactDetailType] = Field(
+    author: typing.List[fhirtypes.ContactDetailType] = Field(  # type: ignore
         None,
         alias="author",
         title="Who authored the citation record",
         description="Who authored or created the citation record.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    citedArtifact: fhirtypes.CitationCitedArtifactType = Field(
+    citedArtifact: fhirtypes.CitationCitedArtifactType = Field(  # type: ignore
         None,
         alias="citedArtifact",
         title="The article or artifact being described",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    classification: typing.List[fhirtypes.CitationClassificationType] = Field(
+    classification: typing.List[fhirtypes.CitationClassificationType] = Field(  # type: ignore
         None,
         alias="classification",
         title="The assignment to an organizing scheme",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    contact: typing.List[fhirtypes.ContactDetailType] = Field(
+    contact: typing.List[fhirtypes.ContactDetailType] = Field(  # type: ignore
         None,
         alias="contact",
         title="Contact details for the publisher of the citation record",
@@ -82,11 +84,12 @@ class Citation(domainresource.DomainResource):
             "Contact details to assist a user in finding and communicating with the"
             " publisher."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    copyright: fhirtypes.Markdown = Field(
+    copyright: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="copyright",
         title=(
@@ -94,14 +97,15 @@ class Citation(domainresource.DomainResource):
             "the cited artifact"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    copyright__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    copyright__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_copyright", title="Extension field for ``copyright``."
     )
 
-    copyrightLabel: fhirtypes.String = Field(
+    copyrightLabel: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="copyrightLabel",
         title=(
@@ -114,23 +118,25 @@ class Citation(domainresource.DomainResource):
             "optionally whether rights are resctricted. (e.g. 'All rights "
             "reserved', 'Some rights reserved')."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    copyrightLabel__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    copyrightLabel__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_copyrightLabel", title="Extension field for ``copyrightLabel``."
     )
 
-    currentState: typing.List[fhirtypes.CodeableConceptType] = Field(
+    currentState: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="currentState",
         title="The status of the citation record",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    date: fhirtypes.DateTime = Field(
+    date: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="date",
         title="Date last changed",
@@ -141,14 +147,15 @@ class Citation(domainresource.DomainResource):
             " should change when the substantive content of the citation record "
             "changes."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    date__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    date__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_date", title="Extension field for ``date``."
     )
 
-    description: fhirtypes.Markdown = Field(
+    description: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="description",
         title="Natural language description of the citation",
@@ -156,23 +163,25 @@ class Citation(domainresource.DomainResource):
             "A free text natural language description of the citation from a "
             "consumer's perspective."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_description", title="Extension field for ``description``."
     )
 
-    editor: typing.List[fhirtypes.ContactDetailType] = Field(
+    editor: typing.List[fhirtypes.ContactDetailType] = Field(  # type: ignore
         None,
         alias="editor",
         title="Who edited the citation record",
         description="Who edited or revised the citation record.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    effectivePeriod: fhirtypes.PeriodType = Field(
+    effectivePeriod: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="effectivePeriod",
         title="When the citation record is expected to be used",
@@ -180,20 +189,22 @@ class Citation(domainresource.DomainResource):
             "The period during which the citation record content was or is planned "
             "to be in active use."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    endorser: typing.List[fhirtypes.ContactDetailType] = Field(
+    endorser: typing.List[fhirtypes.ContactDetailType] = Field(  # type: ignore
         None,
         alias="endorser",
         title="Who endorsed the citation record",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    experimental: bool = Field(
+    experimental: bool = Field(  # type: ignore
         None,
         alias="experimental",
         title="For testing purposes, not real usage",
@@ -202,14 +213,15 @@ class Citation(domainresource.DomainResource):
             "testing purposes (or education/evaluation/marketing) and is not "
             "intended to be used for genuine usage."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    experimental__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    experimental__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_experimental", title="Extension field for ``experimental``."
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Identifier for the citation record itself",
@@ -218,11 +230,12 @@ class Citation(domainresource.DomainResource):
             " it is represented in other formats, or referenced in a specification,"
             " model, design or an instance."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    jurisdiction: typing.List[fhirtypes.CodeableConceptType] = Field(
+    jurisdiction: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="jurisdiction",
         title="Intended jurisdiction for citation record (if applicable)",
@@ -230,11 +243,12 @@ class Citation(domainresource.DomainResource):
             "A legal or geographic region in which the citation record is intended "
             "to be used."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    lastReviewDate: fhirtypes.Date = Field(
+    lastReviewDate: fhirtypes.DateType = Field(  # type: ignore
         None,
         alias="lastReviewDate",
         title="When the citation record was last reviewed by the publisher",
@@ -243,14 +257,15 @@ class Citation(domainresource.DomainResource):
             "happens periodically after approval but does not change the original "
             "approval date."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    lastReviewDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    lastReviewDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_lastReviewDate", title="Extension field for ``lastReviewDate``."
     )
 
-    name: fhirtypes.String = Field(
+    name: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="name",
         title="Name for this citation record (computer friendly)",
@@ -259,23 +274,25 @@ class Citation(domainresource.DomainResource):
             "should be usable as an identifier for the module by machine processing"
             " applications such as code generation."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_name", title="Extension field for ``name``."
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Used for general notes and annotations not coded elsewhere",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    publisher: fhirtypes.String = Field(
+    publisher: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="publisher",
         title=(
@@ -286,14 +303,15 @@ class Citation(domainresource.DomainResource):
             "The name of the organization or individual that published the citation"
             " record."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    publisher__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    publisher__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_publisher", title="Extension field for ``publisher``."
     )
 
-    purpose: fhirtypes.Markdown = Field(
+    purpose: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="purpose",
         title="Why this citation is defined",
@@ -301,32 +319,35 @@ class Citation(domainresource.DomainResource):
             "Explanation of why this citation is needed and why it has been "
             "designed as it has."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    purpose__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    purpose__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_purpose", title="Extension field for ``purpose``."
     )
 
-    relatedArtifact: typing.List[fhirtypes.RelatedArtifactType] = Field(
+    relatedArtifact: typing.List[fhirtypes.RelatedArtifactType] = Field(  # type: ignore
         None,
         alias="relatedArtifact",
         title="Artifact related to the citation record",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    reviewer: typing.List[fhirtypes.ContactDetailType] = Field(
+    reviewer: typing.List[fhirtypes.ContactDetailType] = Field(  # type: ignore
         None,
         alias="reviewer",
         title="Who reviewed the citation record",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title="draft | active | retired | unknown",
@@ -334,18 +355,19 @@ class Citation(domainresource.DomainResource):
             "The status of this summary. Enables tracking the life-cycle of the "
             "content."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["draft", "active", "retired", "unknown"],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["draft", "active", "retired", "unknown"],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    statusDate: typing.List[fhirtypes.CitationStatusDateType] = Field(
+    statusDate: typing.List[fhirtypes.CitationStatusDateType] = Field(  # type: ignore
         None,
         alias="statusDate",
         title="An effective date or period for a status of the citation record",
@@ -353,32 +375,35 @@ class Citation(domainresource.DomainResource):
             "The state or status of the citation record paired with an effective "
             "date or period for that state."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    summary: typing.List[fhirtypes.CitationSummaryType] = Field(
+    summary: typing.List[fhirtypes.CitationSummaryType] = Field(  # type: ignore
         None,
         alias="summary",
         title="A human-readable display of key concepts to represent the citation",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    title: fhirtypes.String = Field(
+    title: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="title",
         title="Name for this citation record (human friendly)",
         description="A short, descriptive, user-friendly title for the citation record.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    title__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    title__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_title", title="Extension field for ``title``."
     )
 
-    url: fhirtypes.Uri = Field(
+    url: fhirtypes.UriType = Field(  # type: ignore
         None,
         alias="url",
         title=(
@@ -394,14 +419,15 @@ class Citation(domainresource.DomainResource):
             "canonical reference. It SHALL remain the same when the summary is "
             "stored on different servers."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    url__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    url__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_url", title="Extension field for ``url``."
     )
 
-    useContext: typing.List[fhirtypes.UsageContextType] = Field(
+    useContext: typing.List[fhirtypes.UsageContextType] = Field(  # type: ignore
         None,
         alias="useContext",
         title="The context that the citation record content is intended to support",
@@ -412,11 +438,12 @@ class Citation(domainresource.DomainResource):
             "(insurance plans, studies, ...) and may be used to assist with "
             "indexing and searching for appropriate citation record instances."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    version: fhirtypes.String = Field(
+    version: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="version",
         title="Business version of the citation record",
@@ -429,14 +456,15 @@ class Citation(domainresource.DomainResource):
             "available. There is also no expectation that versions can be placed in"
             " a lexicographical sequence."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    version__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    version__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_version", title="Extension field for ``version``."
     )
 
-    versionAlgorithmCoding: fhirtypes.CodingType = Field(
+    versionAlgorithmCoding: fhirtypes.CodingType = Field(  # type: ignore
         None,
         alias="versionAlgorithmCoding",
         title="How to compare versions",
@@ -444,14 +472,15 @@ class Citation(domainresource.DomainResource):
             "Indicates the mechanism used to compare versions to determine which is"
             " more current."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e versionAlgorithm[x]
-        one_of_many="versionAlgorithm",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e versionAlgorithm[x]
+            "one_of_many": "versionAlgorithm",
+            "one_of_many_required": False,
+        },
     )
 
-    versionAlgorithmString: fhirtypes.String = Field(
+    versionAlgorithmString: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="versionAlgorithmString",
         title="How to compare versions",
@@ -459,13 +488,14 @@ class Citation(domainresource.DomainResource):
             "Indicates the mechanism used to compare versions to determine which is"
             " more current."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e versionAlgorithm[x]
-        one_of_many="versionAlgorithm",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e versionAlgorithm[x]
+            "one_of_many": "versionAlgorithm",
+            "one_of_many_required": False,
+        },
     )
-    versionAlgorithmString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    versionAlgorithmString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_versionAlgorithmString",
         title="Extension field for ``versionAlgorithmString``.",
@@ -520,10 +550,7 @@ class Citation(domainresource.DomainResource):
             "citedArtifact",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1004(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -532,57 +559,9 @@ class Citation(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
+        return required_fields
 
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
-
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_1004(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -598,26 +577,7 @@ class Citation(domainresource.DomainResource):
         one_of_many_fields = {
             "versionAlgorithm": ["versionAlgorithmCoding", "versionAlgorithmString"]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields
 
 
 class CitationCitedArtifact(backboneelement.BackboneElement):
@@ -628,9 +588,9 @@ class CitationCitedArtifact(backboneelement.BackboneElement):
     The article or artifact being described.
     """
 
-    resource_type = Field("CitationCitedArtifact", const=True)
+    __resource_type__ = "CitationCitedArtifact"
 
-    abstract: typing.List[fhirtypes.CitationCitedArtifactAbstractType] = Field(
+    abstract: typing.List[fhirtypes.CitationCitedArtifactAbstractType] = Field(  # type: ignore
         None,
         alias="abstract",
         title="Summary of the article or artifact",
@@ -638,22 +598,22 @@ class CitationCitedArtifact(backboneelement.BackboneElement):
             "The abstract may be used to convey article-contained abstracts, "
             "externally-created abstracts, or other descriptive summaries."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    classification: typing.List[
-        fhirtypes.CitationCitedArtifactClassificationType
-    ] = Field(
+    classification: typing.List[fhirtypes.CitationCitedArtifactClassificationType] = Field(  # type: ignore
         None,
         alias="classification",
         title="The assignment to an organizing scheme",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    contributorship: fhirtypes.CitationCitedArtifactContributorshipType = Field(
+    contributorship: fhirtypes.CitationCitedArtifactContributorshipType = Field(  # type: ignore
         None,
         alias="contributorship",
         title="Attribution of authors and other contributors",
@@ -661,32 +621,35 @@ class CitationCitedArtifact(backboneelement.BackboneElement):
             "This element is used to list authors and other contributors, their "
             "contact information, specific contributions, and summary statements."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    currentState: typing.List[fhirtypes.CodeableConceptType] = Field(
+    currentState: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="currentState",
         title="The status of the cited artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    dateAccessed: fhirtypes.DateTime = Field(
+    dateAccessed: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="dateAccessed",
         title="When the cited artifact was accessed",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    dateAccessed__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    dateAccessed__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_dateAccessed", title="Extension field for ``dateAccessed``."
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Unique identifier. May include DOI, PMID, PMCID, etc",
@@ -695,31 +658,32 @@ class CitationCitedArtifact(backboneelement.BackboneElement):
             "it is represented in other formats, or referenced in a specification, "
             "model, design or an instance."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Any additional information or content for the article or artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    part: fhirtypes.CitationCitedArtifactPartType = Field(
+    part: fhirtypes.CitationCitedArtifactPartType = Field(  # type: ignore
         None,
         alias="part",
         title="The component of the article or artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    publicationForm: typing.List[
-        fhirtypes.CitationCitedArtifactPublicationFormType
-    ] = Field(
+    publicationForm: typing.List[fhirtypes.CitationCitedArtifactPublicationFormType] = Field(  # type: ignore
         None,
         alias="publicationForm",
         title=(
@@ -727,11 +691,12 @@ class CitationCitedArtifact(backboneelement.BackboneElement):
             "are not separate citations"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    relatedIdentifier: typing.List[fhirtypes.IdentifierType] = Field(
+    relatedIdentifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="relatedIdentifier",
         title=(
@@ -742,20 +707,22 @@ class CitationCitedArtifact(backboneelement.BackboneElement):
             "A formal identifier that is used to identify things closely related to"
             " the cited artifact."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    relatesTo: typing.List[fhirtypes.CitationCitedArtifactRelatesToType] = Field(
+    relatesTo: typing.List[fhirtypes.CitationCitedArtifactRelatesToType] = Field(  # type: ignore
         None,
         alias="relatesTo",
         title="The artifact related to the cited artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    statusDate: typing.List[fhirtypes.CitationCitedArtifactStatusDateType] = Field(
+    statusDate: typing.List[fhirtypes.CitationCitedArtifactStatusDateType] = Field(  # type: ignore
         None,
         alias="statusDate",
         title="An effective date or period for a status of the cited artifact",
@@ -763,35 +730,39 @@ class CitationCitedArtifact(backboneelement.BackboneElement):
             "An effective date or period, historical or future, actual or expected,"
             " for a status of the cited artifact."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    title: typing.List[fhirtypes.CitationCitedArtifactTitleType] = Field(
+    title: typing.List[fhirtypes.CitationCitedArtifactTitleType] = Field(  # type: ignore
         None,
         alias="title",
         title="The title details of the article or artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    version: fhirtypes.CitationCitedArtifactVersionType = Field(
+    version: fhirtypes.CitationCitedArtifactVersionType = Field(  # type: ignore
         None,
         alias="version",
         title="The defined version of the cited artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    webLocation: typing.List[fhirtypes.CitationCitedArtifactWebLocationType] = Field(
+    webLocation: typing.List[fhirtypes.CitationCitedArtifactWebLocationType] = Field(  # type: ignore
         None,
         alias="webLocation",
         title="Used for any URL for the article or artifact cited",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -832,49 +803,53 @@ class CitationCitedArtifactAbstract(backboneelement.BackboneElement):
     created abstracts, or other descriptive summaries.
     """
 
-    resource_type = Field("CitationCitedArtifactAbstract", const=True)
+    __resource_type__ = "CitationCitedArtifactAbstract"
 
-    copyright: fhirtypes.Markdown = Field(
+    copyright: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="copyright",
         title="Copyright notice for the abstract",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    copyright__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    copyright__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_copyright", title="Extension field for ``copyright``."
     )
 
-    language: fhirtypes.CodeableConceptType = Field(
+    language: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="language",
         title="Used to express the specific language",
         description="Used to express the specific language of the abstract.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    text: fhirtypes.Markdown = Field(
+    text: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="text",
         title="Abstract content",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    text__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    text__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_text", title="Extension field for ``text``."
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="The kind of abstract",
         description="Used to express the reason for or classification of the abstract.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -893,10 +868,7 @@ class CitationCitedArtifactAbstract(backboneelement.BackboneElement):
             "copyright",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_3133(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -905,52 +877,7 @@ class CitationCitedArtifactAbstract(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("text", "text__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class CitationCitedArtifactClassification(backboneelement.BackboneElement):
@@ -961,35 +888,38 @@ class CitationCitedArtifactClassification(backboneelement.BackboneElement):
     The assignment to an organizing scheme.
     """
 
-    resource_type = Field("CitationCitedArtifactClassification", const=True)
+    __resource_type__ = "CitationCitedArtifactClassification"
 
-    artifactAssessment: typing.List[fhirtypes.ReferenceType] = Field(
+    artifactAssessment: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="artifactAssessment",
         title="Complex or externally created classification",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["ArtifactAssessment"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["ArtifactAssessment"],
+        },
     )
 
-    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(
+    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="classifier",
         title="The specific classification value",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="The kind of classifier (e.g. publication type, keyword)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -1018,21 +948,22 @@ class CitationCitedArtifactContributorship(backboneelement.BackboneElement):
     information, specific contributions, and summary statements.
     """
 
-    resource_type = Field("CitationCitedArtifactContributorship", const=True)
+    __resource_type__ = "CitationCitedArtifactContributorship"
 
-    complete: bool = Field(
+    complete: bool = Field(  # type: ignore
         None,
         alias="complete",
         title="Indicates if the list includes all authors and/or contributors",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    complete__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    complete__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_complete", title="Extension field for ``complete``."
     )
 
-    entry: typing.List[fhirtypes.CitationCitedArtifactContributorshipEntryType] = Field(
+    entry: typing.List[fhirtypes.CitationCitedArtifactContributorshipEntryType] = Field(  # type: ignore
         None,
         alias="entry",
         title="An individual entity named as a contributor",
@@ -1040,13 +971,12 @@ class CitationCitedArtifactContributorship(backboneelement.BackboneElement):
             "An individual entity named as a contributor, for example in the author"
             " list or contributor list."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    summary: typing.List[
-        fhirtypes.CitationCitedArtifactContributorshipSummaryType
-    ] = Field(
+    summary: typing.List[fhirtypes.CitationCitedArtifactContributorshipSummaryType] = Field(  # type: ignore
         None,
         alias="summary",
         title=(
@@ -1054,8 +984,9 @@ class CitationCitedArtifactContributorship(backboneelement.BackboneElement):
             "separate data element for each list member"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -1077,31 +1008,31 @@ class CitationCitedArtifactContributorshipEntry(backboneelement.BackboneElement)
     or contributor list.
     """
 
-    resource_type = Field("CitationCitedArtifactContributorshipEntry", const=True)
+    __resource_type__ = "CitationCitedArtifactContributorshipEntry"
 
-    affiliation: typing.List[fhirtypes.ReferenceType] = Field(
+    affiliation: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="affiliation",
         title="Organizational affiliation",
         description="Organization affiliated with the contributor.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Organization", "PractitionerRole"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Organization", "PractitionerRole"],
+        },
     )
 
-    contributionInstance: typing.List[
-        fhirtypes.CitationCitedArtifactContributorshipEntryContributionInstanceType
-    ] = Field(
+    contributionInstance: typing.List[fhirtypes.CitationCitedArtifactContributorshipEntryContributionInstanceType] = Field(  # type: ignore
         None,
         alias="contributionInstance",
         title="Contributions with accounting for time or number",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    contributionType: typing.List[fhirtypes.CodeableConceptType] = Field(
+    contributionType: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="contributionType",
         title="The specific contribution",
@@ -1109,50 +1040,54 @@ class CitationCitedArtifactContributorshipEntry(backboneelement.BackboneElement)
             "This element identifies the specific nature of an individual\u2019s "
             "contribution with respect to the cited work."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    contributor: fhirtypes.ReferenceType = Field(
+    contributor: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="contributor",
         title="The identity of the individual contributor",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Practitioner", "Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Practitioner", "Organization"],
+        },
     )
 
-    correspondingContact: bool = Field(
+    correspondingContact: bool = Field(  # type: ignore
         None,
         alias="correspondingContact",
         title="Whether the contributor is the corresponding contributor for the role",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    correspondingContact__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    correspondingContact__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_correspondingContact",
         title="Extension field for ``correspondingContact``.",
     )
 
-    forenameInitials: fhirtypes.String = Field(
+    forenameInitials: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="forenameInitials",
         title="For citation styles that use initials",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    forenameInitials__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    forenameInitials__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_forenameInitials",
         title="Extension field for ``forenameInitials``.",
     )
 
-    rankingOrder: fhirtypes.PositiveInt = Field(
+    rankingOrder: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="rankingOrder",
         title="Ranked order of contribution",
@@ -1161,20 +1096,22 @@ class CitationCitedArtifactContributorshipEntry(backboneelement.BackboneElement)
             "contributorship relative to other contributors, such as 1 for first "
             "author and 2 for second author."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    rankingOrder__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    rankingOrder__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_rankingOrder", title="Extension field for ``rankingOrder``."
     )
 
-    role: fhirtypes.CodeableConceptType = Field(
+    role: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="role",
         title="The role of the contributor (e.g. author, editor, reviewer, funder)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -1208,36 +1145,35 @@ class CitationCitedArtifactContributorshipEntryContributionInstance(
     Contributions with accounting for time or number.
     """
 
-    resource_type = Field(
-        "CitationCitedArtifactContributorshipEntryContributionInstance", const=True
-    )
+    __resource_type__ = "CitationCitedArtifactContributorshipEntryContributionInstance"
 
-    time: fhirtypes.DateTime = Field(
+    time: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="time",
         title="The time that the contribution was made",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    time__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    time__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_time", title="Extension field for ``time``."
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="type",
         title="The specific contribution",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
     def elements_sequence(cls):
         """returning all elements names from
-        ``CitationCitedArtifactContributorshipEntryContributionInstance``
-        according specification,
+        ``CitationCitedArtifactContributorshipEntryContributionInstance`` according specification,
         with preserving original sequence order.
         """
         return ["id", "extension", "modifierExtension", "type", "time"]
@@ -1252,18 +1188,19 @@ class CitationCitedArtifactContributorshipSummary(backboneelement.BackboneElemen
     data element for each list member.
     """
 
-    resource_type = Field("CitationCitedArtifactContributorshipSummary", const=True)
+    __resource_type__ = "CitationCitedArtifactContributorshipSummary"
 
-    source: fhirtypes.CodeableConceptType = Field(
+    source: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="source",
         title="Used to code the producer or rule for creating the display string",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    style: fhirtypes.CodeableConceptType = Field(
+    style: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="style",
         title="The format for the display string",
@@ -1271,11 +1208,12 @@ class CitationCitedArtifactContributorshipSummary(backboneelement.BackboneElemen
             "The format for the display string, such as author last name with first"
             " letter capitalized followed by forename initials."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title=(
@@ -1286,11 +1224,12 @@ class CitationCitedArtifactContributorshipSummary(backboneelement.BackboneElemen
             "Used most commonly to express an author list or a contributorship "
             "statement."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    value: fhirtypes.Markdown = Field(
+    value: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="value",
         title=(
@@ -1298,11 +1237,12 @@ class CitationCitedArtifactContributorshipSummary(backboneelement.BackboneElemen
             "contributorship statement"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_value", title="Extension field for ``value``."
     )
 
@@ -1322,10 +1262,7 @@ class CitationCitedArtifactContributorshipSummary(backboneelement.BackboneElemen
             "value",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_4683(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -1334,52 +1271,7 @@ class CitationCitedArtifactContributorshipSummary(backboneelement.BackboneElemen
         the primitive value is not present.
         """
         required_fields = [("value", "value__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class CitationCitedArtifactPart(backboneelement.BackboneElement):
@@ -1390,37 +1282,40 @@ class CitationCitedArtifactPart(backboneelement.BackboneElement):
     The component of the article or artifact.
     """
 
-    resource_type = Field("CitationCitedArtifactPart", const=True)
+    __resource_type__ = "CitationCitedArtifactPart"
 
-    baseCitation: fhirtypes.ReferenceType = Field(
+    baseCitation: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="baseCitation",
         title="The citation for the full article or artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Citation"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Citation"],
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="The kind of component",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    value: fhirtypes.String = Field(
+    value: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="value",
         title="The specification of the component",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_value", title="Extension field for ``value``."
     )
 
@@ -1442,21 +1337,22 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
     not separate citations.
     """
 
-    resource_type = Field("CitationCitedArtifactPublicationForm", const=True)
+    __resource_type__ = "CitationCitedArtifactPublicationForm"
 
-    accessionNumber: fhirtypes.String = Field(
+    accessionNumber: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="accessionNumber",
         title="Entry number or identifier for inclusion in a database",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    accessionNumber__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    accessionNumber__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_accessionNumber", title="Extension field for ``accessionNumber``."
     )
 
-    articleDate: fhirtypes.DateTime = Field(
+    articleDate: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="articleDate",
         title=(
@@ -1464,14 +1360,15 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
             "article was released"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    articleDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    articleDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_articleDate", title="Extension field for ``articleDate``."
     )
 
-    citedMedium: fhirtypes.CodeableConceptType = Field(
+    citedMedium: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="citedMedium",
         title="Internet or Print",
@@ -1487,35 +1384,38 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
             "commonly done with early online publication), to represent specific "
             "identification of the publication form not associated with the issue."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    copyright: fhirtypes.Markdown = Field(
+    copyright: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="copyright",
         title="Copyright notice for the full article or artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    copyright__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    copyright__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_copyright", title="Extension field for ``copyright``."
     )
 
-    firstPage: fhirtypes.String = Field(
+    firstPage: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="firstPage",
         title="Used for isolated representation of first page",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    firstPage__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    firstPage__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_firstPage", title="Extension field for ``firstPage``."
     )
 
-    issue: fhirtypes.String = Field(
+    issue: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="issue",
         title=(
@@ -1523,14 +1423,15 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
             "article is published"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    issue__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    issue__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_issue", title="Extension field for ``issue``."
     )
 
-    language: typing.List[fhirtypes.CodeableConceptType] = Field(
+    language: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="language",
         title="Language(s) in which this form of the article is published",
@@ -1538,37 +1439,40 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
             "The language or languages in which this form of the article is "
             "published."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    lastPage: fhirtypes.String = Field(
+    lastPage: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="lastPage",
         title="Used for isolated representation of last page",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    lastPage__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    lastPage__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_lastPage", title="Extension field for ``lastPage``."
     )
 
-    lastRevisionDate: fhirtypes.DateTime = Field(
+    lastRevisionDate: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="lastRevisionDate",
         title="The date the article was last revised or updated in the database",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    lastRevisionDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    lastRevisionDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_lastRevisionDate",
         title="Extension field for ``lastRevisionDate``.",
     )
 
-    pageCount: fhirtypes.String = Field(
+    pageCount: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="pageCount",
         title="Number of pages or screens",
@@ -1576,40 +1480,43 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
             "Actual or approximate number of pages or screens. Distinct from "
             "reporting the page numbers."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    pageCount__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    pageCount__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_pageCount", title="Extension field for ``pageCount``."
     )
 
-    pageString: fhirtypes.String = Field(
+    pageString: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="pageString",
         title="Used for full display of pagination",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    pageString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    pageString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_pageString", title="Extension field for ``pageString``."
     )
 
-    publicationDateSeason: fhirtypes.String = Field(
+    publicationDateSeason: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="publicationDateSeason",
         title="Season in which the cited artifact was published",
         description="Spring, Summer, Fall/Autumn, Winter.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    publicationDateSeason__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    publicationDateSeason__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_publicationDateSeason",
         title="Extension field for ``publicationDateSeason``.",
     )
 
-    publicationDateText: fhirtypes.String = Field(
+    publicationDateText: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="publicationDateText",
         title=(
@@ -1617,25 +1524,27 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
             "artifact was published"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    publicationDateText__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    publicationDateText__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_publicationDateText",
         title="Extension field for ``publicationDateText``.",
     )
 
-    publishedIn: fhirtypes.CitationCitedArtifactPublicationFormPublishedInType = Field(
+    publishedIn: fhirtypes.CitationCitedArtifactPublicationFormPublishedInType = Field(  # type: ignore
         None,
         alias="publishedIn",
         title="The collection the cited article or artifact is published in",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    volume: fhirtypes.String = Field(
+    volume: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="volume",
         title=(
@@ -1643,10 +1552,11 @@ class CitationCitedArtifactPublicationForm(backboneelement.BackboneElement):
             "published"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    volume__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    volume__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_volume", title="Extension field for ``volume``."
     )
 
@@ -1686,9 +1596,9 @@ class CitationCitedArtifactPublicationFormPublishedIn(backboneelement.BackboneEl
     The collection the cited article or artifact is published in.
     """
 
-    resource_type = Field("CitationCitedArtifactPublicationFormPublishedIn", const=True)
+    __resource_type__ = "CitationCitedArtifactPublicationFormPublishedIn"
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title=(
@@ -1696,54 +1606,59 @@ class CitationCitedArtifactPublicationFormPublishedIn(backboneelement.BackboneEl
             "Book identifiers include ISBN"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    publisher: fhirtypes.ReferenceType = Field(
+    publisher: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="publisher",
         title="Name of or resource describing the publisher",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Organization"],
+        },
     )
 
-    publisherLocation: fhirtypes.String = Field(
+    publisherLocation: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="publisherLocation",
         title="Geographic location of the publisher",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    publisherLocation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    publisherLocation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_publisherLocation",
         title="Extension field for ``publisherLocation``.",
     )
 
-    title: fhirtypes.String = Field(
+    title: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="title",
         title="Name of the database or title of the book or journal",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    title__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    title__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_title", title="Extension field for ``title``."
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="Kind of container (e.g. Periodical, database, or book)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -1772,9 +1687,9 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
     The artifact related to the cited artifact.
     """
 
-    resource_type = Field("CitationCitedArtifactRelatesTo", const=True)
+    __resource_type__ = "CitationCitedArtifactRelatesTo"
 
-    citation: fhirtypes.Markdown = Field(
+    citation: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="citation",
         title="Bibliographic citation for the artifact",
@@ -1782,23 +1697,25 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "A bibliographic citation for the related artifact. This text SHOULD be"
             " formatted according to an accepted citation format."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    citation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    citation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_citation", title="Extension field for ``citation``."
     )
 
-    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(
+    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="classifier",
         title="Additional classifiers",
         description="Provides additional classifiers of the related artifact.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    display: fhirtypes.String = Field(
+    display: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="display",
         title="Brief description of the related artifact",
@@ -1806,14 +1723,15 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "A brief description of the document or knowledge resource being "
             "referenced, suitable for display to a consumer."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    display__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    display__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_display", title="Extension field for ``display``."
     )
 
-    document: fhirtypes.AttachmentType = Field(
+    document: fhirtypes.AttachmentType = Field(  # type: ignore
         None,
         alias="document",
         title="What document is being referenced",
@@ -1822,11 +1740,12 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "use this element if using the resource element to provide the "
             "canonical to the related artifact."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    label: fhirtypes.String = Field(
+    label: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="label",
         title="Short label",
@@ -1834,14 +1753,15 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "A short label that can be used to reference the related artifact from "
             "elsewhere in the containing artifact, such as a footnote index."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    label__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    label__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_label", title="Extension field for ``label``."
     )
 
-    resource: fhirtypes.Canonical = Field(
+    resource: fhirtypes.CanonicalType = Field(  # type: ignore
         None,
         alias="resource",
         title="What artifact is being referenced",
@@ -1849,14 +1769,15 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "The related artifact, such as a library, value set, profile, or other "
             "knowledge resource."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    resource__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    resource__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_resource", title="Extension field for ``resource``."
     )
 
-    resourceReference: fhirtypes.ReferenceType = Field(
+    resourceReference: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="resourceReference",
         title="What artifact, if not a conformance resource",
@@ -1864,11 +1785,12 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "The related artifact, if the artifact is not a canonical resource, or "
             "a resource reference to a canonical resource."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: fhirtypes.Code = Field(
+    type: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="type",
         title=(
@@ -1882,53 +1804,54 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "as | reprint | reprint-of"
         ),
         description="The type of relationship to the related artifact.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=[
-            "documentation",
-            "justification",
-            "citation",
-            "predecessor",
-            "successor",
-            "derived-from",
-            "depends-on",
-            "composed-of",
-            "part-of",
-            "amends",
-            "amended-with",
-            "appends",
-            "appended-with",
-            "cites",
-            "cited-by",
-            "comments-on",
-            "comment-in",
-            "contains",
-            "contained-in",
-            "corrects",
-            "correction-in",
-            "replaces",
-            "replaced-with",
-            "retracts",
-            "retracted-by",
-            "signs",
-            "similar-to",
-            "supports",
-            "supported-with",
-            "transforms",
-            "transformed-into",
-            "transformed-with",
-            "documents",
-            "specification-of",
-            "created-with",
-            "cite-as",
-            "reprint",
-            "reprint-of",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": [
+                "documentation",
+                "justification",
+                "citation",
+                "predecessor",
+                "successor",
+                "derived-from",
+                "depends-on",
+                "composed-of",
+                "part-of",
+                "amends",
+                "amended-with",
+                "appends",
+                "appended-with",
+                "cites",
+                "cited-by",
+                "comments-on",
+                "comment-in",
+                "contains",
+                "contained-in",
+                "corrects",
+                "correction-in",
+                "replaces",
+                "replaced-with",
+                "retracts",
+                "retracted-by",
+                "signs",
+                "similar-to",
+                "supports",
+                "supported-with",
+                "transforms",
+                "transformed-into",
+                "transformed-with",
+                "documents",
+                "specification-of",
+                "created-with",
+                "cite-as",
+                "reprint",
+                "reprint-of",
+            ],
+        },
     )
-    type__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    type__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_type", title="Extension field for ``type``."
     )
 
@@ -1952,10 +1875,7 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
             "resourceReference",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_3223(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -1964,52 +1884,7 @@ class CitationCitedArtifactRelatesTo(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("type", "type__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class CitationCitedArtifactStatusDate(backboneelement.BackboneElement):
@@ -2022,36 +1897,39 @@ class CitationCitedArtifactStatusDate(backboneelement.BackboneElement):
     a status of the cited artifact.
     """
 
-    resource_type = Field("CitationCitedArtifactStatusDate", const=True)
+    __resource_type__ = "CitationCitedArtifactStatusDate"
 
-    activity: fhirtypes.CodeableConceptType = Field(
+    activity: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="activity",
         title="Classification of the status",
         description="A definition of the status associated with a date or period.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    actual: bool = Field(
+    actual: bool = Field(  # type: ignore
         None,
         alias="actual",
         title="Either occurred or expected",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    actual__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    actual__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_actual", title="Extension field for ``actual``."
     )
 
-    period: fhirtypes.PeriodType = Field(
+    period: fhirtypes.PeriodType = Field(  # type: ignore
         ...,
         alias="period",
         title="When the status started and/or ended",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -2071,37 +1949,40 @@ class CitationCitedArtifactTitle(backboneelement.BackboneElement):
     The title details of the article or artifact.
     """
 
-    resource_type = Field("CitationCitedArtifactTitle", const=True)
+    __resource_type__ = "CitationCitedArtifactTitle"
 
-    language: fhirtypes.CodeableConceptType = Field(
+    language: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="language",
         title="Used to express the specific language",
         description="Used to express the specific language of the title.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    text: fhirtypes.Markdown = Field(
+    text: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="text",
         title="The title of the article or artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    text__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    text__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_text", title="Extension field for ``text``."
     )
 
-    type: typing.List[fhirtypes.CodeableConceptType] = Field(
+    type: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="type",
         title="The kind of title",
         description="Used to express the reason for or classification of the title.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -2112,10 +1993,7 @@ class CitationCitedArtifactTitle(backboneelement.BackboneElement):
         """
         return ["id", "extension", "modifierExtension", "type", "language", "text"]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_2812(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -2124,52 +2002,7 @@ class CitationCitedArtifactTitle(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("text", "text__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class CitationCitedArtifactVersion(backboneelement.BackboneElement):
@@ -2180,29 +2013,31 @@ class CitationCitedArtifactVersion(backboneelement.BackboneElement):
     The defined version of the cited artifact.
     """
 
-    resource_type = Field("CitationCitedArtifactVersion", const=True)
+    __resource_type__ = "CitationCitedArtifactVersion"
 
-    baseCitation: fhirtypes.ReferenceType = Field(
+    baseCitation: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="baseCitation",
         title="Citation for the main version of the cited artifact",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Citation"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Citation"],
+        },
     )
 
-    value: fhirtypes.String = Field(
+    value: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="value",
         title="The version number or other version identifier",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_value", title="Extension field for ``value``."
     )
 
@@ -2214,10 +2049,7 @@ class CitationCitedArtifactVersion(backboneelement.BackboneElement):
         """
         return ["id", "extension", "modifierExtension", "value", "baseCitation"]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_3049(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -2226,52 +2058,7 @@ class CitationCitedArtifactVersion(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("value", "value__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class CitationCitedArtifactWebLocation(backboneelement.BackboneElement):
@@ -2282,26 +2069,28 @@ class CitationCitedArtifactWebLocation(backboneelement.BackboneElement):
     Used for any URL for the article or artifact cited.
     """
 
-    resource_type = Field("CitationCitedArtifactWebLocation", const=True)
+    __resource_type__ = "CitationCitedArtifactWebLocation"
 
-    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(
+    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="classifier",
         title="Code the reason for different URLs, e.g. abstract and full-text",
         description="A characterization of the object expected at the web location.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    url: fhirtypes.Uri = Field(
+    url: fhirtypes.UriType = Field(  # type: ignore
         None,
         alias="url",
         title="The specific URL",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    url__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    url__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_url", title="Extension field for ``url``."
     )
 
@@ -2322,24 +2111,26 @@ class CitationClassification(backboneelement.BackboneElement):
     The assignment to an organizing scheme.
     """
 
-    resource_type = Field("CitationClassification", const=True)
+    __resource_type__ = "CitationClassification"
 
-    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(
+    classifier: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="classifier",
         title="The specific classification value",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="The kind of classifier (e.g. publication type, keyword)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -2361,9 +2152,9 @@ class CitationStatusDate(backboneelement.BackboneElement):
     period for that state.
     """
 
-    resource_type = Field("CitationStatusDate", const=True)
+    __resource_type__ = "CitationStatusDate"
 
-    activity: fhirtypes.CodeableConceptType = Field(
+    activity: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="activity",
         title="Classification of the status",
@@ -2371,11 +2162,12 @@ class CitationStatusDate(backboneelement.BackboneElement):
             "The state or status of the citation record (that will be paired with "
             "the period)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    actual: bool = Field(
+    actual: bool = Field(  # type: ignore
         None,
         alias="actual",
         title="Either occurred or expected",
@@ -2383,20 +2175,22 @@ class CitationStatusDate(backboneelement.BackboneElement):
             "Whether the status date is actual (has occurred) or expected "
             "(estimated or anticipated)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    actual__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    actual__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_actual", title="Extension field for ``actual``."
     )
 
-    period: fhirtypes.PeriodType = Field(
+    period: fhirtypes.PeriodType = Field(  # type: ignore
         ...,
         alias="period",
         title="When the status started and/or ended",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -2416,27 +2210,29 @@ class CitationSummary(backboneelement.BackboneElement):
     A human-readable display of key concepts to represent the citation.
     """
 
-    resource_type = Field("CitationSummary", const=True)
+    __resource_type__ = "CitationSummary"
 
-    style: fhirtypes.CodeableConceptType = Field(
+    style: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="style",
         title="Format for display of the citation summary",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    text: fhirtypes.Markdown = Field(
+    text: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="text",
         title="The human-readable display of the citation summary",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    text__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    text__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_text", title="Extension field for ``text``."
     )
 
@@ -2448,10 +2244,7 @@ class CitationSummary(backboneelement.BackboneElement):
         """
         return ["id", "extension", "modifierExtension", "style", "text"]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1765(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -2460,49 +2253,4 @@ class CitationSummary(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("text", "text__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields

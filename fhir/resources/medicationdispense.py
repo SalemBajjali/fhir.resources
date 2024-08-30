@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -28,20 +26,21 @@ class MedicationDispense(domainresource.DomainResource):
     responding to a medication order.
     """
 
-    resource_type = Field("MedicationDispense", const=True)
+    __resource_type__ = "MedicationDispense"
 
-    authorizingPrescription: typing.List[fhirtypes.ReferenceType] = Field(
+    authorizingPrescription: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="authorizingPrescription",
         title="Medication order that authorizes the dispense",
         description="Indicates the medication order that is being dispensed against.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["MedicationRequest"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["MedicationRequest"],
+        },
     )
 
-    basedOn: typing.List[fhirtypes.ReferenceType] = Field(
+    basedOn: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="basedOn",
         title="Plan that is fulfilled by this dispense",
@@ -49,13 +48,14 @@ class MedicationDispense(domainresource.DomainResource):
             "A plan that is fulfilled in whole or in part by this "
             "MedicationDispense."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["CarePlan"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["CarePlan"],
+        },
     )
 
-    category: typing.List[fhirtypes.CodeableConceptType] = Field(
+    category: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="category",
         title="Type of medication dispense",
@@ -64,20 +64,22 @@ class MedicationDispense(domainresource.DomainResource):
             "classification like ATC, where meds would be administered, legal "
             "category of the medication.)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    daysSupply: fhirtypes.QuantityType = Field(
+    daysSupply: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="daysSupply",
         title="Amount of medication expressed as a timing amount",
         description="The amount of medication expressed as a timing amount.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    destination: fhirtypes.ReferenceType = Field(
+    destination: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="destination",
         title="Where the medication was/will be sent",
@@ -85,13 +87,14 @@ class MedicationDispense(domainresource.DomainResource):
             "Identification of the facility/location where the medication was/will "
             "be shipped to, as part of the dispense event."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Location"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Location"],
+        },
     )
 
-    dosageInstruction: typing.List[fhirtypes.DosageType] = Field(
+    dosageInstruction: typing.List[fhirtypes.DosageType] = Field(  # type: ignore
         None,
         alias="dosageInstruction",
         title=(
@@ -99,22 +102,24 @@ class MedicationDispense(domainresource.DomainResource):
             " caregiver"
         ),
         description="Indicates how the medication is to be used by the patient.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    encounter: fhirtypes.ReferenceType = Field(
+    encounter: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="encounter",
         title="Encounter associated with event",
         description="The encounter that establishes the context for this event.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Encounter"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Encounter"],
+        },
     )
 
-    eventHistory: typing.List[fhirtypes.ReferenceType] = Field(
+    eventHistory: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="eventHistory",
         title="A list of relevant lifecycle events",
@@ -122,13 +127,14 @@ class MedicationDispense(domainresource.DomainResource):
             "A summary of the events of interest that have occurred, such as when "
             "the dispense was verified."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Provenance"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Provenance"],
+        },
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="External identifier",
@@ -140,22 +146,24 @@ class MedicationDispense(domainresource.DomainResource):
             "systems and remain constant as the resource is updated and propagates "
             "from server to server."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    location: fhirtypes.ReferenceType = Field(
+    location: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="location",
         title="Where the dispense occurred",
         description="The principal physical location where the dispense was performed.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Location"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Location"],
+        },
     )
 
-    medication: fhirtypes.CodeableReferenceType = Field(
+    medication: fhirtypes.CodeableReferenceType = Field(  # type: ignore
         ...,
         alias="medication",
         title="What medication was supplied",
@@ -165,24 +173,26 @@ class MedicationDispense(domainresource.DomainResource):
             "attribute carrying a code that identifies the medication from a known "
             "list of medications."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Medication"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Medication"],
+        },
     )
 
-    notPerformedReason: fhirtypes.CodeableReferenceType = Field(
+    notPerformedReason: fhirtypes.CodeableReferenceType = Field(  # type: ignore
         None,
         alias="notPerformedReason",
         title="Why a dispense was not performed",
         description="Indicates the reason why a dispense was not performed.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DetectedIssue"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DetectedIssue"],
+        },
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Information about the dispense",
@@ -190,33 +200,36 @@ class MedicationDispense(domainresource.DomainResource):
             "Extra information about the dispense that could not be conveyed in the"
             " other attributes."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    partOf: typing.List[fhirtypes.ReferenceType] = Field(
+    partOf: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="partOf",
         title="Event that dispense is part of",
         description=(
             "The procedure or medication administration that triggered the " "dispense."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Procedure", "MedicationAdministration"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Procedure", "MedicationAdministration"],
+        },
     )
 
-    performer: typing.List[fhirtypes.MedicationDispensePerformerType] = Field(
+    performer: typing.List[fhirtypes.MedicationDispensePerformerType] = Field(  # type: ignore
         None,
         alias="performer",
         title="Who performed event",
         description="Indicates who or what performed the event.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    quantity: fhirtypes.QuantityType = Field(
+    quantity: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="quantity",
         title="Amount dispensed",
@@ -224,11 +237,12 @@ class MedicationDispense(domainresource.DomainResource):
             "The amount of medication that has been dispensed. Includes unit of "
             "measure."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    receiver: typing.List[fhirtypes.ReferenceType] = Field(
+    receiver: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="receiver",
         title="Who collected the medication or where the medication was delivered",
@@ -238,19 +252,20 @@ class MedicationDispense(domainresource.DomainResource):
             " their caregiver, but some cases exist where it can be a healthcare "
             "professional or a location."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Patient",
-            "Practitioner",
-            "RelatedPerson",
-            "Location",
-            "PractitionerRole",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Patient",
+                "Practitioner",
+                "RelatedPerson",
+                "Location",
+                "PractitionerRole",
+            ],
+        },
     )
 
-    recorded: fhirtypes.DateTime = Field(
+    recorded: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="recorded",
         title="When the recording of the dispense started",
@@ -258,14 +273,15 @@ class MedicationDispense(domainresource.DomainResource):
             "The date (and maybe time) when the dispense activity started if "
             "whenPrepared or whenHandedOver is not populated."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    recorded__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    recorded__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_recorded", title="Extension field for ``recorded``."
     )
 
-    renderedDosageInstruction: fhirtypes.Markdown = Field(
+    renderedDosageInstruction: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="renderedDosageInstruction",
         title="Full representation of the dosage instructions",
@@ -275,16 +291,17 @@ class MedicationDispense(domainresource.DomainResource):
             " included to represent complex dosing such as increasing or tapering "
             "doses."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    renderedDosageInstruction__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    renderedDosageInstruction__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_renderedDosageInstruction",
         title="Extension field for ``renderedDosageInstruction``.",
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title=(
@@ -292,28 +309,29 @@ class MedicationDispense(domainresource.DomainResource):
             "in-error | stopped | declined | unknown"
         ),
         description="A code specifying the state of the set of dispense events.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=[
-            "preparation",
-            "in-progress",
-            "cancelled",
-            "on-hold",
-            "completed",
-            "entered-in-error",
-            "stopped",
-            "declined",
-            "unknown",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": [
+                "preparation",
+                "in-progress",
+                "cancelled",
+                "on-hold",
+                "completed",
+                "entered-in-error",
+                "stopped",
+                "declined",
+                "unknown",
+            ],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    statusChanged: fhirtypes.DateTime = Field(
+    statusChanged: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="statusChanged",
         title="When the status changed",
@@ -321,14 +339,15 @@ class MedicationDispense(domainresource.DomainResource):
             "The date (and maybe time) when the status of the dispense record "
             "changed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    statusChanged__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    statusChanged__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_statusChanged", title="Extension field for ``statusChanged``."
     )
 
-    subject: fhirtypes.ReferenceType = Field(
+    subject: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="subject",
         title="Who the dispense is for",
@@ -336,13 +355,14 @@ class MedicationDispense(domainresource.DomainResource):
             "A link to a resource representing the person or the group to whom the "
             "medication will be given."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Patient", "Group"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Patient", "Group"],
+        },
     )
 
-    substitution: fhirtypes.MedicationDispenseSubstitutionType = Field(
+    substitution: fhirtypes.MedicationDispenseSubstitutionType = Field(  # type: ignore
         None,
         alias="substitution",
         title="Whether a substitution was performed on the dispense",
@@ -353,11 +373,12 @@ class MedicationDispense(domainresource.DomainResource):
             "This block explains what substitution did or did not happen and why.  "
             "If nothing is specified, substitution was not done."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    supportingInformation: typing.List[fhirtypes.ReferenceType] = Field(
+    supportingInformation: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="supportingInformation",
         title="Information that supports the dispensing of the medication",
@@ -367,13 +388,14 @@ class MedicationDispense(domainresource.DomainResource):
             "been completed prior to dispensing or the patient's weight at the time"
             " of dispensing is documented."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Resource"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Resource"],
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="Trial fill, partial fill, emergency fill, etc",
@@ -382,11 +404,12 @@ class MedicationDispense(domainresource.DomainResource):
             " Trial Fill, Completion of Trial, Partial Fill, Emergency Fill, "
             "Samples, etc."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    whenHandedOver: fhirtypes.DateTime = Field(
+    whenHandedOver: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="whenHandedOver",
         title="When product was given out",
@@ -394,22 +417,24 @@ class MedicationDispense(domainresource.DomainResource):
             "The time the dispensed product was provided to the patient or their "
             "representative."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    whenHandedOver__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    whenHandedOver__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_whenHandedOver", title="Extension field for ``whenHandedOver``."
     )
 
-    whenPrepared: fhirtypes.DateTime = Field(
+    whenPrepared: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="whenPrepared",
         title="When product was packaged and reviewed",
         description="The time when the dispensed product was packaged and reviewed.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    whenPrepared__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    whenPrepared__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_whenPrepared", title="Extension field for ``whenPrepared``."
     )
 
@@ -457,10 +482,7 @@ class MedicationDispense(domainresource.DomainResource):
             "eventHistory",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_2026(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -469,52 +491,7 @@ class MedicationDispense(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class MedicationDispensePerformer(backboneelement.BackboneElement):
@@ -526,9 +503,9 @@ class MedicationDispensePerformer(backboneelement.BackboneElement):
     Indicates who or what performed the event.
     """
 
-    resource_type = Field("MedicationDispensePerformer", const=True)
+    __resource_type__ = "MedicationDispensePerformer"
 
-    actor: fhirtypes.ReferenceType = Field(
+    actor: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="actor",
         title="Individual who was performing",
@@ -536,21 +513,22 @@ class MedicationDispensePerformer(backboneelement.BackboneElement):
             "The device, practitioner, etc. who performed the action.  It should be"
             " assumed that the actor is the dispenser of the medication."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Practitioner",
-            "PractitionerRole",
-            "Organization",
-            "Patient",
-            "Device",
-            "RelatedPerson",
-            "CareTeam",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Practitioner",
+                "PractitionerRole",
+                "Organization",
+                "Patient",
+                "Device",
+                "RelatedPerson",
+                "CareTeam",
+            ],
+        },
     )
 
-    function: fhirtypes.CodeableConceptType = Field(
+    function: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="function",
         title="Who performed the dispense and what they did",
@@ -558,8 +536,9 @@ class MedicationDispensePerformer(backboneelement.BackboneElement):
             "Distinguishes the type of performer in the dispense.  For example, "
             "date enterer, packager, final checker."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -584,9 +563,9 @@ class MedicationDispenseSubstitution(backboneelement.BackboneElement):
     substitution was not done.
     """
 
-    resource_type = Field("MedicationDispenseSubstitution", const=True)
+    __resource_type__ = "MedicationDispenseSubstitution"
 
-    reason: typing.List[fhirtypes.CodeableConceptType] = Field(
+    reason: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="reason",
         title="Why was substitution made",
@@ -594,11 +573,12 @@ class MedicationDispenseSubstitution(backboneelement.BackboneElement):
             "Indicates the reason for the substitution (or lack of substitution) "
             "from what was prescribed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    responsibleParty: fhirtypes.ReferenceType = Field(
+    responsibleParty: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="responsibleParty",
         title="Who is responsible for the substitution",
@@ -606,13 +586,18 @@ class MedicationDispenseSubstitution(backboneelement.BackboneElement):
             "The person or organization that has primary responsibility for the "
             "substitution."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Practitioner", "PractitionerRole", "Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Practitioner",
+                "PractitionerRole",
+                "Organization",
+            ],
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title=(
@@ -623,11 +608,12 @@ class MedicationDispenseSubstitution(backboneelement.BackboneElement):
             "A code signifying whether a different drug was dispensed from what was"
             " prescribed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    wasSubstituted: bool = Field(
+    wasSubstituted: bool = Field(  # type: ignore
         None,
         alias="wasSubstituted",
         title="Whether a substitution was or was not performed on the dispense",
@@ -635,11 +621,12 @@ class MedicationDispenseSubstitution(backboneelement.BackboneElement):
             "True if the dispenser dispensed a different drug or product from what "
             "was prescribed."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    wasSubstituted__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    wasSubstituted__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_wasSubstituted", title="Extension field for ``wasSubstituted``."
     )
 
@@ -659,10 +646,7 @@ class MedicationDispenseSubstitution(backboneelement.BackboneElement):
             "responsibleParty",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_3344(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -671,49 +655,4 @@ class MedicationDispenseSubstitution(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("wasSubstituted", "wasSubstituted__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields

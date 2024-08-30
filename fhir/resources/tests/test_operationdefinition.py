@@ -6,10 +6,8 @@ Version: 5.0.0
 Build ID: 2aecd53
 Last updated: 2023-03-26T15:21:02.749+11:00
 """
-from pydantic.validators import bytes_validator  # noqa: F401
-
-from .. import fhirtypes  # noqa: F401
 from .. import operationdefinition
+from .fixtures import ExternalValidatorModel  # noqa: F401
 
 
 def impl_operationdefinition_1(inst):
@@ -19,15 +17,29 @@ def impl_operationdefinition_1(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 1
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "NamingSystem-translate-id"
@@ -36,7 +48,9 @@ def impl_operationdefinition_1(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "TranslateId"
@@ -45,8 +59,13 @@ def impl_operationdefinition_1(inst):
     assert inst.parameter[0].name == "id"
     assert inst.parameter[0].type == "string"
     assert inst.parameter[0].use == "in"
-    assert inst.parameter[1].binding.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/elementdefinition-" "bindingName"
+    assert (
+        inst.parameter[1].binding.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
+            }
+        ).valueUri
     )
     assert (
         inst.parameter[1].binding.extension[0].valueString
@@ -61,8 +80,13 @@ def impl_operationdefinition_1(inst):
     assert inst.parameter[1].name == "sourceType"
     assert inst.parameter[1].type == "code"
     assert inst.parameter[1].use == "in"
-    assert inst.parameter[2].binding.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/elementdefinition-" "bindingName"
+    assert (
+        inst.parameter[2].binding.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName"
+            }
+        ).valueUri
     )
     assert (
         inst.parameter[2].binding.extension[0].valueString
@@ -138,8 +162,13 @@ def impl_operationdefinition_1(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Translate id"
     assert inst.type is True
-    assert inst.url == (
-        "http://hl7.org/fhir/OperationDefinition/NamingSystem-" "translate-id"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/OperationDefinition/NamingSystem-translate-id"
+            }
+        ).valueUri
     )
     assert inst.version == "5.0.0"
 
@@ -151,15 +180,15 @@ def test_operationdefinition_1(base_settings):
     filename = (
         base_settings["unittest_data_dir"] / "operation-namingsystem-translate-id.json"
     )
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_1(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -173,15 +202,29 @@ def impl_operationdefinition_2(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 3
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "DocumentReference-docref"
@@ -190,7 +233,9 @@ def impl_operationdefinition_2(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "Docref"
@@ -251,8 +296,13 @@ def impl_operationdefinition_2(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Fetch DocumentReference"
     assert inst.type is True
-    assert inst.url == (
-        "http://hl7.org/fhir/OperationDefinition/DocumentReference-" "docref"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/OperationDefinition/DocumentReference-docref"
+            }
+        ).valueUri
     )
     assert inst.version == "5.0.0"
 
@@ -264,15 +314,15 @@ def test_operationdefinition_2(base_settings):
     filename = (
         base_settings["unittest_data_dir"] / "operation-documentreference-docref.json"
     )
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_2(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -286,19 +336,33 @@ def impl_operationdefinition_3(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.description == (
         "This operation is used to return the current status "
         "information about one or more topic-based Subscriptions."
     )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 2
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "Subscription-status"
@@ -307,7 +371,9 @@ def impl_operationdefinition_3(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "Status"
@@ -347,7 +413,12 @@ def impl_operationdefinition_3(inst):
         "Get Current Subscription Status for One or More " "Subscriptions"
     )
     assert inst.type is True
-    assert inst.url == "http://hl7.org/fhir/OperationDefinition/Subscription-status"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/OperationDefinition/Subscription-status"}
+        ).valueUri
+    )
     assert inst.version == "5.0.0"
 
 
@@ -356,15 +427,15 @@ def test_operationdefinition_3(base_settings):
     Test File: operation-subscription-status.json
     """
     filename = base_settings["unittest_data_dir"] / "operation-subscription-status.json"
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_3(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -378,20 +449,34 @@ def impl_operationdefinition_4(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.description == (
         "The data-requirements operation aggregates and returns the "
         "parameters and data requirements for the measure and all its"
         " dependencies as a single module definition"
     )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 3
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "Measure-data-requirements"
@@ -400,7 +485,9 @@ def impl_operationdefinition_4(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "DataRequirements"
@@ -437,8 +524,13 @@ def impl_operationdefinition_4(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Data Requirements"
     assert inst.type is False
-    assert inst.url == (
-        "http://hl7.org/fhir/OperationDefinition/Measure-data-" "requirements"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/OperationDefinition/Measure-data-requirements"
+            }
+        ).valueUri
     )
     assert inst.version == "5.0.0"
 
@@ -450,15 +542,15 @@ def test_operationdefinition_4(base_settings):
     filename = (
         base_settings["unittest_data_dir"] / "operation-measure-data-requirements.json"
     )
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_4(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -472,15 +564,29 @@ def impl_operationdefinition_5(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 1
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "ConceptMap-translate"
@@ -489,7 +595,9 @@ def impl_operationdefinition_5(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "Translate"
@@ -584,7 +692,12 @@ def impl_operationdefinition_5(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Concept Translation"
     assert inst.type is True
-    assert inst.url == "http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/OperationDefinition/ConceptMap-translate"}
+        ).valueUri
+    )
     assert inst.version == "5.0.0"
 
 
@@ -595,15 +708,15 @@ def test_operationdefinition_5(base_settings):
     filename = (
         base_settings["unittest_data_dir"] / "operation-conceptmap-translate.json"
     )
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_5(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -617,20 +730,34 @@ def impl_operationdefinition_6(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.description == (
         "Add content to an array in a large resource such as List or "
         "Group. See [Operations for Large Resources](operations-for-"
         "large-resources.html)."
     )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 0
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "Resource-add"
@@ -639,7 +766,9 @@ def impl_operationdefinition_6(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "Add"
@@ -668,7 +797,12 @@ def impl_operationdefinition_6(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Add to an array in a large resource"
     assert inst.type is False
-    assert inst.url == "http://hl7.org/fhir/OperationDefinition/Resource-add"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/OperationDefinition/Resource-add"}
+        ).valueUri
+    )
     assert inst.version == "5.0.0"
 
 
@@ -677,15 +811,15 @@ def test_operationdefinition_6(base_settings):
     Test File: operation-resource-add.json
     """
     filename = base_settings["unittest_data_dir"] / "operation-resource-add.json"
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_6(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -704,19 +838,33 @@ def impl_operationdefinition_7(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.description == (
         "The apply operation applies a SpecimenDefinition in a given "
         "context to create a Specimen resource instance"
     )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 1
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "SpecimenDefinition-apply"
@@ -725,7 +873,9 @@ def impl_operationdefinition_7(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "Apply"
@@ -813,8 +963,13 @@ def impl_operationdefinition_7(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Apply"
     assert inst.type is True
-    assert inst.url == (
-        "http://hl7.org/fhir/OperationDefinition/SpecimenDefinition-" "apply"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/OperationDefinition/SpecimenDefinition-apply"
+            }
+        ).valueUri
     )
     assert inst.version == "5.0.0"
 
@@ -826,15 +981,15 @@ def test_operationdefinition_7(base_settings):
     filename = (
         base_settings["unittest_data_dir"] / "operation-specimendefinition-apply.json"
     )
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_7(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -848,15 +1003,29 @@ def impl_operationdefinition_8(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 5
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "normative"
     assert inst.id == "ValueSet-expand"
@@ -865,7 +1034,9 @@ def impl_operationdefinition_8(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "Expand"
@@ -948,7 +1119,12 @@ def impl_operationdefinition_8(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Value Set Expansion"
     assert inst.type is True
-    assert inst.url == "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/OperationDefinition/ValueSet-expand"}
+        ).valueUri
+    )
     assert inst.version == "5.0.0"
 
 
@@ -957,15 +1133,15 @@ def test_operationdefinition_8(base_settings):
     Test File: operation-valueset-expand.json
     """
     filename = base_settings["unittest_data_dir"] / "operation-valueset-expand.json"
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_8(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -979,19 +1155,33 @@ def impl_operationdefinition_9(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.description == (
         "This operation takes a meta, and adds the profiles, tags, "
         "and security labels found in it to the nominated resource"
     )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 3
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "Resource-meta-add"
@@ -1000,7 +1190,9 @@ def impl_operationdefinition_9(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "MetaAdd"
@@ -1022,7 +1214,12 @@ def impl_operationdefinition_9(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Add profiles, tags, and security labels to a resource"
     assert inst.type is False
-    assert inst.url == "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/OperationDefinition/Resource-meta-add"}
+        ).valueUri
+    )
     assert inst.version == "5.0.0"
 
 
@@ -1031,15 +1228,15 @@ def test_operationdefinition_9(base_settings):
     Test File: operation-resource-meta-add.json
     """
     filename = base_settings["unittest_data_dir"] / "operation-resource-meta-add.json"
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_9(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)
@@ -1053,15 +1250,29 @@ def impl_operationdefinition_10(inst):
     assert inst.contact[0].telecom[0].value == "http://hl7.org/fhir"
     assert inst.contact[0].telecom[1].system == "email"
     assert inst.contact[0].telecom[1].value == "fhir@lists.hl7.org"
-    assert inst.date == fhirtypes.DateTime.validate("2023-03-26T15:21:02+11:00")
+    assert (
+        inst.date
+        == ExternalValidatorModel.model_validate(
+            {"valueDateTime": "2023-03-26T15:21:02+11:00"}
+        ).valueDateTime
+    )
     assert inst.experimental is False
-    assert inst.extension[0].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-" "fmm"
+    assert (
+        inst.extension[0].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm"
+            }
+        ).valueUri
     )
     assert inst.extension[0].valueInteger == 2
-    assert inst.extension[1].url == (
-        "http://hl7.org/fhir/StructureDefinition/structuredefinition-"
-        "standards-status"
+    assert (
+        inst.extension[1].url
+        == ExternalValidatorModel.model_validate(
+            {
+                "valueUri": "http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status"
+            }
+        ).valueUri
     )
     assert inst.extension[1].valueCode == "trial-use"
     assert inst.id == "Encounter-everything"
@@ -1070,7 +1281,9 @@ def impl_operationdefinition_10(inst):
     assert inst.jurisdiction[0].coding[0].display == "World"
     assert (
         inst.jurisdiction[0].coding[0].system
-        == "http://unstats.un.org/unsd/methods/m49/m49.htm"
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://unstats.un.org/unsd/methods/m49/m49.htm"}
+        ).valueUri
     )
     assert inst.kind == "operation"
     assert inst.name == "Everything"
@@ -1112,7 +1325,12 @@ def impl_operationdefinition_10(inst):
     assert inst.text.status == "extensions"
     assert inst.title == "Fetch Encounter Record"
     assert inst.type is False
-    assert inst.url == "http://hl7.org/fhir/OperationDefinition/Encounter-everything"
+    assert (
+        inst.url
+        == ExternalValidatorModel.model_validate(
+            {"valueUri": "http://hl7.org/fhir/OperationDefinition/Encounter-everything"}
+        ).valueUri
+    )
     assert inst.version == "5.0.0"
 
 
@@ -1123,15 +1341,15 @@ def test_operationdefinition_10(base_settings):
     filename = (
         base_settings["unittest_data_dir"] / "operation-encounter-everything.json"
     )
-    inst = operationdefinition.OperationDefinition.parse_file(
-        filename, content_type="application/json", encoding="utf-8"
+    inst = operationdefinition.OperationDefinition.model_validate_json(
+        filename.read_bytes()
     )
-    assert "OperationDefinition" == inst.resource_type
+    assert "OperationDefinition" == inst.get_resource_type()
 
     impl_operationdefinition_10(inst)
 
     # testing reverse by generating data from itself and create again.
-    data = inst.dict()
+    data = inst.model_dump()
     assert "OperationDefinition" == data["resourceType"]
 
     inst2 = operationdefinition.OperationDefinition(**data)

@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import datatype, element, fhirtypes
 
@@ -25,9 +23,9 @@ class DataRequirement(datatype.DataType):
     and optional code or date-based filters of the data.
     """
 
-    resource_type = Field("DataRequirement", const=True)
+    __resource_type__ = "DataRequirement"
 
-    codeFilter: typing.List[fhirtypes.DataRequirementCodeFilterType] = Field(
+    codeFilter: typing.List[fhirtypes.DataRequirementCodeFilterType] = Field(  # type: ignore
         None,
         alias="codeFilter",
         title="What codes are expected",
@@ -37,11 +35,12 @@ class DataRequirement(datatype.DataType):
             "code filter defines an additional constraint on the data, i.e. code "
             "filters are AND'ed, not OR'ed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    dateFilter: typing.List[fhirtypes.DataRequirementDateFilterType] = Field(
+    dateFilter: typing.List[fhirtypes.DataRequirementDateFilterType] = Field(  # type: ignore
         None,
         alias="dateFilter",
         title="What dates/date ranges are expected",
@@ -51,11 +50,12 @@ class DataRequirement(datatype.DataType):
             "specifies an additional constraint on the data, i.e. date filters are "
             "AND'ed, not OR'ed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    limit: fhirtypes.PositiveInt = Field(
+    limit: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="limit",
         title="Number of results",
@@ -63,14 +63,15 @@ class DataRequirement(datatype.DataType):
             "Specifies a maximum number of results that are required (uses the "
             "_count search parameter)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    limit__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    limit__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_limit", title="Extension field for ``limit``."
     )
 
-    mustSupport: typing.List[typing.Optional[fhirtypes.String]] = Field(
+    mustSupport: typing.List[typing.Optional[fhirtypes.StringType]] = Field(  # type: ignore
         None,
         alias="mustSupport",
         title=(
@@ -88,14 +89,15 @@ class DataRequirement(datatype.DataType):
             "only of identifiers, constant indexers, and .resolve() (see the "
             "[Simple FHIRPath Profile](fhirpath.html#simple) for full details)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    mustSupport__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(None, alias="_mustSupport", title="Extension field for ``mustSupport``.")
+    mustSupport__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
+        None, alias="_mustSupport", title="Extension field for ``mustSupport``."
+    )
 
-    profile: typing.List[typing.Optional[fhirtypes.Canonical]] = Field(
+    profile: typing.List[typing.Optional[fhirtypes.CanonicalType]] = Field(  # type: ignore
         None,
         alias="profile",
         title="The profile of the required data",
@@ -103,25 +105,27 @@ class DataRequirement(datatype.DataType):
             "The profile of the required data, specified as the uri of the profile "
             "definition."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["StructureDefinition"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["StructureDefinition"],
+        },
     )
-    profile__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(None, alias="_profile", title="Extension field for ``profile``.")
+    profile__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
+        None, alias="_profile", title="Extension field for ``profile``."
+    )
 
-    sort: typing.List[fhirtypes.DataRequirementSortType] = Field(
+    sort: typing.List[fhirtypes.DataRequirementSortType] = Field(  # type: ignore
         None,
         alias="sort",
         title="Order of the results",
         description="Specifies the order of the results to be returned.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    subjectCodeableConcept: fhirtypes.CodeableConceptType = Field(
+    subjectCodeableConcept: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="subjectCodeableConcept",
         title=(
@@ -132,14 +136,15 @@ class DataRequirement(datatype.DataType):
             "The intended subjects of the data requirement. If this element is not "
             "provided, a Patient subject is assumed."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e subject[x]
-        one_of_many="subject",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e subject[x]
+            "one_of_many": "subject",
+            "one_of_many_required": False,
+        },
     )
 
-    subjectReference: fhirtypes.ReferenceType = Field(
+    subjectReference: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="subjectReference",
         title=(
@@ -150,16 +155,17 @@ class DataRequirement(datatype.DataType):
             "The intended subjects of the data requirement. If this element is not "
             "provided, a Patient subject is assumed."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e subject[x]
-        one_of_many="subject",
-        one_of_many_required=False,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Group"],
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e subject[x]
+            "one_of_many": "subject",
+            "one_of_many_required": False,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Group"],
+        },
     )
 
-    type: fhirtypes.Code = Field(
+    type: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="type",
         title="The type of the required data",
@@ -168,15 +174,16 @@ class DataRequirement(datatype.DataType):
             "resource. For profiles, this value is set to the type of the base "
             "resource of the profile."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    type__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    type__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_type", title="Extension field for ``type``."
     )
 
-    valueFilter: typing.List[fhirtypes.DataRequirementValueFilterType] = Field(
+    valueFilter: typing.List[fhirtypes.DataRequirementValueFilterType] = Field(  # type: ignore
         None,
         alias="valueFilter",
         title="What values are expected",
@@ -186,8 +193,9 @@ class DataRequirement(datatype.DataType):
             "additional constraint on the data (i.e. valueFilters are AND'ed, not "
             "OR'ed)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -211,10 +219,7 @@ class DataRequirement(datatype.DataType):
             "sort",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1731(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -223,57 +228,9 @@ class DataRequirement(datatype.DataType):
         the primitive value is not present.
         """
         required_fields = [("type", "type__ext")]
-        _missing = object()
+        return required_fields
 
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
-
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_1731(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -287,26 +244,7 @@ class DataRequirement(datatype.DataType):
         data type chosen from among the list of permitted data types.
         """
         one_of_many_fields = {"subject": ["subjectCodeableConcept", "subjectReference"]}
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields
 
 
 class DataRequirementCodeFilter(element.Element):
@@ -321,9 +259,9 @@ class DataRequirementCodeFilter(element.Element):
     AND'ed, not OR'ed.
     """
 
-    resource_type = Field("DataRequirementCodeFilter", const=True)
+    __resource_type__ = "DataRequirementCodeFilter"
 
-    code: typing.List[fhirtypes.CodingType] = Field(
+    code: typing.List[fhirtypes.CodingType] = Field(  # type: ignore
         None,
         alias="code",
         title="What code is expected",
@@ -334,11 +272,12 @@ class DataRequirementCodeFilter(element.Element):
             "If codes are specified in addition to a value set, the filter returns "
             "items matching a code in the value set or one of the specified codes."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    path: fhirtypes.String = Field(
+    path: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="path",
         title="A code-valued attribute to filter on",
@@ -353,14 +292,15 @@ class DataRequirementCodeFilter(element.Element):
             "The path must resolve to an element of type code, Coding, or "
             "CodeableConcept."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_path", title="Extension field for ``path``."
     )
 
-    searchParam: fhirtypes.String = Field(
+    searchParam: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="searchParam",
         title="A coded (token) parameter to search on",
@@ -369,14 +309,15 @@ class DataRequirementCodeFilter(element.Element):
             "specified type of the DataRequirement, and which searches on elements "
             "of type code, Coding, or CodeableConcept."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    searchParam__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    searchParam__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_searchParam", title="Extension field for ``searchParam``."
     )
 
-    valueSet: fhirtypes.Canonical = Field(
+    valueSet: fhirtypes.CanonicalType = Field(  # type: ignore
         None,
         alias="valueSet",
         title="ValueSet for the filter",
@@ -386,12 +327,13 @@ class DataRequirementCodeFilter(element.Element):
             "data items for which the value of the code-valued element specified in"
             " the path is a member of the specified valueset."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["ValueSet"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["ValueSet"],
+        },
     )
-    valueSet__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueSet__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueSet", title="Extension field for ``valueSet``."
     )
 
@@ -415,9 +357,9 @@ class DataRequirementDateFilter(element.Element):
     additional constraint on the data, i.e. date filters are AND'ed, not OR'ed.
     """
 
-    resource_type = Field("DataRequirementDateFilter", const=True)
+    __resource_type__ = "DataRequirementDateFilter"
 
-    path: fhirtypes.String = Field(
+    path: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="path",
         title="A date-valued attribute to filter on",
@@ -432,14 +374,15 @@ class DataRequirementDateFilter(element.Element):
             "The path must resolve to an element of type date, dateTime, Period, "
             "Schedule, or Timing."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_path", title="Extension field for ``path``."
     )
 
-    searchParam: fhirtypes.String = Field(
+    searchParam: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="searchParam",
         title="A date valued parameter to search on",
@@ -448,14 +391,15 @@ class DataRequirementDateFilter(element.Element):
             "specified type of the DataRequirement, and which searches on elements "
             "of type date, dateTime, Period, Schedule, or Timing."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    searchParam__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    searchParam__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_searchParam", title="Extension field for ``searchParam``."
     )
 
-    valueDateTime: fhirtypes.DateTime = Field(
+    valueDateTime: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="valueDateTime",
         title="The value of the filter, as a Period, DateTime, or Duration value",
@@ -468,17 +412,18 @@ class DataRequirementDateFilter(element.Element):
             "will return only those data items that fall within Duration before "
             "now."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
-    valueDateTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueDateTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueDateTime", title="Extension field for ``valueDateTime``."
     )
 
-    valueDuration: fhirtypes.DurationType = Field(
+    valueDuration: fhirtypes.DurationType = Field(  # type: ignore
         None,
         alias="valueDuration",
         title="The value of the filter, as a Period, DateTime, or Duration value",
@@ -491,14 +436,15 @@ class DataRequirementDateFilter(element.Element):
             "will return only those data items that fall within Duration before "
             "now."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
 
-    valuePeriod: fhirtypes.PeriodType = Field(
+    valuePeriod: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="valuePeriod",
         title="The value of the filter, as a Period, DateTime, or Duration value",
@@ -511,11 +457,12 @@ class DataRequirementDateFilter(element.Element):
             "will return only those data items that fall within Duration before "
             "now."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
 
     @classmethod
@@ -534,10 +481,7 @@ class DataRequirementDateFilter(element.Element):
             "valueDuration",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_2725(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -553,26 +497,7 @@ class DataRequirementDateFilter(element.Element):
         one_of_many_fields = {
             "value": ["valueDateTime", "valueDuration", "valuePeriod"]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields
 
 
 class DataRequirementSort(element.Element):
@@ -584,25 +509,26 @@ class DataRequirementSort(element.Element):
     Specifies the order of the results to be returned.
     """
 
-    resource_type = Field("DataRequirementSort", const=True)
+    __resource_type__ = "DataRequirementSort"
 
-    direction: fhirtypes.Code = Field(
+    direction: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="direction",
         title="ascending | descending",
         description="The direction of the sort, ascending or descending.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["ascending", "descending"],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["ascending", "descending"],
+        },
     )
-    direction__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    direction__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_direction", title="Extension field for ``direction``."
     )
 
-    path: fhirtypes.String = Field(
+    path: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="path",
         title="The name of the attribute to perform the sort",
@@ -613,11 +539,12 @@ class DataRequirementSort(element.Element):
             "traverse multiple-cardinality sub-elements. Note that the index must "
             "be an integer constant."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_path", title="Extension field for ``path``."
     )
 
@@ -629,10 +556,7 @@ class DataRequirementSort(element.Element):
         """
         return ["id", "extension", "path", "direction"]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_2155(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -641,52 +565,7 @@ class DataRequirementSort(element.Element):
         the primitive value is not present.
         """
         required_fields = [("direction", "direction__ext"), ("path", "path__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class DataRequirementValueFilter(element.Element):
@@ -700,24 +579,25 @@ class DataRequirementValueFilter(element.Element):
     constraint on the data (i.e. valueFilters are AND'ed, not OR'ed).
     """
 
-    resource_type = Field("DataRequirementValueFilter", const=True)
+    __resource_type__ = "DataRequirementValueFilter"
 
-    comparator: fhirtypes.Code = Field(
+    comparator: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="comparator",
         title="eq | gt | lt | ge | le | sa | eb",
         description="The comparator to be used to determine whether the value is matching.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["eq", "gt", "lt", "ge", "le", "sa", "eb"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["eq", "gt", "lt", "ge", "le", "sa", "eb"],
+        },
     )
-    comparator__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    comparator__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_comparator", title="Extension field for ``comparator``."
     )
 
-    path: fhirtypes.String = Field(
+    path: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="path",
         title="An attribute to filter on",
@@ -732,14 +612,15 @@ class DataRequirementValueFilter(element.Element):
             "must resolve to an element of a type that is comparable to the "
             "valueFilter.value[x] element for the filter."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    path__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_path", title="Extension field for ``path``."
     )
 
-    searchParam: fhirtypes.String = Field(
+    searchParam: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="searchParam",
         title="A parameter to search on",
@@ -748,50 +629,54 @@ class DataRequirementValueFilter(element.Element):
             "DataRequirement, and which searches on elements of a type compatible "
             "with the type of the valueFilter.value[x] for the filter."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    searchParam__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    searchParam__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_searchParam", title="Extension field for ``searchParam``."
     )
 
-    valueDateTime: fhirtypes.DateTime = Field(
+    valueDateTime: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="valueDateTime",
         title="The value of the filter, as a Period, DateTime, or Duration value",
         description="The value of the filter.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
-    valueDateTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueDateTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueDateTime", title="Extension field for ``valueDateTime``."
     )
 
-    valueDuration: fhirtypes.DurationType = Field(
+    valueDuration: fhirtypes.DurationType = Field(  # type: ignore
         None,
         alias="valueDuration",
         title="The value of the filter, as a Period, DateTime, or Duration value",
         description="The value of the filter.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
 
-    valuePeriod: fhirtypes.PeriodType = Field(
+    valuePeriod: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="valuePeriod",
         title="The value of the filter, as a Period, DateTime, or Duration value",
         description="The value of the filter.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
 
     @classmethod
@@ -811,10 +696,7 @@ class DataRequirementValueFilter(element.Element):
             "valueDuration",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_2852(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -830,23 +712,4 @@ class DataRequirementValueFilter(element.Element):
         one_of_many_fields = {
             "value": ["valueDateTime", "valueDuration", "valuePeriod"]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields

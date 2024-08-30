@@ -19,29 +19,31 @@ class Money(element.Element):
     An amount of economic utility in some recognized currency.
     """
 
-    resource_type = Field("Money", const=True)
+    __resource_type__ = "Money"
 
-    currency: fhirtypes.Code = Field(
+    currency: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="currency",
         title="ISO 4217 Currency Code",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    currency__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    currency__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_currency", title="Extension field for ``currency``."
     )
 
-    value: fhirtypes.Decimal = Field(
+    value: fhirtypes.DecimalType = Field(  # type: ignore
         None,
         alias="value",
         title="Numerical value (with implicit precision)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    value__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_value", title="Extension field for ``value``."
     )
 

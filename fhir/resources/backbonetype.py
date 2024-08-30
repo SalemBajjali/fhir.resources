@@ -23,9 +23,9 @@ class BackboneType(datatype.DataType):
     extensions.
     """
 
-    resource_type = Field("BackboneType", const=True)
+    __resource_type__ = "BackboneType"
 
-    modifierExtension: typing.List[fhirtypes.ExtensionType] = Field(
+    modifierExtension: typing.List[fhirtypes.ExtensionType] = Field(  # type: ignore
         None,
         alias="modifierExtension",
         title="Extensions that cannot be ignored even if unrecognized",
@@ -44,8 +44,9 @@ class BackboneType(datatype.DataType):
             "elements on Resource or DomainResource (including cannot change the "
             "meaning of modifierExtension itself)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

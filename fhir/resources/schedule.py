@@ -22,9 +22,9 @@ class Schedule(domainresource.DomainResource):
     appointments.
     """
 
-    resource_type = Field("Schedule", const=True)
+    __resource_type__ = "Schedule"
 
-    active: bool = Field(
+    active: bool = Field(  # type: ignore
         None,
         alias="active",
         title="Whether this schedule is in active use",
@@ -32,14 +32,15 @@ class Schedule(domainresource.DomainResource):
             "Whether this schedule record is in active use or should not be used "
             "(such as was entered in error)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    active__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    active__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_active", title="Extension field for ``active``."
     )
 
-    actor: typing.List[fhirtypes.ReferenceType] = Field(
+    actor: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         ...,
         alias="actor",
         title="Resource(s) that availability information is being provided for",
@@ -47,22 +48,23 @@ class Schedule(domainresource.DomainResource):
             "Slots that reference this schedule resource provide the availability "
             "details to these referenced resource(s)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Patient",
-            "Practitioner",
-            "PractitionerRole",
-            "CareTeam",
-            "RelatedPerson",
-            "Device",
-            "HealthcareService",
-            "Location",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Patient",
+                "Practitioner",
+                "PractitionerRole",
+                "CareTeam",
+                "RelatedPerson",
+                "Device",
+                "HealthcareService",
+                "Location",
+            ],
+        },
     )
 
-    comment: fhirtypes.Markdown = Field(
+    comment: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="comment",
         title="Comments on availability",
@@ -70,23 +72,25 @@ class Schedule(domainresource.DomainResource):
             "Comments on the availability to describe any extended information. "
             "Such as custom constraints on the slots that may be associated."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    comment__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    comment__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_comment", title="Extension field for ``comment``."
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="External Ids for this item",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    name: fhirtypes.String = Field(
+    name: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="name",
         title="Human-readable label",
@@ -94,14 +98,15 @@ class Schedule(domainresource.DomainResource):
             "Further description of the schedule as it would be presented to a "
             "consumer while searching."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_name", title="Extension field for ``name``."
     )
 
-    planningHorizon: fhirtypes.PeriodType = Field(
+    planningHorizon: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="planningHorizon",
         title="Period of time covered by schedule",
@@ -112,11 +117,12 @@ class Schedule(domainresource.DomainResource):
             "are currently accepting appointments. This does not define a "
             '"template" for planning outside these dates.'
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    serviceCategory: typing.List[fhirtypes.CodeableConceptType] = Field(
+    serviceCategory: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="serviceCategory",
         title="High-level category",
@@ -124,22 +130,24 @@ class Schedule(domainresource.DomainResource):
             "A broad categorization of the service that is to be performed during "
             "this appointment."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    serviceType: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    serviceType: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="serviceType",
         title="Specific service",
         description="The specific service that is to be performed during this appointment.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["HealthcareService"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["HealthcareService"],
+        },
     )
 
-    specialty: typing.List[fhirtypes.CodeableConceptType] = Field(
+    specialty: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="specialty",
         title="Type of specialty needed",
@@ -147,8 +155,9 @@ class Schedule(domainresource.DomainResource):
             "The specialty of a practitioner that would be required to perform the "
             "service requested in this appointment."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

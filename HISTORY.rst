@@ -2,10 +2,55 @@
 History
 =======
 
-7.0.3 (unreleased)
-------------------
+8.0.0b2 (unreleased)
+--------------------
 
 - Nothing changed yet.
+
+
+8.0.0b1 (2024-08-05)
+--------------------
+
+Breaking
+
+- Drop support for python 3.7
+
+- FHIR DTU2 packages are no longer available.
+
+
+7.1.0 (2023-12-14)
+------------------
+
+New features
+
+See migration guide.
+
+Breaking
+
+- Drop support for python 3.6.
+- Drop support for pydantic v1.
+- The function ``FHIRAbstractModel::add_root_validator`` is no longer available.
+
+Deprecations
+
+Some of functions from ``FHIRAbstractModel`` are deprecated to comply with Pydantic V2. Some are
+
+- ``FHIRAbstractModel::dict``
+
+- ``FHIRAbstractModel::json``
+
+- ``FHIRAbstractModel::parse_obj``
+
+- ``FHIRAbstractModel::parse_raw``: no longer supports xml and yaml data.
+
+- ``FHIRAbstractModel::parse_file``: no longer supports xml and yaml file.
+
+
+
+Improvements
+
+- `Issue 133 <https://github.com/nazrulworld/fhir.resources/issues/133>`_ Pydantic 2.0 migration plan. It's not fully migration though, instead of using of Pydantic V1 API.
+- `Issue 144 <https://github.com/nazrulworld/fhir.resources/issues/144>`_ Parsing XML byte string MESH acknowledgment response.
 
 
 7.0.2 (2023-07-03)

@@ -21,24 +21,26 @@ class Availability(datatype.DataType):
     Availability data for an {item}.
     """
 
-    resource_type = Field("Availability", const=True)
+    __resource_type__ = "Availability"
 
-    availableTime: typing.List[fhirtypes.AvailabilityAvailableTimeType] = Field(
+    availableTime: typing.List[fhirtypes.AvailabilityAvailableTimeType] = Field(  # type: ignore
         None,
         alias="availableTime",
         title="Times the {item} is available",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    notAvailableTime: typing.List[fhirtypes.AvailabilityNotAvailableTimeType] = Field(
+    notAvailableTime: typing.List[fhirtypes.AvailabilityNotAvailableTimeType] = Field(  # type: ignore
         None,
         alias="notAvailableTime",
         title="Not available during this time due to provided reason",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -58,62 +60,66 @@ class AvailabilityAvailableTime(element.Element):
     Times the {item} is available.
     """
 
-    resource_type = Field("AvailabilityAvailableTime", const=True)
+    __resource_type__ = "AvailabilityAvailableTime"
 
-    allDay: bool = Field(
+    allDay: bool = Field(  # type: ignore
         None,
         alias="allDay",
         title="Always available? i.e. 24 hour service",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    allDay__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    allDay__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_allDay", title="Extension field for ``allDay``."
     )
 
-    availableEndTime: fhirtypes.Time = Field(
+    availableEndTime: fhirtypes.TimeType = Field(  # type: ignore
         None,
         alias="availableEndTime",
         title="Closing time of day (ignored if allDay = true)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    availableEndTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    availableEndTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_availableEndTime",
         title="Extension field for ``availableEndTime``.",
     )
 
-    availableStartTime: fhirtypes.Time = Field(
+    availableStartTime: fhirtypes.TimeType = Field(  # type: ignore
         None,
         alias="availableStartTime",
         title="Opening time of day (ignored if allDay = true)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    availableStartTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    availableStartTime__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_availableStartTime",
         title="Extension field for ``availableStartTime``.",
     )
 
-    daysOfWeek: typing.List[typing.Optional[fhirtypes.Code]] = Field(
+    daysOfWeek: typing.List[typing.Optional[fhirtypes.CodeType]] = Field(  # type: ignore
         None,
         alias="daysOfWeek",
         title="mon | tue | wed | thu | fri | sat | sun",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["mon", "tue", "wed", "thu", "fri", "sat", "sun"],
+        },
     )
-    daysOfWeek__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(None, alias="_daysOfWeek", title="Extension field for ``daysOfWeek``.")
+    daysOfWeek__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
+        None, alias="_daysOfWeek", title="Extension field for ``daysOfWeek``."
+    )
 
     @classmethod
     def elements_sequence(cls):
@@ -139,27 +145,29 @@ class AvailabilityNotAvailableTime(element.Element):
     Not available during this time due to provided reason.
     """
 
-    resource_type = Field("AvailabilityNotAvailableTime", const=True)
+    __resource_type__ = "AvailabilityNotAvailableTime"
 
-    description: fhirtypes.String = Field(
+    description: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="description",
         title="Reason presented to the user explaining why time not available",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_description", title="Extension field for ``description``."
     )
 
-    during: fhirtypes.PeriodType = Field(
+    during: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="during",
         title="Service not available during this period",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

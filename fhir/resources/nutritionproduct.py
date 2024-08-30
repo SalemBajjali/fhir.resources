@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -24,9 +22,9 @@ class NutritionProduct(domainresource.DomainResource):
     A food or supplement that is consumed by patients.
     """
 
-    resource_type = Field("NutritionProduct", const=True)
+    __resource_type__ = "NutritionProduct"
 
-    category: typing.List[fhirtypes.CodeableConceptType] = Field(
+    category: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="category",
         title=(
@@ -37,20 +35,22 @@ class NutritionProduct(domainresource.DomainResource):
             "Nutrition products can have different classifications - according to "
             "its nutritional properties, preparation methods, etc."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    characteristic: typing.List[fhirtypes.NutritionProductCharacteristicType] = Field(
+    characteristic: typing.List[fhirtypes.NutritionProductCharacteristicType] = Field(  # type: ignore
         None,
         alias="characteristic",
         title="Specifies descriptive properties of the nutrition product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    code: fhirtypes.CodeableConceptType = Field(
+    code: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="code",
         title=(
@@ -61,20 +61,22 @@ class NutritionProduct(domainresource.DomainResource):
             "The code assigned to the product, for example a USDA NDB number, a "
             "USDA FDC ID number, or a Langual code."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    ingredient: typing.List[fhirtypes.NutritionProductIngredientType] = Field(
+    ingredient: typing.List[fhirtypes.NutritionProductIngredientType] = Field(  # type: ignore
         None,
         alias="ingredient",
         title="Ingredients contained in this product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    instance: typing.List[fhirtypes.NutritionProductInstanceType] = Field(
+    instance: typing.List[fhirtypes.NutritionProductInstanceType] = Field(  # type: ignore
         None,
         alias="instance",
         title=(
@@ -85,11 +87,12 @@ class NutritionProduct(domainresource.DomainResource):
             "Conveys instance-level information about this product item. One or "
             "several physical, countable instances or occurrences of the product."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    knownAllergen: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    knownAllergen: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="knownAllergen",
         title="Known or suspected allergens that are a part of this product",
@@ -97,13 +100,14 @@ class NutritionProduct(domainresource.DomainResource):
             "Allergens that are known or suspected to be a part of this nutrition "
             "product."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Substance"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Substance"],
+        },
     )
 
-    manufacturer: typing.List[fhirtypes.ReferenceType] = Field(
+    manufacturer: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="manufacturer",
         title="Manufacturer, representative or officially responsible for the product",
@@ -111,43 +115,47 @@ class NutritionProduct(domainresource.DomainResource):
             "The organisation (manufacturer, representative or legal authorization "
             "holder) that is responsible for the device."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Organization"],
+        },
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Comments made about the product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    nutrient: typing.List[fhirtypes.NutritionProductNutrientType] = Field(
+    nutrient: typing.List[fhirtypes.NutritionProductNutrientType] = Field(  # type: ignore
         None,
         alias="nutrient",
         title="The product's nutritional information expressed by the nutrients",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title="active | inactive | entered-in-error",
         description="The current state of the product.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["active", "inactive", "entered-in-error"],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["active", "inactive", "entered-in-error"],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
@@ -178,10 +186,7 @@ class NutritionProduct(domainresource.DomainResource):
             "note",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1903(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -190,52 +195,7 @@ class NutritionProduct(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class NutritionProductCharacteristic(backboneelement.BackboneElement):
@@ -246,9 +206,9 @@ class NutritionProductCharacteristic(backboneelement.BackboneElement):
     Specifies descriptive properties of the nutrition product.
     """
 
-    resource_type = Field("NutritionProductCharacteristic", const=True)
+    __resource_type__ = "NutritionProductCharacteristic"
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="type",
         title="Code specifying the type of characteristic",
@@ -256,90 +216,97 @@ class NutritionProductCharacteristic(backboneelement.BackboneElement):
             "A code specifying which characteristic of the product is being "
             "described (for example, colour, shape)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    valueAttachment: fhirtypes.AttachmentType = Field(
+    valueAttachment: fhirtypes.AttachmentType = Field(  # type: ignore
         None,
         alias="valueAttachment",
         title="The value of the characteristic",
         description="The actual characteristic value corresponding to the type.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=True,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": True,
+        },
     )
 
-    valueBase64Binary: fhirtypes.Base64Binary = Field(
+    valueBase64Binary: fhirtypes.Base64BinaryType = Field(  # type: ignore
         None,
         alias="valueBase64Binary",
         title="The value of the characteristic",
         description="The actual characteristic value corresponding to the type.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=True,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": True,
+        },
     )
-    valueBase64Binary__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueBase64Binary__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_valueBase64Binary",
         title="Extension field for ``valueBase64Binary``.",
     )
 
-    valueBoolean: bool = Field(
+    valueBoolean: bool = Field(  # type: ignore
         None,
         alias="valueBoolean",
         title="The value of the characteristic",
         description="The actual characteristic value corresponding to the type.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=True,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": True,
+        },
     )
-    valueBoolean__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueBoolean__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueBoolean", title="Extension field for ``valueBoolean``."
     )
 
-    valueCodeableConcept: fhirtypes.CodeableConceptType = Field(
+    valueCodeableConcept: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="valueCodeableConcept",
         title="The value of the characteristic",
         description="The actual characteristic value corresponding to the type.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=True,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": True,
+        },
     )
 
-    valueQuantity: fhirtypes.QuantityType = Field(
+    valueQuantity: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="valueQuantity",
         title="The value of the characteristic",
         description="The actual characteristic value corresponding to the type.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=True,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": True,
+        },
     )
 
-    valueString: fhirtypes.String = Field(
+    valueString: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="valueString",
         title="The value of the characteristic",
         description="The actual characteristic value corresponding to the type.",
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=True,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": True,
+        },
     )
-    valueString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueString__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueString", title="Extension field for ``valueString``."
     )
 
@@ -362,10 +329,7 @@ class NutritionProductCharacteristic(backboneelement.BackboneElement):
             "valueBoolean",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_3335(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -388,26 +352,7 @@ class NutritionProductCharacteristic(backboneelement.BackboneElement):
                 "valueString",
             ]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields
 
 
 class NutritionProductIngredient(backboneelement.BackboneElement):
@@ -418,26 +363,28 @@ class NutritionProductIngredient(backboneelement.BackboneElement):
     Ingredients contained in this product.
     """
 
-    resource_type = Field("NutritionProductIngredient", const=True)
+    __resource_type__ = "NutritionProductIngredient"
 
-    amount: typing.List[fhirtypes.RatioType] = Field(
+    amount: typing.List[fhirtypes.RatioType] = Field(  # type: ignore
         None,
         alias="amount",
         title="The amount of ingredient that is in the product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    item: fhirtypes.CodeableReferenceType = Field(
+    item: fhirtypes.CodeableReferenceType = Field(  # type: ignore
         ...,
         alias="item",
         title="The ingredient contained in the product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["NutritionProduct"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["NutritionProduct"],
+        },
     )
 
     @classmethod
@@ -459,9 +406,9 @@ class NutritionProductInstance(backboneelement.BackboneElement):
     physical, countable instances or occurrences of the product.
     """
 
-    resource_type = Field("NutritionProductInstance", const=True)
+    __resource_type__ = "NutritionProductInstance"
 
-    biologicalSourceEvent: fhirtypes.IdentifierType = Field(
+    biologicalSourceEvent: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="biologicalSourceEvent",
         title=(
@@ -470,11 +417,12 @@ class NutritionProductInstance(backboneelement.BackboneElement):
             "obtained or pooled"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    expiry: fhirtypes.DateTime = Field(
+    expiry: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="expiry",
         title="The expiry date or date and time for the product",
@@ -482,14 +430,15 @@ class NutritionProductInstance(backboneelement.BackboneElement):
             "The time after which the product is no longer expected to be in proper"
             " condition, or its use is not advised or not allowed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    expiry__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    expiry__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_expiry", title="Extension field for ``expiry``."
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title=(
@@ -497,35 +446,38 @@ class NutritionProductInstance(backboneelement.BackboneElement):
             " manufacturer number"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    lotNumber: fhirtypes.String = Field(
+    lotNumber: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="lotNumber",
         title="The identification of the batch or lot of the product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    lotNumber__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    lotNumber__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_lotNumber", title="Extension field for ``lotNumber``."
     )
 
-    name: fhirtypes.String = Field(
+    name: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="name",
         title="The name for the specific product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_name", title="Extension field for ``name``."
     )
 
-    quantity: fhirtypes.QuantityType = Field(
+    quantity: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="quantity",
         title="The amount of items or instances",
@@ -533,11 +485,12 @@ class NutritionProductInstance(backboneelement.BackboneElement):
             "The amount of items or instances that the resource considers, for "
             "instance when referring to 2 identical units together."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    useBy: fhirtypes.DateTime = Field(
+    useBy: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="useBy",
         title=(
@@ -547,10 +500,11 @@ class NutritionProductInstance(backboneelement.BackboneElement):
             "The time after which the product is no longer expected to be in proper"
             " condition, or its use is not advised or not allowed."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    useBy__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    useBy__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_useBy", title="Extension field for ``useBy``."
     )
 
@@ -582,9 +536,9 @@ class NutritionProductNutrient(backboneelement.BackboneElement):
     The product's nutritional information expressed by the nutrients.
     """
 
-    resource_type = Field("NutritionProductNutrient", const=True)
+    __resource_type__ = "NutritionProductNutrient"
 
-    amount: typing.List[fhirtypes.RatioType] = Field(
+    amount: typing.List[fhirtypes.RatioType] = Field(  # type: ignore
         None,
         alias="amount",
         title=(
@@ -592,19 +546,21 @@ class NutritionProductNutrient(backboneelement.BackboneElement):
             "per serving / per dose"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    item: fhirtypes.CodeableReferenceType = Field(
+    item: fhirtypes.CodeableReferenceType = Field(  # type: ignore
         None,
         alias="item",
         title="The (relevant) nutrients in the product",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Substance"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Substance"],
+        },
     )
 
     @classmethod

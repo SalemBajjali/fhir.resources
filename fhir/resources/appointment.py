@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -25,9 +23,9 @@ class Appointment(domainresource.DomainResource):
     or more Encounter(s).
     """
 
-    resource_type = Field("Appointment", const=True)
+    __resource_type__ = "Appointment"
 
-    account: typing.List[fhirtypes.ReferenceType] = Field(
+    account: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="account",
         title="The set of accounts that may be used for billing for this Appointment",
@@ -35,13 +33,14 @@ class Appointment(domainresource.DomainResource):
             "The set of accounts that is expected to be used for billing the "
             "activities that result from this Appointment."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Account"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Account"],
+        },
     )
 
-    appointmentType: fhirtypes.CodeableConceptType = Field(
+    appointmentType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="appointmentType",
         title=(
@@ -49,11 +48,12 @@ class Appointment(domainresource.DomainResource):
             "(not service type)"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    basedOn: typing.List[fhirtypes.ReferenceType] = Field(
+    basedOn: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="basedOn",
         title="The request this appointment is allocated to assess",
@@ -61,32 +61,34 @@ class Appointment(domainresource.DomainResource):
             "The request this appointment is allocated to assess (e.g. incoming "
             "referral or procedure request)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "CarePlan",
-            "DeviceRequest",
-            "MedicationRequest",
-            "ServiceRequest",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "CarePlan",
+                "DeviceRequest",
+                "MedicationRequest",
+                "ServiceRequest",
+            ],
+        },
     )
 
-    cancellationDate: fhirtypes.DateTime = Field(
+    cancellationDate: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="cancellationDate",
         title="When the appointment was cancelled",
         description="The date/time describing when the appointment was cancelled.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    cancellationDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    cancellationDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_cancellationDate",
         title="Extension field for ``cancellationDate``.",
     )
 
-    cancellationReason: fhirtypes.CodeableConceptType = Field(
+    cancellationReason: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="cancellationReason",
         title="The coded reason for the appointment being cancelled",
@@ -95,11 +97,12 @@ class Appointment(domainresource.DomainResource):
             "used in reporting/billing/futher processing to determine if further "
             "actions are required, or specific fees apply."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    class_fhir: typing.List[fhirtypes.CodeableConceptType] = Field(
+    class_fhir: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="class",
         title="Classification when becoming an encounter",
@@ -108,11 +111,12 @@ class Appointment(domainresource.DomainResource):
             "ambulatory (outpatient), inpatient, emergency, home health or others "
             "due to local variations."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    created: fhirtypes.DateTime = Field(
+    created: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="created",
         title="The date that this appointment was initially created",
@@ -122,14 +126,15 @@ class Appointment(domainresource.DomainResource):
             " could have been before the resource was created on the FHIR server, "
             "and should remain unchanged over the lifespan of the appointment."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    created__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    created__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_created", title="Extension field for ``created``."
     )
 
-    description: fhirtypes.String = Field(
+    description: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="description",
         title="Shown on a subject line in a meeting request, or appointment list",
@@ -138,26 +143,28 @@ class Appointment(domainresource.DomainResource):
             "subject line in a meeting request, or appointment list. Detailed or "
             "expanded information should be put in the note field."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    description__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_description", title="Extension field for ``description``."
     )
 
-    end: fhirtypes.Instant = Field(
+    end: fhirtypes.InstantType = Field(  # type: ignore
         None,
         alias="end",
         title="When appointment is to conclude",
         description="Date/Time that the appointment is to conclude.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    end__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    end__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_end", title="Extension field for ``end``."
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="External Ids for this item",
@@ -167,11 +174,12 @@ class Appointment(domainresource.DomainResource):
             "direct URL reference to the resource itself is not appropriate (e.g. "
             "in CDA documents, or in written / printed documentation)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    minutesDuration: fhirtypes.PositiveInt = Field(
+    minutesDuration: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="minutesDuration",
         title="Can be less than start/end (e.g. estimate)",
@@ -184,59 +192,64 @@ class Appointment(domainresource.DomainResource):
             "long appointment, the duration may be 15 minutes less than the "
             "difference between the start and end."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    minutesDuration__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    minutesDuration__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_minutesDuration", title="Extension field for ``minutesDuration``."
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Additional comments",
         description="Additional notes/comments about the appointment.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    occurrenceChanged: bool = Field(
+    occurrenceChanged: bool = Field(  # type: ignore
         None,
         alias="occurrenceChanged",
         title="Indicates that this appointment varies from a recurrence pattern",
         description="This appointment varies from the recurring pattern.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    occurrenceChanged__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    occurrenceChanged__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_occurrenceChanged",
         title="Extension field for ``occurrenceChanged``.",
     )
 
-    originatingAppointment: fhirtypes.ReferenceType = Field(
+    originatingAppointment: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="originatingAppointment",
         title="The originating appointment in a recurring set of appointments",
         description=(
             "The originating appointment in a recurring set of related " "appointments."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Appointment"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Appointment"],
+        },
     )
 
-    participant: typing.List[fhirtypes.AppointmentParticipantType] = Field(
+    participant: typing.List[fhirtypes.AppointmentParticipantType] = Field(  # type: ignore
         ...,
         alias="participant",
         title="Participants involved in appointment",
         description="List of participants involved in the appointment.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    patientInstruction: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    patientInstruction: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="patientInstruction",
         title="Detailed information and instructions for the patient",
@@ -246,24 +259,26 @@ class Appointment(domainresource.DomainResource):
             "information about the Appointment (e.g. please bring your referral or "
             "fast from 8pm night before)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["DocumentReference", "Binary", "Communication"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["DocumentReference", "Binary", "Communication"],
+        },
     )
 
-    previousAppointment: fhirtypes.ReferenceType = Field(
+    previousAppointment: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="previousAppointment",
         title="The previous appointment in a series",
         description="The previous appointment in a series of related appointments.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Appointment"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Appointment"],
+        },
     )
 
-    priority: fhirtypes.CodeableConceptType = Field(
+    priority: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="priority",
         title="Used to make informed decisions if needing to re-prioritize",
@@ -272,11 +287,12 @@ class Appointment(domainresource.DomainResource):
             "decisions if needing to re-prioritize appointments. (The iCal Standard"
             " specifies 0 as undefined, 1 as highest, 9 as lowest priority)."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    reason: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    reason: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="reason",
         title="Reason this appointment is scheduled",
@@ -288,18 +304,19 @@ class Appointment(domainresource.DomainResource):
             "indication will typically be a Condition (with other resources "
             "referenced in the evidence.detail), or a Procedure."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Condition",
-            "Procedure",
-            "Observation",
-            "ImmunizationRecommendation",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Condition",
+                "Procedure",
+                "Observation",
+                "ImmunizationRecommendation",
+            ],
+        },
     )
 
-    recurrenceId: fhirtypes.PositiveInt = Field(
+    recurrenceId: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="recurrenceId",
         title="The sequence number in the recurrence",
@@ -307,16 +324,15 @@ class Appointment(domainresource.DomainResource):
             "The sequence number that identifies a specific appointment in a "
             "recurring pattern."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    recurrenceId__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    recurrenceId__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_recurrenceId", title="Extension field for ``recurrenceId``."
     )
 
-    recurrenceTemplate: typing.List[
-        fhirtypes.AppointmentRecurrenceTemplateType
-    ] = Field(
+    recurrenceTemplate: typing.List[fhirtypes.AppointmentRecurrenceTemplateType] = Field(  # type: ignore
         None,
         alias="recurrenceTemplate",
         title=(
@@ -326,11 +342,12 @@ class Appointment(domainresource.DomainResource):
             "The details of the recurrence pattern or template that is used to "
             "generate recurring appointments."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    replaces: typing.List[fhirtypes.ReferenceType] = Field(
+    replaces: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="replaces",
         title="Appointment replaced by this Appointment",
@@ -339,13 +356,14 @@ class Appointment(domainresource.DomainResource):
             "cancellation, the details of the cancellation can be found in the "
             "cancellationReason property (on the referenced resource)."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Appointment"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Appointment"],
+        },
     )
 
-    requestedPeriod: typing.List[fhirtypes.PeriodType] = Field(
+    requestedPeriod: typing.List[fhirtypes.PeriodType] = Field(  # type: ignore
         None,
         alias="requestedPeriod",
         title=(
@@ -360,11 +378,12 @@ class Appointment(domainresource.DomainResource):
             "actual allocated time. However, in other situations the duration may "
             "be calculated by the scheduling system."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    serviceCategory: typing.List[fhirtypes.CodeableConceptType] = Field(
+    serviceCategory: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="serviceCategory",
         title=(
@@ -372,22 +391,24 @@ class Appointment(domainresource.DomainResource):
             "this appointment"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    serviceType: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    serviceType: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="serviceType",
         title="The specific service that is to be performed during this appointment",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["HealthcareService"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["HealthcareService"],
+        },
     )
 
-    slot: typing.List[fhirtypes.ReferenceType] = Field(
+    slot: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="slot",
         title="The slots that this appointment is filling",
@@ -395,13 +416,14 @@ class Appointment(domainresource.DomainResource):
             "The slots from the participants' schedules that will be filled by the "
             "appointment."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Slot"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Slot"],
+        },
     )
 
-    specialty: typing.List[fhirtypes.CodeableConceptType] = Field(
+    specialty: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="specialty",
         title=(
@@ -409,23 +431,25 @@ class Appointment(domainresource.DomainResource):
             "service requested in this appointment"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    start: fhirtypes.Instant = Field(
+    start: fhirtypes.InstantType = Field(  # type: ignore
         None,
         alias="start",
         title="When appointment is to take place",
         description="Date/Time that the appointment is to take place.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    start__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    start__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_start", title="Extension field for ``start``."
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title=(
@@ -437,29 +461,30 @@ class Appointment(domainresource.DomainResource):
             "their own participation status which indicates their involvement in "
             "the process, however this status indicates the shared status."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=[
-            "proposed",
-            "pending",
-            "booked",
-            "arrived",
-            "fulfilled",
-            "cancelled",
-            "noshow",
-            "entered-in-error",
-            "checked-in",
-            "waitlist",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": [
+                "proposed",
+                "pending",
+                "booked",
+                "arrived",
+                "fulfilled",
+                "cancelled",
+                "noshow",
+                "entered-in-error",
+                "checked-in",
+                "waitlist",
+            ],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    subject: fhirtypes.ReferenceType = Field(
+    subject: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="subject",
         title="The patient or group associated with the appointment",
@@ -468,13 +493,14 @@ class Appointment(domainresource.DomainResource):
             "be present (usually) then they should also be included in the "
             "participant backbone element."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Patient", "Group"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Patient", "Group"],
+        },
     )
 
-    supportingInformation: typing.List[fhirtypes.ReferenceType] = Field(
+    supportingInformation: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="supportingInformation",
         title="Additional information to support the appointment",
@@ -482,19 +508,21 @@ class Appointment(domainresource.DomainResource):
             "Additional information to support the appointment provided when making"
             " the appointment."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Resource"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Resource"],
+        },
     )
 
-    virtualService: typing.List[fhirtypes.VirtualServiceDetailType] = Field(
+    virtualService: typing.List[fhirtypes.VirtualServiceDetailType] = Field(  # type: ignore
         None,
         alias="virtualService",
         title="Connection details of a virtual service (e.g. conference call)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -546,10 +574,7 @@ class Appointment(domainresource.DomainResource):
             "recurrenceTemplate",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1348(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -558,52 +583,7 @@ class Appointment(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class AppointmentParticipant(backboneelement.BackboneElement):
@@ -615,9 +595,9 @@ class AppointmentParticipant(backboneelement.BackboneElement):
     List of participants involved in the appointment.
     """
 
-    resource_type = Field("AppointmentParticipant", const=True)
+    __resource_type__ = "AppointmentParticipant"
 
-    actor: fhirtypes.ReferenceType = Field(
+    actor: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="actor",
         title=(
@@ -625,32 +605,34 @@ class AppointmentParticipant(backboneelement.BackboneElement):
             "appointment"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Patient",
-            "Group",
-            "Practitioner",
-            "PractitionerRole",
-            "CareTeam",
-            "RelatedPerson",
-            "Device",
-            "HealthcareService",
-            "Location",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Patient",
+                "Group",
+                "Practitioner",
+                "PractitionerRole",
+                "CareTeam",
+                "RelatedPerson",
+                "Device",
+                "HealthcareService",
+                "Location",
+            ],
+        },
     )
 
-    period: fhirtypes.PeriodType = Field(
+    period: fhirtypes.PeriodType = Field(  # type: ignore
         None,
         alias="period",
         title="Participation period of the actor",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    required: bool = Field(
+    required: bool = Field(  # type: ignore
         None,
         alias="required",
         title="The participant is required to attend (optional when false)",
@@ -658,36 +640,39 @@ class AppointmentParticipant(backboneelement.BackboneElement):
             "Whether this participant is required to be present at the meeting. If "
             "false, the participant is optional."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    required__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    required__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_required", title="Extension field for ``required``."
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title="accepted | declined | tentative | needs-action",
         description="Participation status of the actor.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["accepted", "declined", "tentative", "needs-action"],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["accepted", "declined", "tentative", "needs-action"],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    type: typing.List[fhirtypes.CodeableConceptType] = Field(
+    type: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="type",
         title="Role of participant in the appointment",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -707,10 +692,7 @@ class AppointmentParticipant(backboneelement.BackboneElement):
             "status",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_2499(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -719,52 +701,7 @@ class AppointmentParticipant(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class AppointmentRecurrenceTemplate(backboneelement.BackboneElement):
@@ -777,9 +714,9 @@ class AppointmentRecurrenceTemplate(backboneelement.BackboneElement):
     recurring appointments.
     """
 
-    resource_type = Field("AppointmentRecurrenceTemplate", const=True)
+    __resource_type__ = "AppointmentRecurrenceTemplate"
 
-    excludingDate: typing.List[typing.Optional[fhirtypes.Date]] = Field(
+    excludingDate: typing.List[typing.Optional[fhirtypes.DateType]] = Field(  # type: ignore
         None,
         alias="excludingDate",
         title="Any dates that should be excluded from the series",
@@ -787,16 +724,15 @@ class AppointmentRecurrenceTemplate(backboneelement.BackboneElement):
             "Any dates, such as holidays, that should be excluded from the "
             "recurrence."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    excludingDate__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(
+    excludingDate__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
         None, alias="_excludingDate", title="Extension field for ``excludingDate``."
     )
 
-    excludingRecurrenceId: typing.List[typing.Optional[fhirtypes.PositiveInt]] = Field(
+    excludingRecurrenceId: typing.List[typing.Optional[fhirtypes.PositiveIntType]] = Field(  # type: ignore
         None,
         alias="excludingRecurrenceId",
         title="Any recurrence IDs that should be excluded from the recurrence",
@@ -804,100 +740,105 @@ class AppointmentRecurrenceTemplate(backboneelement.BackboneElement):
             "Any dates, such as holidays, that should be excluded from the "
             "recurrence."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    excludingRecurrenceId__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(
+    excludingRecurrenceId__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
         None,
         alias="_excludingRecurrenceId",
         title="Extension field for ``excludingRecurrenceId``.",
     )
 
-    lastOccurrenceDate: fhirtypes.Date = Field(
+    lastOccurrenceDate: fhirtypes.DateType = Field(  # type: ignore
         None,
         alias="lastOccurrenceDate",
         title="The date when the recurrence should end",
         description="Recurring appointments will not occur after this date.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    lastOccurrenceDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    lastOccurrenceDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_lastOccurrenceDate",
         title="Extension field for ``lastOccurrenceDate``.",
     )
 
-    monthlyTemplate: fhirtypes.AppointmentRecurrenceTemplateMonthlyTemplateType = Field(
+    monthlyTemplate: fhirtypes.AppointmentRecurrenceTemplateMonthlyTemplateType = Field(  # type: ignore
         None,
         alias="monthlyTemplate",
         title="Information about monthly recurring appointments",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    occurrenceCount: fhirtypes.PositiveInt = Field(
+    occurrenceCount: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="occurrenceCount",
         title="The number of planned occurrences",
         description="How many appointments are planned in the recurrence.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    occurrenceCount__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    occurrenceCount__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_occurrenceCount", title="Extension field for ``occurrenceCount``."
     )
 
-    occurrenceDate: typing.List[typing.Optional[fhirtypes.Date]] = Field(
+    occurrenceDate: typing.List[typing.Optional[fhirtypes.DateType]] = Field(  # type: ignore
         None,
         alias="occurrenceDate",
         title="Specific dates for a recurring set of appointments (no template)",
         description="The list of specific dates that will have appointments generated.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    occurrenceDate__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(
+    occurrenceDate__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
         None, alias="_occurrenceDate", title="Extension field for ``occurrenceDate``."
     )
 
-    recurrenceType: fhirtypes.CodeableConceptType = Field(
+    recurrenceType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="recurrenceType",
         title="The frequency of the recurrence",
         description="How often the appointment series should recur.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    timezone: fhirtypes.CodeableConceptType = Field(
+    timezone: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="timezone",
         title="The timezone of the occurrences",
         description="The timezone of the recurring appointment occurrences.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    weeklyTemplate: fhirtypes.AppointmentRecurrenceTemplateWeeklyTemplateType = Field(
+    weeklyTemplate: fhirtypes.AppointmentRecurrenceTemplateWeeklyTemplateType = Field(  # type: ignore
         None,
         alias="weeklyTemplate",
         title="Information about weekly recurring appointments",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    yearlyTemplate: fhirtypes.AppointmentRecurrenceTemplateYearlyTemplateType = Field(
+    yearlyTemplate: fhirtypes.AppointmentRecurrenceTemplateYearlyTemplateType = Field(  # type: ignore
         None,
         alias="yearlyTemplate",
         title="Information about yearly recurring appointments",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -931,9 +872,9 @@ class AppointmentRecurrenceTemplateMonthlyTemplate(backboneelement.BackboneEleme
     Information about monthly recurring appointments.
     """
 
-    resource_type = Field("AppointmentRecurrenceTemplateMonthlyTemplate", const=True)
+    __resource_type__ = "AppointmentRecurrenceTemplateMonthlyTemplate"
 
-    dayOfMonth: fhirtypes.PositiveInt = Field(
+    dayOfMonth: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="dayOfMonth",
         title="Recurs on a specific day of the month",
@@ -941,14 +882,15 @@ class AppointmentRecurrenceTemplateMonthlyTemplate(backboneelement.BackboneEleme
             "Indicates that appointments in the series of recurring appointments "
             "should occur on a specific day of the month."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    dayOfMonth__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    dayOfMonth__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_dayOfMonth", title="Extension field for ``dayOfMonth``."
     )
 
-    dayOfWeek: fhirtypes.CodingType = Field(
+    dayOfWeek: fhirtypes.CodingType = Field(  # type: ignore
         None,
         alias="dayOfWeek",
         title="Indicates which day of the week the appointment should occur",
@@ -956,24 +898,26 @@ class AppointmentRecurrenceTemplateMonthlyTemplate(backboneelement.BackboneEleme
             "Indicates which day of the week the recurring appointments should "
             "occur each nth week."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    monthInterval: fhirtypes.PositiveInt = Field(
+    monthInterval: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="monthInterval",
         title="Recurs every nth month",
         description="Indicates that recurring appointments should occur every nth month.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    monthInterval__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    monthInterval__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_monthInterval", title="Extension field for ``monthInterval``."
     )
 
-    nthWeekOfMonth: fhirtypes.CodingType = Field(
+    nthWeekOfMonth: fhirtypes.CodingType = Field(  # type: ignore
         None,
         alias="nthWeekOfMonth",
         title="Indicates which week of the month the appointment should occur",
@@ -981,8 +925,9 @@ class AppointmentRecurrenceTemplateMonthlyTemplate(backboneelement.BackboneEleme
             "Indicates which week within a month the appointments in the series of "
             "recurring appointments should occur on."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -1001,10 +946,7 @@ class AppointmentRecurrenceTemplateMonthlyTemplate(backboneelement.BackboneEleme
             "monthInterval",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_4774(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -1013,52 +955,7 @@ class AppointmentRecurrenceTemplateMonthlyTemplate(backboneelement.BackboneEleme
         the primitive value is not present.
         """
         required_fields = [("monthInterval", "monthInterval__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class AppointmentRecurrenceTemplateWeeklyTemplate(backboneelement.BackboneElement):
@@ -1069,93 +966,100 @@ class AppointmentRecurrenceTemplateWeeklyTemplate(backboneelement.BackboneElemen
     Information about weekly recurring appointments.
     """
 
-    resource_type = Field("AppointmentRecurrenceTemplateWeeklyTemplate", const=True)
+    __resource_type__ = "AppointmentRecurrenceTemplateWeeklyTemplate"
 
-    friday: bool = Field(
+    friday: bool = Field(  # type: ignore
         None,
         alias="friday",
         title="Recurs on Friday",
         description="Indicates that recurring appointments should occur on Fridays.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    friday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    friday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_friday", title="Extension field for ``friday``."
     )
 
-    monday: bool = Field(
+    monday: bool = Field(  # type: ignore
         None,
         alias="monday",
         title="Recurs on Mondays",
         description="Indicates that recurring appointments should occur on Mondays.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    monday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    monday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_monday", title="Extension field for ``monday``."
     )
 
-    saturday: bool = Field(
+    saturday: bool = Field(  # type: ignore
         None,
         alias="saturday",
         title="Recurs on Saturday",
         description="Indicates that recurring appointments should occur on Saturdays.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    saturday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    saturday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_saturday", title="Extension field for ``saturday``."
     )
 
-    sunday: bool = Field(
+    sunday: bool = Field(  # type: ignore
         None,
         alias="sunday",
         title="Recurs on Sunday",
         description="Indicates that recurring appointments should occur on Sundays.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    sunday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    sunday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_sunday", title="Extension field for ``sunday``."
     )
 
-    thursday: bool = Field(
+    thursday: bool = Field(  # type: ignore
         None,
         alias="thursday",
         title="Recurs on Thursday",
         description="Indicates that recurring appointments should occur on Thursdays.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    thursday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    thursday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_thursday", title="Extension field for ``thursday``."
     )
 
-    tuesday: bool = Field(
+    tuesday: bool = Field(  # type: ignore
         None,
         alias="tuesday",
         title="Recurs on Tuesday",
         description="Indicates that recurring appointments should occur on Tuesdays.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    tuesday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    tuesday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_tuesday", title="Extension field for ``tuesday``."
     )
 
-    wednesday: bool = Field(
+    wednesday: bool = Field(  # type: ignore
         None,
         alias="wednesday",
         title="Recurs on Wednesday",
         description="Indicates that recurring appointments should occur on Wednesdays.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    wednesday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    wednesday__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_wednesday", title="Extension field for ``wednesday``."
     )
 
-    weekInterval: fhirtypes.PositiveInt = Field(
+    weekInterval: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="weekInterval",
         title="Recurs every nth week",
@@ -1165,10 +1069,11 @@ class AppointmentRecurrenceTemplateWeeklyTemplate(backboneelement.BackboneElemen
             "e.g. For recurring every second week this interval would be 2, or "
             "every third week the interval would be 3."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    weekInterval__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    weekInterval__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_weekInterval", title="Extension field for ``weekInterval``."
     )
 
@@ -1201,18 +1106,19 @@ class AppointmentRecurrenceTemplateYearlyTemplate(backboneelement.BackboneElemen
     Information about yearly recurring appointments.
     """
 
-    resource_type = Field("AppointmentRecurrenceTemplateYearlyTemplate", const=True)
+    __resource_type__ = "AppointmentRecurrenceTemplateYearlyTemplate"
 
-    yearInterval: fhirtypes.PositiveInt = Field(
+    yearInterval: fhirtypes.PositiveIntType = Field(  # type: ignore
         None,
         alias="yearInterval",
         title="Recurs every nth year",
         description="Appointment recurs every nth year.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    yearInterval__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    yearInterval__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_yearInterval", title="Extension field for ``yearInterval``."
     )
 
@@ -1224,10 +1130,7 @@ class AppointmentRecurrenceTemplateYearlyTemplate(backboneelement.BackboneElemen
         """
         return ["id", "extension", "modifierExtension", "yearInterval"]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_4657(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -1236,49 +1139,4 @@ class AppointmentRecurrenceTemplateYearlyTemplate(backboneelement.BackboneElemen
         the primitive value is not present.
         """
         required_fields = [("yearInterval", "yearInterval__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields

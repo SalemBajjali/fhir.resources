@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -28,9 +26,9 @@ class ImagingSelection(domainresource.DomainResource):
     ImagingStudy Resource.
     """
 
-    resource_type = Field("ImagingSelection", const=True)
+    __resource_type__ = "ImagingSelection"
 
-    basedOn: typing.List[fhirtypes.ReferenceType] = Field(
+    basedOn: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="basedOn",
         title="Associated request",
@@ -38,19 +36,20 @@ class ImagingSelection(domainresource.DomainResource):
             "A list of the diagnostic requests that resulted in this imaging "
             "selection being performed."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "CarePlan",
-            "ServiceRequest",
-            "Appointment",
-            "AppointmentResponse",
-            "Task",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "CarePlan",
+                "ServiceRequest",
+                "Appointment",
+                "AppointmentResponse",
+                "Task",
+            ],
+        },
     )
 
-    bodySite: fhirtypes.CodeableReferenceType = Field(
+    bodySite: fhirtypes.CodeableReferenceType = Field(  # type: ignore
         None,
         alias="bodySite",
         title="Body part examined",
@@ -59,42 +58,46 @@ class ImagingSelection(domainresource.DomainResource):
             "com.nema.org/medical/dicom/current/output/chtml/part16/chapter_L.html)"
             " for DICOM to SNOMED-CT mappings."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["BodyStructure"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["BodyStructure"],
+        },
     )
 
-    category: typing.List[fhirtypes.CodeableConceptType] = Field(
+    category: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="category",
         title="Classifies the imaging selection",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    code: fhirtypes.CodeableConceptType = Field(
+    code: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="code",
         title="Imaging Selection purpose text or code",
         description="Reason for referencing the selected content.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    derivedFrom: typing.List[fhirtypes.ReferenceType] = Field(
+    derivedFrom: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="derivedFrom",
         title="The imaging study from which the imaging selection is derived",
         description="The imaging study from which the imaging selection is made.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["ImagingStudy", "DocumentReference"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["ImagingStudy", "DocumentReference"],
+        },
     )
 
-    endpoint: typing.List[fhirtypes.ReferenceType] = Field(
+    endpoint: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="endpoint",
         title=(
@@ -106,13 +109,14 @@ class ImagingSelection(domainresource.DomainResource):
             " frames, etc. See implementation notes for information about using "
             "DICOM endpoints."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Endpoint"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Endpoint"],
+        },
     )
 
-    focus: typing.List[fhirtypes.ReferenceType] = Field(
+    focus: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="focus",
         title="Related resource that is the focus for the imaging selection",
@@ -128,13 +132,14 @@ class ImagingSelection(domainresource.DomainResource):
             "change her child's tracheostomy tube. In this example, the child is "
             "the patient of record and the mother is the focus."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["ImagingSelection"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["ImagingSelection"],
+        },
     )
 
-    frameOfReferenceUid: fhirtypes.Id = Field(
+    frameOfReferenceUid: fhirtypes.IdType = Field(  # type: ignore
         None,
         alias="frameOfReferenceUid",
         title="The Frame of Reference UID for the selected images",
@@ -143,25 +148,27 @@ class ImagingSelection(domainresource.DomainResource):
             "conveys spatial and/or temporal information for the selected images or"
             " frames."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    frameOfReferenceUid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    frameOfReferenceUid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_frameOfReferenceUid",
         title="Extension field for ``frameOfReferenceUid``.",
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Business Identifier for Imaging Selection",
         description="A unique identifier assigned to this imaging selection.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    instance: typing.List[fhirtypes.ImagingSelectionInstanceType] = Field(
+    instance: typing.List[fhirtypes.ImagingSelectionInstanceType] = Field(  # type: ignore
         None,
         alias="instance",
         title="The selected instances",
@@ -169,32 +176,35 @@ class ImagingSelection(domainresource.DomainResource):
             "Each imaging selection includes one or more selected DICOM SOP "
             "instances."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    issued: fhirtypes.Instant = Field(
+    issued: fhirtypes.InstantType = Field(  # type: ignore
         None,
         alias="issued",
         title="Date / Time when this imaging selection was created",
         description="The date and time this imaging selection was created.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    issued__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    issued__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_issued", title="Extension field for ``issued``."
     )
 
-    performer: typing.List[fhirtypes.ImagingSelectionPerformerType] = Field(
+    performer: typing.List[fhirtypes.ImagingSelectionPerformerType] = Field(  # type: ignore
         None,
         alias="performer",
         title="Selector of the instances (human or machine)",
         description="Selector of the instances \u2013 human or machine.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    seriesNumber: fhirtypes.UnsignedInt = Field(
+    seriesNumber: fhirtypes.UnsignedIntType = Field(  # type: ignore
         None,
         alias="seriesNumber",
         title="DICOM Series Number",
@@ -202,14 +212,15 @@ class ImagingSelection(domainresource.DomainResource):
             "The Series Number for the DICOM Series from which the images were "
             "selected."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    seriesNumber__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    seriesNumber__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_seriesNumber", title="Extension field for ``seriesNumber``."
     )
 
-    seriesUid: fhirtypes.Id = Field(
+    seriesUid: fhirtypes.IdType = Field(  # type: ignore
         None,
         alias="seriesUid",
         title="DICOM Series Instance UID",
@@ -217,14 +228,15 @@ class ImagingSelection(domainresource.DomainResource):
             "The Series Instance UID for the DICOM Series from which the images "
             "were selected."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    seriesUid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    seriesUid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_seriesUid", title="Extension field for ``seriesUid``."
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title="available | entered-in-error | unknown",
@@ -233,18 +245,19 @@ class ImagingSelection(domainresource.DomainResource):
             "status of any ImagingStudy, ServiceRequest, or Task resources "
             "associated with the ImagingSelection."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["available", "entered-in-error", "unknown"],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["available", "entered-in-error", "unknown"],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    studyUid: fhirtypes.Id = Field(
+    studyUid: fhirtypes.IdType = Field(  # type: ignore
         None,
         alias="studyUid",
         title="DICOM Study Instance UID",
@@ -252,14 +265,15 @@ class ImagingSelection(domainresource.DomainResource):
             "The Study Instance UID for the DICOM Study from which the images were "
             "selected."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    studyUid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    studyUid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_studyUid", title="Extension field for ``studyUid``."
     )
 
-    subject: fhirtypes.ReferenceType = Field(
+    subject: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="subject",
         title="Subject of the selected instances",
@@ -268,21 +282,22 @@ class ImagingSelection(domainresource.DomainResource):
             "procedure or practitioner this imaging selection is about and into "
             "whose or what record the imaging selection is placed."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Patient",
-            "Group",
-            "Device",
-            "Location",
-            "Organization",
-            "Procedure",
-            "Practitioner",
-            "Medication",
-            "Substance",
-            "Specimen",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Patient",
+                "Group",
+                "Device",
+                "Location",
+                "Organization",
+                "Procedure",
+                "Practitioner",
+                "Medication",
+                "Substance",
+                "Specimen",
+            ],
+        },
     )
 
     @classmethod
@@ -319,10 +334,7 @@ class ImagingSelection(domainresource.DomainResource):
             "instance",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_1817(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -331,52 +343,7 @@ class ImagingSelection(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class ImagingSelectionInstance(backboneelement.BackboneElement):
@@ -388,11 +355,9 @@ class ImagingSelectionInstance(backboneelement.BackboneElement):
     Each imaging selection includes one or more selected DICOM SOP instances.
     """
 
-    resource_type = Field("ImagingSelectionInstance", const=True)
+    __resource_type__ = "ImagingSelectionInstance"
 
-    imageRegion2D: typing.List[
-        fhirtypes.ImagingSelectionInstanceImageRegion2DType
-    ] = Field(
+    imageRegion2D: typing.List[fhirtypes.ImagingSelectionInstanceImageRegion2DType] = Field(  # type: ignore
         None,
         alias="imageRegion2D",
         title="A specific 2D region in a DICOM image / frame",
@@ -403,13 +368,12 @@ class ImagingSelectionInstance(backboneelement.BackboneElement):
             "element of type frame, the image region applies to all frames in the "
             "subset list."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    imageRegion3D: typing.List[
-        fhirtypes.ImagingSelectionInstanceImageRegion3DType
-    ] = Field(
+    imageRegion3D: typing.List[fhirtypes.ImagingSelectionInstanceImageRegion3DType] = Field(  # type: ignore
         None,
         alias="imageRegion3D",
         title="A specific 3D region in a DICOM frame of reference",
@@ -417,32 +381,35 @@ class ImagingSelectionInstance(backboneelement.BackboneElement):
             "Each imaging selection might includes a 3D image region, specified by "
             "a region type and a set of 3D coordinates."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    number: fhirtypes.UnsignedInt = Field(
+    number: fhirtypes.UnsignedIntType = Field(  # type: ignore
         None,
         alias="number",
         title="DICOM Instance Number",
         description="The Instance Number for the selected DICOM instance.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    number__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    number__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_number", title="Extension field for ``number``."
     )
 
-    sopClass: fhirtypes.CodingType = Field(
+    sopClass: fhirtypes.CodingType = Field(  # type: ignore
         None,
         alias="sopClass",
         title="DICOM SOP Class UID",
         description="The SOP Class UID for the selected DICOM instance.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    subset: typing.List[typing.Optional[fhirtypes.String]] = Field(
+    subset: typing.List[typing.Optional[fhirtypes.StringType]] = Field(  # type: ignore
         None,
         alias="subset",
         title="The selected subset of the SOP Instance",
@@ -456,23 +423,25 @@ class ImagingSelectionInstance(backboneelement.BackboneElement):
             "segmentation SOP Instance.        - A list of Region of Interest (ROI)"
             " numbers selected from a radiotherapy structure set SOP Instance."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    subset__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(None, alias="_subset", title="Extension field for ``subset``.")
+    subset__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
+        None, alias="_subset", title="Extension field for ``subset``."
+    )
 
-    uid: fhirtypes.Id = Field(
+    uid: fhirtypes.IdType = Field(  # type: ignore
         None,
         alias="uid",
         title="DICOM SOP Instance UID",
         description="The SOP Instance UID for the selected DICOM instance.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    uid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    uid__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_uid", title="Extension field for ``uid``."
     )
 
@@ -494,10 +463,7 @@ class ImagingSelectionInstance(backboneelement.BackboneElement):
             "imageRegion3D",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_2629(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -506,52 +472,7 @@ class ImagingSelectionInstance(backboneelement.BackboneElement):
         the primitive value is not present.
         """
         required_fields = [("uid", "uid__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class ImagingSelectionInstanceImageRegion2D(backboneelement.BackboneElement):
@@ -566,9 +487,9 @@ class ImagingSelectionInstanceImageRegion2D(backboneelement.BackboneElement):
     type frame, the image region applies to all frames in the subset list.
     """
 
-    resource_type = Field("ImagingSelectionInstanceImageRegion2D", const=True)
+    __resource_type__ = "ImagingSelectionInstanceImageRegion2D"
 
-    coordinate: typing.List[typing.Optional[fhirtypes.Decimal]] = Field(
+    coordinate: typing.List[typing.Optional[fhirtypes.DecimalType]] = Field(  # type: ignore
         None,
         alias="coordinate",
         title="Specifies the coordinates that define the image region",
@@ -581,27 +502,29 @@ class ImagingSelectionInstanceImageRegion2D(backboneelement.BackboneElement):
             "in the image / frames. The values must be within the range 0\\0 to the "
             "number of columns\\rows in the image / frames."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    coordinate__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(None, alias="_coordinate", title="Extension field for ``coordinate``.")
+    coordinate__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
+        None, alias="_coordinate", title="Extension field for ``coordinate``."
+    )
 
-    regionType: fhirtypes.Code = Field(
+    regionType: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="regionType",
         title="point | polyline | interpolated | circle | ellipse",
         description="Specifies the type of image region.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["point", "polyline", "interpolated", "circle", "ellipse"],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["point", "polyline", "interpolated", "circle", "ellipse"],
+        },
     )
-    regionType__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    regionType__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_regionType", title="Extension field for ``regionType``."
     )
 
@@ -613,10 +536,7 @@ class ImagingSelectionInstanceImageRegion2D(backboneelement.BackboneElement):
         """
         return ["id", "extension", "modifierExtension", "regionType", "coordinate"]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_3841(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -628,52 +548,7 @@ class ImagingSelectionInstanceImageRegion2D(backboneelement.BackboneElement):
             ("coordinate", "coordinate__ext"),
             ("regionType", "regionType__ext"),
         ]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class ImagingSelectionInstanceImageRegion3D(backboneelement.BackboneElement):
@@ -686,9 +561,9 @@ class ImagingSelectionInstanceImageRegion3D(backboneelement.BackboneElement):
     region type and a set of 3D coordinates.
     """
 
-    resource_type = Field("ImagingSelectionInstanceImageRegion3D", const=True)
+    __resource_type__ = "ImagingSelectionInstanceImageRegion3D"
 
-    coordinate: typing.List[typing.Optional[fhirtypes.Decimal]] = Field(
+    coordinate: typing.List[typing.Optional[fhirtypes.DecimalType]] = Field(  # type: ignore
         None,
         alias="coordinate",
         title="Specifies the coordinates that define the image region",
@@ -698,34 +573,36 @@ class ImagingSelectionInstanceImageRegion3D(backboneelement.BackboneElement):
             "of interest in the patient-relative Reference Coordinate System "
             "defined by ImagingSelection.frameOfReferenceUid element."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+        },
     )
-    coordinate__ext: typing.List[
-        typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]
-    ] = Field(None, alias="_coordinate", title="Extension field for ``coordinate``.")
+    coordinate__ext: typing.List[typing.Union[fhirtypes.FHIRPrimitiveExtensionType, None]] = Field(  # type: ignore
+        None, alias="_coordinate", title="Extension field for ``coordinate``."
+    )
 
-    regionType: fhirtypes.Code = Field(
+    regionType: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="regionType",
         title="point | multipoint | polyline | polygon | ellipse | ellipsoid",
         description="Specifies the type of image region.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=[
-            "point",
-            "multipoint",
-            "polyline",
-            "polygon",
-            "ellipse",
-            "ellipsoid",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": [
+                "point",
+                "multipoint",
+                "polyline",
+                "polygon",
+                "ellipse",
+                "ellipsoid",
+            ],
+        },
     )
-    regionType__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    regionType__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_regionType", title="Extension field for ``regionType``."
     )
 
@@ -737,10 +614,7 @@ class ImagingSelectionInstanceImageRegion3D(backboneelement.BackboneElement):
         """
         return ["id", "extension", "modifierExtension", "regionType", "coordinate"]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_3842(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -752,52 +626,7 @@ class ImagingSelectionInstanceImageRegion3D(backboneelement.BackboneElement):
             ("coordinate", "coordinate__ext"),
             ("regionType", "regionType__ext"),
         ]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class ImagingSelectionPerformer(backboneelement.BackboneElement):
@@ -809,35 +638,37 @@ class ImagingSelectionPerformer(backboneelement.BackboneElement):
     Selector of the instances – human or machine.
     """
 
-    resource_type = Field("ImagingSelectionPerformer", const=True)
+    __resource_type__ = "ImagingSelectionPerformer"
 
-    actor: fhirtypes.ReferenceType = Field(
+    actor: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="actor",
         title="Author (human or machine)",
         description="Author \u2013 human or machine.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=[
-            "Practitioner",
-            "PractitionerRole",
-            "Device",
-            "Organization",
-            "CareTeam",
-            "Patient",
-            "RelatedPerson",
-            "HealthcareService",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": [
+                "Practitioner",
+                "PractitionerRole",
+                "Device",
+                "Organization",
+                "CareTeam",
+                "Patient",
+                "RelatedPerson",
+                "HealthcareService",
+            ],
+        },
     )
 
-    function: fhirtypes.CodeableConceptType = Field(
+    function: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="function",
         title="Type of performer",
         description="Distinguishes the type of involvement of the performer.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

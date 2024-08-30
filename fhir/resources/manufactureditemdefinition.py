@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -24,9 +22,9 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
     as a tablet or capsule, as contained in a packaged medicinal product.
     """
 
-    resource_type = Field("ManufacturedItemDefinition", const=True)
+    __resource_type__ = "ManufacturedItemDefinition"
 
-    component: typing.List[fhirtypes.ManufacturedItemDefinitionComponentType] = Field(
+    component: typing.List[fhirtypes.ManufacturedItemDefinitionComponentType] = Field(  # type: ignore
         None,
         alias="component",
         title=(
@@ -35,20 +33,22 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
             "chemical makeup"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Unique identifier",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    ingredient: typing.List[fhirtypes.CodeableConceptType] = Field(
+    ingredient: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="ingredient",
         title=(
@@ -60,11 +60,12 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
             "ingredients are not specified by incoming references from the "
             "Ingredient resource."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    manufacturedDoseForm: fhirtypes.CodeableConceptType = Field(
+    manufacturedDoseForm: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="manufacturedDoseForm",
         title="Dose form as manufactured (before any necessary transformation)",
@@ -72,22 +73,24 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
             "Dose form as manufactured and before any transformation into the "
             "pharmaceutical product."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    manufacturer: typing.List[fhirtypes.ReferenceType] = Field(
+    manufacturer: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="manufacturer",
         title="Manufacturer of the item, one of several possible",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Organization"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Organization"],
+        },
     )
 
-    marketingStatus: typing.List[fhirtypes.MarketingStatusType] = Field(
+    marketingStatus: typing.List[fhirtypes.MarketingStatusType] = Field(  # type: ignore
         None,
         alias="marketingStatus",
         title=(
@@ -95,32 +98,35 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
             "is not available, and the dates and locations associated"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    name: fhirtypes.String = Field(
+    name: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="name",
         title="A descriptive name applied to this item",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    name__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_name", title="Extension field for ``name``."
     )
 
-    property: typing.List[fhirtypes.ManufacturedItemDefinitionPropertyType] = Field(
+    property: typing.List[fhirtypes.ManufacturedItemDefinitionPropertyType] = Field(  # type: ignore
         None,
         alias="property",
         title="General characteristics of this item",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title="draft | active | retired | unknown",
@@ -128,18 +134,19 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
             "The status of this item. Enables tracking the life-cycle of the "
             "content."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=["draft", "active", "retired", "unknown"],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": ["draft", "active", "retired", "unknown"],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    unitOfPresentation: fhirtypes.CodeableConceptType = Field(
+    unitOfPresentation: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="unitOfPresentation",
         title="The \u201creal-world\u201d units in which the quantity of the item is described",
@@ -147,8 +154,9 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
             "The \u201creal-world\u201d units in which the quantity of the manufactured item "
             "is described."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -178,10 +186,7 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
             "component",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_2866(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -190,52 +195,7 @@ class ManufacturedItemDefinition(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class ManufacturedItemDefinitionComponent(backboneelement.BackboneElement):
@@ -247,9 +207,9 @@ class ManufacturedItemDefinitionComponent(backboneelement.BackboneElement):
     This is distinct from the ingredients that are part of its chemical makeup.
     """
 
-    resource_type = Field("ManufacturedItemDefinitionComponent", const=True)
+    __resource_type__ = "ManufacturedItemDefinitionComponent"
 
-    amount: typing.List[fhirtypes.QuantityType] = Field(
+    amount: typing.List[fhirtypes.QuantityType] = Field(  # type: ignore
         None,
         alias="amount",
         title=(
@@ -257,22 +217,22 @@ class ManufacturedItemDefinitionComponent(backboneelement.BackboneElement):
             "component, expressable in different ways (e.g. by mass or volume)"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    component: typing.List[fhirtypes.ManufacturedItemDefinitionComponentType] = Field(
+    component: typing.List[fhirtypes.ManufacturedItemDefinitionComponentType] = Field(  # type: ignore
         None,
         alias="component",
         title="A component that this component contains or is made from",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    constituent: typing.List[
-        fhirtypes.ManufacturedItemDefinitionComponentConstituentType
-    ] = Field(
+    constituent: typing.List[fhirtypes.ManufacturedItemDefinitionComponentConstituentType] = Field(  # type: ignore
         None,
         alias="constituent",
         title=(
@@ -283,11 +243,12 @@ class ManufacturedItemDefinitionComponent(backboneelement.BackboneElement):
             "ManufacturedItemDefinition.ingredient)"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    function: typing.List[fhirtypes.CodeableConceptType] = Field(
+    function: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="function",
         title=(
@@ -295,26 +256,29 @@ class ManufacturedItemDefinitionComponent(backboneelement.BackboneElement):
             "ingredient, masks taste"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    property: typing.List[fhirtypes.ManufacturedItemDefinitionPropertyType] = Field(
+    property: typing.List[fhirtypes.ManufacturedItemDefinitionPropertyType] = Field(  # type: ignore
         None,
         alias="property",
         title="General characteristics of this component",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="type",
         title="Defining type of the component e.g. shell, layer, ink",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -347,9 +311,9 @@ class ManufacturedItemDefinitionComponentConstituent(backboneelement.BackboneEle
     Ingredient.for or ManufacturedItemDefinition.ingredient).
     """
 
-    resource_type = Field("ManufacturedItemDefinitionComponentConstituent", const=True)
+    __resource_type__ = "ManufacturedItemDefinitionComponentConstituent"
 
-    amount: typing.List[fhirtypes.QuantityType] = Field(
+    amount: typing.List[fhirtypes.QuantityType] = Field(  # type: ignore
         None,
         alias="amount",
         title=(
@@ -357,31 +321,34 @@ class ManufacturedItemDefinitionComponentConstituent(backboneelement.BackboneEle
             "(e.g. by mass or volume)"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    function: typing.List[fhirtypes.CodeableConceptType] = Field(
+    function: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="function",
         title="The function of this constituent within the component e.g. binder",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    hasIngredient: typing.List[fhirtypes.CodeableReferenceType] = Field(
+    hasIngredient: typing.List[fhirtypes.CodeableReferenceType] = Field(  # type: ignore
         None,
         alias="hasIngredient",
         title="The ingredient that is the constituent of the given component",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Ingredient"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Ingredient"],
+        },
     )
 
-    location: typing.List[fhirtypes.CodeableConceptType] = Field(
+    location: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="location",
         title=(
@@ -394,8 +361,9 @@ class ManufacturedItemDefinitionComponentConstituent(backboneelement.BackboneEle
             " the location would be where the ingredient resides within the product"
             " part \u2013 intragranular, extra-granular, etc."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -423,110 +391,118 @@ class ManufacturedItemDefinitionProperty(backboneelement.BackboneElement):
     General characteristics of this item.
     """
 
-    resource_type = Field("ManufacturedItemDefinitionProperty", const=True)
+    __resource_type__ = "ManufacturedItemDefinitionProperty"
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         ...,
         alias="type",
         title="A code expressing the type of characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    valueAttachment: fhirtypes.AttachmentType = Field(
+    valueAttachment: fhirtypes.AttachmentType = Field(  # type: ignore
         None,
         alias="valueAttachment",
         title="A value for the characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
 
-    valueBoolean: bool = Field(
+    valueBoolean: bool = Field(  # type: ignore
         None,
         alias="valueBoolean",
         title="A value for the characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
-    valueBoolean__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueBoolean__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueBoolean", title="Extension field for ``valueBoolean``."
     )
 
-    valueCodeableConcept: fhirtypes.CodeableConceptType = Field(
+    valueCodeableConcept: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="valueCodeableConcept",
         title="A value for the characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
 
-    valueDate: fhirtypes.Date = Field(
+    valueDate: fhirtypes.DateType = Field(  # type: ignore
         None,
         alias="valueDate",
         title="A value for the characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
-    valueDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueDate", title="Extension field for ``valueDate``."
     )
 
-    valueMarkdown: fhirtypes.Markdown = Field(
+    valueMarkdown: fhirtypes.MarkdownType = Field(  # type: ignore
         None,
         alias="valueMarkdown",
         title="A value for the characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
-    valueMarkdown__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    valueMarkdown__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_valueMarkdown", title="Extension field for ``valueMarkdown``."
     )
 
-    valueQuantity: fhirtypes.QuantityType = Field(
+    valueQuantity: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="valueQuantity",
         title="A value for the characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+        },
     )
 
-    valueReference: fhirtypes.ReferenceType = Field(
+    valueReference: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="valueReference",
         title="A value for the characteristic",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
-        # Choice of Data Types. i.e value[x]
-        one_of_many="value",
-        one_of_many_required=False,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Binary"],
+        json_schema_extra={
+            "element_property": True,
+            # Choice of Data Types. i.e value[x]
+            "one_of_many": "value",
+            "one_of_many_required": False,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Binary"],
+        },
     )
 
     @classmethod
@@ -549,10 +525,7 @@ class ManufacturedItemDefinitionProperty(backboneelement.BackboneElement):
             "valueReference",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_one_of_many_3746(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_one_of_many_fields(self) -> typing.Dict[str, typing.List[str]]:
         """https://www.hl7.org/fhir/formats.html#choice
         A few elements have a choice of more than one data type for their content.
         All such elements have a name that takes the form nnn[x].
@@ -576,23 +549,4 @@ class ManufacturedItemDefinitionProperty(backboneelement.BackboneElement):
                 "valueReference",
             ]
         }
-        for prefix, fields in one_of_many_fields.items():
-            assert cls.__fields__[fields[0]].field_info.extra["one_of_many"] == prefix
-            required = (
-                cls.__fields__[fields[0]].field_info.extra["one_of_many_required"]
-                is True
-            )
-            found = False
-            for field in fields:
-                if field in values and values[field] is not None:
-                    if found is True:
-                        raise ValueError(
-                            "Any of one field value is expected from "
-                            f"this list {fields}, but got multiple!"
-                        )
-                    else:
-                        found = True
-            if required is True and found is False:
-                raise ValueError(f"Expect any of field value from this list {fields}.")
-
-        return values
+        return one_of_many_fields

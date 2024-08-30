@@ -21,27 +21,29 @@ class SubstancePolymer(domainresource.DomainResource):
     Properties of a substance specific to it being a polymer.
     """
 
-    resource_type = Field("SubstancePolymer", const=True)
+    __resource_type__ = "SubstancePolymer"
 
-    class_fhir: fhirtypes.CodeableConceptType = Field(
+    class_fhir: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="class",
         title="Overall type of the polymer",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    copolymerConnectivity: typing.List[fhirtypes.CodeableConceptType] = Field(
+    copolymerConnectivity: typing.List[fhirtypes.CodeableConceptType] = Field(  # type: ignore
         None,
         alias="copolymerConnectivity",
         title="Descrtibes the copolymer sequence type (polymer connectivity)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    geometry: fhirtypes.CodeableConceptType = Field(
+    geometry: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="geometry",
         title=(
@@ -49,11 +51,12 @@ class SubstancePolymer(domainresource.DomainResource):
             "dendritic"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    identifier: fhirtypes.IdentifierType = Field(
+    identifier: fhirtypes.IdentifierType = Field(  # type: ignore
         None,
         alias="identifier",
         title=(
@@ -61,11 +64,12 @@ class SubstancePolymer(domainresource.DomainResource):
             " a SubstanceDefinition identifier"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    modification: fhirtypes.String = Field(
+    modification: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="modification",
         title=(
@@ -74,29 +78,32 @@ class SubstancePolymer(domainresource.DomainResource):
             "placeholder"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    modification__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    modification__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_modification", title="Extension field for ``modification``."
     )
 
-    monomerSet: typing.List[fhirtypes.SubstancePolymerMonomerSetType] = Field(
+    monomerSet: typing.List[fhirtypes.SubstancePolymerMonomerSetType] = Field(  # type: ignore
         None,
         alias="monomerSet",
         title="Todo",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    repeat: typing.List[fhirtypes.SubstancePolymerRepeatType] = Field(
+    repeat: typing.List[fhirtypes.SubstancePolymerRepeatType] = Field(  # type: ignore
         None,
         alias="repeat",
         title="Specifies and quantifies the repeated units and their configuration",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -132,9 +139,9 @@ class SubstancePolymerMonomerSet(backboneelement.BackboneElement):
     Todo.
     """
 
-    resource_type = Field("SubstancePolymerMonomerSet", const=True)
+    __resource_type__ = "SubstancePolymerMonomerSet"
 
-    ratioType: fhirtypes.CodeableConceptType = Field(
+    ratioType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="ratioType",
         title=(
@@ -142,13 +149,12 @@ class SubstancePolymerMonomerSet(backboneelement.BackboneElement):
             " ratio, SRU/Polymer Ratio"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    startingMaterial: typing.List[
-        fhirtypes.SubstancePolymerMonomerSetStartingMaterialType
-    ] = Field(
+    startingMaterial: typing.List[fhirtypes.SubstancePolymerMonomerSetStartingMaterialType] = Field(  # type: ignore
         None,
         alias="startingMaterial",
         title=(
@@ -156,8 +162,9 @@ class SubstancePolymerMonomerSet(backboneelement.BackboneElement):
             "polymer"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -177,36 +184,39 @@ class SubstancePolymerMonomerSetStartingMaterial(backboneelement.BackboneElement
     The starting materials - monomer(s) used in the synthesis of the polymer.
     """
 
-    resource_type = Field("SubstancePolymerMonomerSetStartingMaterial", const=True)
+    __resource_type__ = "SubstancePolymerMonomerSetStartingMaterial"
 
-    amount: fhirtypes.QuantityType = Field(
+    amount: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="amount",
         title="A percentage",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    category: fhirtypes.CodeableConceptType = Field(
+    category: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="category",
         title="Substance high level category, e.g. chemical substance",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    code: fhirtypes.CodeableConceptType = Field(
+    code: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="code",
         title="The type of substance for this starting material",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    isDefining: bool = Field(
+    isDefining: bool = Field(  # type: ignore
         None,
         alias="isDefining",
         title=(
@@ -214,10 +224,11 @@ class SubstancePolymerMonomerSetStartingMaterial(backboneelement.BackboneElement
             "for the unique identification of the polymer"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    isDefining__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    isDefining__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_isDefining", title="Extension field for ``isDefining``."
     )
 
@@ -246,32 +257,34 @@ class SubstancePolymerRepeat(backboneelement.BackboneElement):
     Specifies and quantifies the repeated units and their configuration.
     """
 
-    resource_type = Field("SubstancePolymerRepeat", const=True)
+    __resource_type__ = "SubstancePolymerRepeat"
 
-    averageMolecularFormula: fhirtypes.String = Field(
+    averageMolecularFormula: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="averageMolecularFormula",
         title="A representation of an (average) molecular formula from a polymer",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    averageMolecularFormula__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    averageMolecularFormula__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_averageMolecularFormula",
         title="Extension field for ``averageMolecularFormula``.",
     )
 
-    repeatUnit: typing.List[fhirtypes.SubstancePolymerRepeatRepeatUnitType] = Field(
+    repeatUnit: typing.List[fhirtypes.SubstancePolymerRepeatRepeatUnitType] = Field(  # type: ignore
         None,
         alias="repeatUnit",
         title="An SRU - Structural Repeat Unit",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    repeatUnitAmountType: fhirtypes.CodeableConceptType = Field(
+    repeatUnitAmountType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="repeatUnitAmountType",
         title=(
@@ -279,8 +292,9 @@ class SubstancePolymerRepeat(backboneelement.BackboneElement):
             "(e.g. Exact, Numeric, Average)"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -307,23 +321,22 @@ class SubstancePolymerRepeatRepeatUnit(backboneelement.BackboneElement):
     An SRU - Structural Repeat Unit.
     """
 
-    resource_type = Field("SubstancePolymerRepeatRepeatUnit", const=True)
+    __resource_type__ = "SubstancePolymerRepeatRepeatUnit"
 
-    amount: fhirtypes.Integer = Field(
+    amount: fhirtypes.IntegerType = Field(  # type: ignore
         None,
         alias="amount",
         title="Number of repeats of this unit",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    amount__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    amount__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_amount", title="Extension field for ``amount``."
     )
 
-    degreeOfPolymerisation: typing.List[
-        fhirtypes.SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationType
-    ] = Field(
+    degreeOfPolymerisation: typing.List[fhirtypes.SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisationType] = Field(  # type: ignore
         None,
         alias="degreeOfPolymerisation",
         title=(
@@ -331,11 +344,12 @@ class SubstancePolymerRepeatRepeatUnit(backboneelement.BackboneElement):
             "polymerisation within a block can be described"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    orientation: fhirtypes.CodeableConceptType = Field(
+    orientation: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="orientation",
         title=(
@@ -343,30 +357,31 @@ class SubstancePolymerRepeatRepeatUnit(backboneelement.BackboneElement):
             "random"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    structuralRepresentation: typing.List[
-        fhirtypes.SubstancePolymerRepeatRepeatUnitStructuralRepresentationType
-    ] = Field(
+    structuralRepresentation: typing.List[fhirtypes.SubstancePolymerRepeatRepeatUnitStructuralRepresentationType] = Field(  # type: ignore
         None,
         alias="structuralRepresentation",
         title="A graphical structure for this SRU",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    unit: fhirtypes.String = Field(
+    unit: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="unit",
         title="Structural repeat units are essential elements for defining polymers",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    unit__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    unit__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_unit", title="Extension field for ``unit``."
     )
 
@@ -399,47 +414,48 @@ class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation(
     polymerisation within a block can be described.
     """
 
-    resource_type = Field(
-        "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation", const=True
-    )
+    __resource_type__ = "SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation"
 
-    average: fhirtypes.Integer = Field(
+    average: fhirtypes.IntegerType = Field(  # type: ignore
         None,
         alias="average",
         title="An average amount of polymerisation",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    average__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    average__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_average", title="Extension field for ``average``."
     )
 
-    high: fhirtypes.Integer = Field(
+    high: fhirtypes.IntegerType = Field(  # type: ignore
         None,
         alias="high",
         title="A high expected limit of the amount",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    high__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    high__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_high", title="Extension field for ``high``."
     )
 
-    low: fhirtypes.Integer = Field(
+    low: fhirtypes.IntegerType = Field(  # type: ignore
         None,
         alias="low",
         title="A low expected limit of the amount",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    low__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    low__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_low", title="Extension field for ``low``."
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title=(
@@ -447,8 +463,9 @@ class SubstancePolymerRepeatRepeatUnitDegreeOfPolymerisation(
             "SRU/Polymer Ratio"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod
@@ -478,20 +495,19 @@ class SubstancePolymerRepeatRepeatUnitStructuralRepresentation(
     A graphical structure for this SRU.
     """
 
-    resource_type = Field(
-        "SubstancePolymerRepeatRepeatUnitStructuralRepresentation", const=True
-    )
+    __resource_type__ = "SubstancePolymerRepeatRepeatUnitStructuralRepresentation"
 
-    attachment: fhirtypes.AttachmentType = Field(
+    attachment: fhirtypes.AttachmentType = Field(  # type: ignore
         None,
         alias="attachment",
         title="An attached file with the structural representation",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    format: fhirtypes.CodeableConceptType = Field(
+    format: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="format",
         title=(
@@ -499,11 +515,12 @@ class SubstancePolymerRepeatRepeatUnitStructuralRepresentation(
             "SDF, PDB, mmCIF"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    representation: fhirtypes.String = Field(
+    representation: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="representation",
         title=(
@@ -511,20 +528,22 @@ class SubstancePolymerRepeatRepeatUnitStructuralRepresentation(
             " InChI, SMILES, MOLFILE, CDX, SDF, PDB, mmCIF"
         ),
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    representation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    representation__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_representation", title="Extension field for ``representation``."
     )
 
-    type: fhirtypes.CodeableConceptType = Field(
+    type: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="type",
         title="The type of structure (e.g. Full, Partial, Representative)",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

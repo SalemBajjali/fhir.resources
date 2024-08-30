@@ -8,9 +8,7 @@ Last updated: 2023-03-26T15:21:02.749+11:00
 """
 import typing
 
-from pydantic import Field, root_validator
-from pydantic.error_wrappers import ErrorWrapper, ValidationError
-from pydantic.errors import MissingError, NoneIsNotAllowedError
+from pydantic import Field
 
 from . import backboneelement, domainresource, fhirtypes
 
@@ -27,9 +25,9 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
     the clinical team responsible for clinical application.
     """
 
-    resource_type = Field("BiologicallyDerivedProductDispense", const=True)
+    __resource_type__ = "BiologicallyDerivedProductDispense"
 
-    basedOn: typing.List[fhirtypes.ReferenceType] = Field(
+    basedOn: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="basedOn",
         title="The order or request that this dispense is fulfilling",
@@ -37,13 +35,14 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "The order or request that the dispense is fulfilling. This is a "
             "reference to a ServiceRequest resource."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["ServiceRequest"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["ServiceRequest"],
+        },
     )
 
-    destination: fhirtypes.ReferenceType = Field(
+    destination: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="destination",
         title="Where the product was dispatched to",
@@ -51,13 +50,14 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "Link to a resource identifying the physical location that the product "
             "was dispatched to."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Location"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Location"],
+        },
     )
 
-    identifier: typing.List[fhirtypes.IdentifierType] = Field(
+    identifier: typing.List[fhirtypes.IdentifierType] = Field(  # type: ignore
         None,
         alias="identifier",
         title="Business identifier for this dispense",
@@ -66,40 +66,44 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             " dispense. Note: This is a business identifier, not a resource "
             "identifier."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    location: fhirtypes.ReferenceType = Field(
+    location: fhirtypes.ReferenceType = Field(  # type: ignore
         None,
         alias="location",
         title="Where the dispense occurred",
         description="The physical location where the dispense was performed.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Location"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Location"],
+        },
     )
 
-    matchStatus: fhirtypes.CodeableConceptType = Field(
+    matchStatus: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="matchStatus",
         title="Indicates the type of matching associated with the dispense",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    note: typing.List[fhirtypes.AnnotationType] = Field(
+    note: typing.List[fhirtypes.AnnotationType] = Field(  # type: ignore
         None,
         alias="note",
         title="Additional notes",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    originRelationshipType: fhirtypes.CodeableConceptType = Field(
+    originRelationshipType: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="originRelationshipType",
         title="Relationship between the donor and intended recipient",
@@ -107,22 +111,24 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "Indicates the relationship between the donor of the biologically "
             "derived product and the intended recipient."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    partOf: typing.List[fhirtypes.ReferenceType] = Field(
+    partOf: typing.List[fhirtypes.ReferenceType] = Field(  # type: ignore
         None,
         alias="partOf",
         title="Short description",
         description="A larger event of which this particular event is a component.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["BiologicallyDerivedProductDispense"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["BiologicallyDerivedProductDispense"],
+        },
     )
 
-    patient: fhirtypes.ReferenceType = Field(
+    patient: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="patient",
         title="The intended recipient of the dispensed product",
@@ -130,36 +136,37 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "A link to a resource representing the patient that the product is "
             "dispensed for."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Patient"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Patient"],
+        },
     )
 
-    performer: typing.List[
-        fhirtypes.BiologicallyDerivedProductDispensePerformerType
-    ] = Field(
+    performer: typing.List[fhirtypes.BiologicallyDerivedProductDispensePerformerType] = Field(  # type: ignore
         None,
         alias="performer",
         title="Indicates who or what performed an action",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    preparedDate: fhirtypes.DateTime = Field(
+    preparedDate: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="preparedDate",
         title="When product was selected/matched",
         description="When the product was selected/ matched.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    preparedDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    preparedDate__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_preparedDate", title="Extension field for ``preparedDate``."
     )
 
-    product: fhirtypes.ReferenceType = Field(
+    product: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="product",
         title="The BiologicallyDerivedProduct that is dispensed",
@@ -167,13 +174,14 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "A link to a resource identifying the biologically derived product that"
             " is being dispensed."
         ),
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["BiologicallyDerivedProduct"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["BiologicallyDerivedProduct"],
+        },
     )
 
-    quantity: fhirtypes.QuantityType = Field(
+    quantity: fhirtypes.QuantityType = Field(  # type: ignore
         None,
         alias="quantity",
         title="Amount dispensed",
@@ -182,11 +190,12 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "product being dispensed. Examples are: volume; cell count; "
             "concentration."
         ),
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
-    status: fhirtypes.Code = Field(
+    status: fhirtypes.CodeType = Field(  # type: ignore
         None,
         alias="status",
         title=(
@@ -194,49 +203,52 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "returned | entered-in-error | unknown"
         ),
         description="A code specifying the state of the dispense event.",
-        # if property is element of this resource.
-        element_property=True,
-        element_required=True,
-        # note: Enum values can be used in validation,
-        # but use in your own responsibilities, read official FHIR documentation.
-        enum_values=[
-            "preparation",
-            "in-progress",
-            "allocated",
-            "issued",
-            "unfulfilled",
-            "returned",
-            "entered-in-error",
-            "unknown",
-        ],
+        json_schema_extra={
+            "element_property": True,
+            "element_required": True,
+            # note: Enum values can be used in validation,
+            # but use in your own responsibilities, read official FHIR documentation.
+            "enum_values": [
+                "preparation",
+                "in-progress",
+                "allocated",
+                "issued",
+                "unfulfilled",
+                "returned",
+                "entered-in-error",
+                "unknown",
+            ],
+        },
     )
-    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    status__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_status", title="Extension field for ``status``."
     )
 
-    usageInstruction: fhirtypes.String = Field(
+    usageInstruction: fhirtypes.StringType = Field(  # type: ignore
         None,
         alias="usageInstruction",
         title="Specific instructions for use",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    usageInstruction__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    usageInstruction__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None,
         alias="_usageInstruction",
         title="Extension field for ``usageInstruction``.",
     )
 
-    whenHandedOver: fhirtypes.DateTime = Field(
+    whenHandedOver: fhirtypes.DateTimeType = Field(  # type: ignore
         None,
         alias="whenHandedOver",
         title="When the product was dispatched",
         description="When the product was dispatched for clinical use.",
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
-    whenHandedOver__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(
+    whenHandedOver__ext: fhirtypes.FHIRPrimitiveExtensionType = Field(  # type: ignore
         None, alias="_whenHandedOver", title="Extension field for ``whenHandedOver``."
     )
 
@@ -273,10 +285,7 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
             "usageInstruction",
         ]
 
-    @root_validator(pre=True, allow_reuse=True)
-    def validate_required_primitive_elements_3680(
-        cls, values: typing.Dict[str, typing.Any]
-    ) -> typing.Dict[str, typing.Any]:
+    def get_required_fields(self) -> typing.List[typing.Tuple[str, str]]:
         """https://www.hl7.org/fhir/extensibility.html#Special-Case
         In some cases, implementers might find that they do not have appropriate data for
         an element with minimum cardinality = 1. In this case, the element must be present,
@@ -285,52 +294,7 @@ class BiologicallyDerivedProductDispense(domainresource.DomainResource):
         the primitive value is not present.
         """
         required_fields = [("status", "status__ext")]
-        _missing = object()
-
-        def _fallback():
-            return ""
-
-        errors: typing.List["ErrorWrapper"] = []
-        for name, ext in required_fields:
-            field = cls.__fields__[name]
-            ext_field = cls.__fields__[ext]
-            value = values.get(field.alias, _missing)
-            if value not in (_missing, None):
-                continue
-            ext_value = values.get(ext_field.alias, _missing)
-            missing_ext = True
-            if ext_value not in (_missing, None):
-                if isinstance(ext_value, dict):
-                    missing_ext = len(ext_value.get("extension", [])) == 0
-                elif (
-                    getattr(ext_value.__class__, "get_resource_type", _fallback)()
-                    == "FHIRPrimitiveExtension"
-                ):
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-                else:
-                    validate_pass = True
-                    for validator in ext_field.type_.__get_validators__():
-                        try:
-                            ext_value = validator(v=ext_value)
-                        except ValidationError as exc:
-                            errors.append(ErrorWrapper(exc, loc=ext_field.alias))
-                            validate_pass = False
-                    if not validate_pass:
-                        continue
-                    if ext_value.extension and len(ext_value.extension) > 0:
-                        missing_ext = False
-            if missing_ext:
-                if value is _missing:
-                    errors.append(ErrorWrapper(MissingError(), loc=field.alias))
-                else:
-                    errors.append(
-                        ErrorWrapper(NoneIsNotAllowedError(), loc=field.alias)
-                    )
-        if len(errors) > 0:
-            raise ValidationError(errors, cls)  # type: ignore
-
-        return values
+        return required_fields
 
 
 class BiologicallyDerivedProductDispensePerformer(backboneelement.BackboneElement):
@@ -341,26 +305,28 @@ class BiologicallyDerivedProductDispensePerformer(backboneelement.BackboneElemen
     Indicates who or what performed an action.
     """
 
-    resource_type = Field("BiologicallyDerivedProductDispensePerformer", const=True)
+    __resource_type__ = "BiologicallyDerivedProductDispensePerformer"
 
-    actor: fhirtypes.ReferenceType = Field(
+    actor: fhirtypes.ReferenceType = Field(  # type: ignore
         ...,
         alias="actor",
         title="Who performed the action",
         description="Identifies the person responsible for the action.",
-        # if property is element of this resource.
-        element_property=True,
-        # note: Listed Resource Type(s) should be allowed as Reference.
-        enum_reference_types=["Practitioner"],
+        json_schema_extra={
+            "element_property": True,
+            # note: Listed Resource Type(s) should be allowed as Reference.
+            "enum_reference_types": ["Practitioner"],
+        },
     )
 
-    function: fhirtypes.CodeableConceptType = Field(
+    function: fhirtypes.CodeableConceptType = Field(  # type: ignore
         None,
         alias="function",
         title="Identifies the function of the performer during the dispense",
         description=None,
-        # if property is element of this resource.
-        element_property=True,
+        json_schema_extra={
+            "element_property": True,
+        },
     )
 
     @classmethod

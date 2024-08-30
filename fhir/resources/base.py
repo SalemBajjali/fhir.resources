@@ -6,9 +6,7 @@ Version: 5.0.0
 Build ID: 2aecd53
 Last updated: 2023-03-26T15:21:02.749+11:00
 """
-from pydantic import Field
-
-from fhir.resources.core import fhirabstractmodel
+from fhir_core import fhirabstractmodel
 
 
 class Base(fhirabstractmodel.FHIRAbstractModel):
@@ -20,7 +18,7 @@ class Base(fhirabstractmodel.FHIRAbstractModel):
     Base definition for all types defined in FHIR type system.
     """
 
-    resource_type = Field("Base", const=True)
+    __resource_type__ = "Base"
 
     @classmethod
     def elements_sequence(cls):
